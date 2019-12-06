@@ -4,22 +4,152 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151193502-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-151193502-1');
     </script>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add a gray background color with some padding */
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background: #f1f1f1;
+        }
+
+        /* Header/Blog Title */
+        .header {
+            padding: 30px;
+            font-size: 40px;
+            text-align: center;
+            background: white;
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        /* Left column */
+        .leftcolumn {
+            float: left;
+            width: 75%;
+        }
+
+        /* Right column */
+        .rightcolumn {
+            float: left;
+            width: 25%;
+            padding-left: 20px;
+        }
+
+        /* Fake image */
+        .fakeimg {
+            background-color: #aaa;
+            width: 100%;
+            padding: 20px;
+        }
+
+        /* Add a card effect for articles */
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #ddd;
+            margin-top: 20px;
+        }
+
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 800px) {
+            .leftcolumn, .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
-This is how our Adversarial Music works in a real home environment setting:
-<iframe width="720" height="480" src="https://www.youtube.com/embed/r4XXGDVs0f8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<iframe width="720" height="480" src="https://www.youtube.com/embed/TRHGpYzv_Sk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="header">
+    <h2>Adversarial Music: real world audio adversary against wake-word detection system</h2>
+</div>
 
-We will release our code before NeurIPS 2019.
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+            <p>Voice Assistants (VAs) such as Amazon Alexa or Google Assistant rely on wake-word detection to respond to
+                people's commands, which could potentially be vulnerable to audio adversarial examples. In this work, we
+                target our attack on the wake-word detection system, jamming the model with some inconspicuous
+                background music to deactivate the VAs while our audio adversary is present. We implemented an emulated
+                wake-word detection system of Amazon Alexa based on recent publications. We validated our models against
+                the real Alexa in terms of wake-word detection accuracy. Then we computed our audio adversaries with
+                consideration of expectation over transform and we implemented our audio adversary with a differentiable
+                synthesizer. Next, we verified our audio adversaries digitally on hundreds of samples of utterances
+                collected from the real world. Our experiments show that we can effectively reduce the recognition F1
+                score of our emulated model from 93.4% to 11.0%. Finally, we tested our audio adversary over the air,
+                and verified it works effectively against Alexa, reducing its F1 score from 92.5% to 11.0%.; We also
+                verified that non-adversarial music does not disable Alexa as effectively as our music at the same sound
+                level. To the best of our knowledge, this is the first real-world adversarial attack against a
+                commercial-grade VA wake-word detection system.</p>
+            <h2>Demonstration Video</h2>
+            <h5>This is how our Adversarial Music works in a real home environment setting </h5>
+            <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                    frameborder="0" height="480" src="https://www.youtube.com/embed/r4XXGDVs0f8" width="720"></iframe>
+
+        </div>
+        <div class="card">
+            <h2>Demonstration Video</h2>
+            <h5>This is the demonstration showing that Alexa is not affected by random musics or noises easily.</h5>
+            <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                    frameborder="0" height="480" src="https://www.youtube.com/embed/TRHGpYzv_Sk" width="720"></iframe>
+            <p>Some text..</p>
+        </div>
+    </div>
+    <div class="rightcolumn">
+        <div class="card">
+            <h2>Slides</h2>
+            <div class="fakeimg" style="height:100px;">Image</div>
+            <p>Slides at NeurIPS 2019</p>
+        </div>
+        <div class="card">
+            <h3>Updates</h3>
+            <div class="fakeimg">Coming soon</div>
+            <br>
+            <div class="fakeimg">Coming soon</div>
+            <br>
+            <div class="fakeimg">Coming soon</div>
+        </div>
+        <div class="card">
+            <h3>Follow Me</h3>
+            <p>Some text..</p>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <h2> We will release our code in December, 2019, and we are updating our code base to work with the latest PyTorch
+        Audio module which makes our MelSpectrum differentiable.</h2>
+</div>
+
 
 </body>
 </html>
