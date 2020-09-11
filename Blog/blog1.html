@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math Test Page</title>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+
+
+
+
+
+    </script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
+            type="text/javascript">
+    </script>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <!--meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /-->
+
+
+    <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /-->
+    <meta content="english" name="language"/>
+    <!-- Animate.css -->
+    <link href="../css/animate.css" rel="stylesheet">
+    <!-- Icomoon Icon Fonts-->
+    <link href="../css/icomoon.css" rel="stylesheet">
+    <!-- Bootstrap  -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <!-- Flexslider  -->
+    <link href="../css/flexslider.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../css/owl.carousel.min.css" rel="stylesheet">
+    <link href="../css/owl.theme.default.min.css" rel="stylesheet">
+    <!-- Theme style  -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <!-- Modernizr JS -->
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="../js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+<div id="wrapper">
+    <!-- main -->
+    <div id="main">
+        <div class="title">
+            <h1>All of VAE<br/></h1>
+
+            <div class="top"></div>
+            <div class="center">
+                <p>In the problem of learning disentangled representations, one of the promising methods is
+                    to
+                    factorize aggregated posterior by penalizing the total correlation of sampled latent
+                    variables.
+                    However, this well-motivated strategy has a blind spot: there is a disparity between the
+                    sampled
+                    latent representation and its corresponding mean representation.
+                    In this paper, we provide a theoretical explanation that low total correlation of
+                    sampled
+                    representation cannot guarantee low total correlation of the mean representation.
+                    Indeed, we prove that for the multivariate normal distributions, the mean representation
+                    with
+                    arbitrarily high total correlation can have a corresponding sampled representation with
+                    bounded
+                    total correlation.
+                    We also propose a method to eliminate the above-mentioned disparity.
+                    Experiments show that our model can learn a mean representation with much lower total
+                    correlation,
+                    hence a factorized mean representation.
+                    Moreover, we offer a detailed explanation of the limitations of factorizing aggregated
+                    posterior --
+                    factor disintegration. Our work indicates a potential direction for future research of
+                    disentangled
+                    learning.
+                </p>
+            </div>
+            <div class="center">
+                <h2>Related Works<br/>
+                </h2>
+                <p>
+                    VAE[1,2] takes the variational approach to approximate the
+                    posterior $p(z|x)$ with $q(z|x)$ by minimizing their KL-divergence, $\mathrm{KL}(q(z|x)\|p(z|x))$,
+                    which is equivalent to maximizing ELBO.
+                    As a result, the high-dimensional real world observations $\rvx$ is encoded into lower-dimension
+                    latent variable $\rvz$ that is expected to be semantically meaningful.
+
+                    In order to learn disentangled representation, \citet{higgins2017beta} proposed a modification of
+                    the VAE framework and introduced an adjustable hyperparameter $\beta$ that balances latent channel
+                    capacity and independence constraints with reconstruction accuracy. %One drawback of $\beta$-VAE is
+                    the trade-off between the reconstruction quality and disentanglement.
+
+                    Motivated by this, \citet{chenisolating} proposed $\beta$-TCVAE which adopts the idea of decomposing
+                    the average ELBO \citep{hoffman2016elbo} and penalizes the TC of latent variables aiming on
+                    regularizing a more precise source of disentanglemnet. Around the same time,
+                    \citet{kim2018disentangling} proposed a similar regularizer penalizing $TC_{sample}$ called
+                    FactorVAE. The major difference between FactorVAE and $\beta$-TCVAE lies in their different
+                    strategies of estimating $TC_{sample}$. \citet{chenisolating} used formulated estimators while
+                    \citet{kim2018disentangling} utilized the density-ratio trick which requires an auxiliary
+                    discriminator network. % and an inner optimization loop.
+                    We will discuss these two strategies more in details in
+                    Section.~\ref{sec:TCestimate}.~\citet{kumar2017variational} introduced DIP-VAE-I\&II, which penalize
+                    on the covariance matrix of mean and sampled latent variables respectively in order to encourage
+                    disentanglement. This strategy could learn an uncorrelated but not independent distribution.
+
+                    \citet{locatello2018challenging} challenged most recent work on disentanglement and argued that
+                    unsupervised learning of disentangled representations without inductive biases is basically
+                    impossible. This makes strong suggestion that researchers should pay attention to representative
+                    learning with inductive biases on both learning approaches and data sets. We refer readers to works
+                    in this direction, e.g. \citet{thomas2018disentangling,bouchacourt2018multi,rolinek2019variational}
+                    and works referred therein. However, their work does not provide an explanation to one of the
+                    observations they made, i.e., why most regularizers are effective at factorizing aggregated
+                    posterior but the corresponding mean representations may be entangled? We answer this question in
+                    the next section.
+
+                </p>
+            </div>
+            <div class="center">
+                <h2>Reference<br/>
+                </h2>
+                <p>[1] Kingma, D. P.; and Welling, M. 2013. <em>Auto-encoding variational bayes</em>.arXiv preprint
+                    arXiv:1312.6114.<br/>
+                    [2] Bengio, Y.; LeCun, Y.; et al. 2007. Scaling learning algo-rithms towards AI.Large-scale kernel
+                    machines34(5): 1–41.<br/>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
