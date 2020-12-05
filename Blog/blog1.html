@@ -9,6 +9,8 @@
 
 
 
+
+
     </script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
             type="text/javascript">
@@ -47,86 +49,279 @@
     <!-- main -->
     <div id="main">
         <div class="title">
-            <h1>All of VAE<br/></h1>
+            <h1>Revisiting Factorizing Aggregated Posterior in Learning Disentangled Representations
+                <br/></h1>
+            <a href="https://arxiv.org/abs/2009.05739">Check out our paper!</a>
+            <p>Here is one of the review we got from some top-tier conference: </p>
+            <!--            <div class="top"></div>-->
+            <!--            <div class="center">-->
+            <!--                <p>In the problem of learning disentangled representations, one of the promising methods is-->
+            <!--                    to-->
+            <!--                    factorize aggregated posterior by penalizing the total correlation of sampled latent-->
+            <!--                    variables.-->
+            <!--                    However, this well-motivated strategy has a blind spot: there is a disparity between the-->
+            <!--                    sampled-->
+            <!--                    latent representation and its corresponding mean representation.-->
+            <!--                    In this paper, we provide a theoretical explanation that low total correlation of-->
+            <!--                    sampled-->
+            <!--                    representation cannot guarantee low total correlation of the mean representation.-->
+            <!--                    Indeed, we prove that for the multivariate normal distributions, the mean representation-->
+            <!--                    with-->
+            <!--                    arbitrarily high total correlation can have a corresponding sampled representation with-->
+            <!--                    bounded-->
+            <!--                    total correlation.-->
+            <!--                    We also propose a method to eliminate the above-mentioned disparity.-->
+            <!--                    Experiments show that our model can learn a mean representation with much lower total-->
+            <!--                    correlation,-->
+            <!--                    hence a factorized mean representation.-->
+            <!--                    Moreover, we offer a detailed explanation of the limitations of factorizing aggregated-->
+            <!--                    posterior &#45;&#45;-->
+            <!--                    factor disintegration. Our work indicates a potential direction for future research of-->
+            <!--                    disentangled-->
+            <!--                    learning.-->
+            <!--                </p>-->
+            <!--            </div>-->
+            <!--            <div class="center">-->
+            <!--                <h2>Related Works<br/>-->
+            <!--                </h2>-->
+            <!--                <p>-->
+            <!--                    VAE[1,2] takes the variational approach to approximate the-->
+            <!--                    posterior $p(z|x)$ with $q(z|x)$ by minimizing their KL-divergence, $\mathrm{KL}(q(z|x)\|p(z|x))$,-->
+            <!--                    which is equivalent to maximizing ELBO.-->
+            <!--                    As a result, the high-dimensional real world observations $\rvx$ is encoded into lower-dimension-->
+            <!--                    latent variable $\rvz$ that is expected to be semantically meaningful.-->
 
-            <div class="top"></div>
-            <div class="center">
-                <p>In the problem of learning disentangled representations, one of the promising methods is
-                    to
-                    factorize aggregated posterior by penalizing the total correlation of sampled latent
-                    variables.
-                    However, this well-motivated strategy has a blind spot: there is a disparity between the
-                    sampled
-                    latent representation and its corresponding mean representation.
-                    In this paper, we provide a theoretical explanation that low total correlation of
-                    sampled
-                    representation cannot guarantee low total correlation of the mean representation.
-                    Indeed, we prove that for the multivariate normal distributions, the mean representation
-                    with
-                    arbitrarily high total correlation can have a corresponding sampled representation with
-                    bounded
-                    total correlation.
-                    We also propose a method to eliminate the above-mentioned disparity.
-                    Experiments show that our model can learn a mean representation with much lower total
-                    correlation,
-                    hence a factorized mean representation.
-                    Moreover, we offer a detailed explanation of the limitations of factorizing aggregated
-                    posterior --
-                    factor disintegration. Our work indicates a potential direction for future research of
-                    disentangled
-                    learning.
-                </p>
+            <!--                    In order to learn disentangled representation, \citet{higgins2017beta} proposed a modification of-->
+            <!--                    the VAE framework and introduced an adjustable hyperparameter $\beta$ that balances latent channel-->
+            <!--                    capacity and independence constraints with reconstruction accuracy. %One drawback of $\beta$-VAE is-->
+            <!--                    the trade-off between the reconstruction quality and disentanglement.-->
+
+            <!--                    Motivated by this, \citet{chenisolating} proposed $\beta$-TCVAE which adopts the idea of decomposing-->
+            <!--                    the average ELBO \citep{hoffman2016elbo} and penalizes the TC of latent variables aiming on-->
+            <!--                    regularizing a more precise source of disentanglemnet. Around the same time,-->
+            <!--                    \citet{kim2018disentangling} proposed a similar regularizer penalizing $TC_{sample}$ called-->
+            <!--                    FactorVAE. The major difference between FactorVAE and $\beta$-TCVAE lies in their different-->
+            <!--                    strategies of estimating $TC_{sample}$. \citet{chenisolating} used formulated estimators while-->
+            <!--                    \citet{kim2018disentangling} utilized the density-ratio trick which requires an auxiliary-->
+            <!--                    discriminator network. % and an inner optimization loop.-->
+            <!--                    We will discuss these two strategies more in details in-->
+            <!--                    Section.~\ref{sec:TCestimate}.~\citet{kumar2017variational} introduced DIP-VAE-I\&II, which penalize-->
+            <!--                    on the covariance matrix of mean and sampled latent variables respectively in order to encourage-->
+            <!--                    disentanglement. This strategy could learn an uncorrelated but not independent distribution.-->
+
+            <!--                    \citet{locatello2018challenging} challenged most recent work on disentanglement and argued that-->
+            <!--                    unsupervised learning of disentangled representations without inductive biases is basically-->
+            <!--                    impossible. This makes strong suggestion that researchers should pay attention to representative-->
+            <!--                    learning with inductive biases on both learning approaches and data sets. We refer readers to works-->
+            <!--                    in this direction, e.g. \citet{thomas2018disentangling,bouchacourt2018multi,rolinek2019variational}-->
+            <!--                    and works referred therein. However, their work does not provide an explanation to one of the-->
+            <!--                    observations they made, i.e., why most regularizers are effective at factorizing aggregated-->
+            <!--                    posterior but the corresponding mean representations may be entangled? We answer this question in-->
+            <!--                    the next section.-->
+
+            <!--                </p>-->
+            <!--            </div>-->
+            <!--            <div class="center">-->
+            <!--                <h2>Reference<br/>-->
+            <!--                </h2>-->
+            <!--                <p>[1] Kingma, D. P.; and Welling, M. 2013. <em>Auto-encoding variational bayes</em>.arXiv preprint-->
+            <!--                    arXiv:1312.6114.<br/>-->
+            <!--                    [2] Bengio, Y.; LeCun, Y.; et al. 2007. Scaling learning algo-rithms towards AI.Large-scale kernel-->
+            <!--                    machines34(5): 1–41.<br/>-->
+            <!--                </p>-->
+
+            <!--            </div>-->
+            <div class="body">
+                <!-- ko if: isSubmitted -->
+                <!-- ko if: ratings && ratings.length --><!-- /ko -->
+                <!-- ko if: questions.length -->
+                <h4>Questions</h4>
+                <ul class="questions" data-bind="foreach: questions">
+                    <li>
+                        <strong><span data-bind="text: order">1</span>. <span data-bind="text: details">{Summary} Please summarize the main claims/contributions of the paper in your own words. (Do not provide any review in this box)
+</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">The authors analyse conditions for
+                                disentanglement of VAE latent representations from the perspective of total correlation,
+                                explaining how TC of the mean representation can be high even if TC of samples is low.
+                                Building on this, a new regulariser is proposed, and its properties are illustrated on
+                                benchmark and artificial data.
+                            </li><!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">2</span>. <span data-bind="text: details">{Novelty} How novel is the paper?
+</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">Paper contributes some new ideas</li>
+                            <!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">3</span>. <span data-bind="text: details">{Soundness} Is the paper technically sound?
+</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">I have not checked all details, but the
+                                paper appears to be technically sound
+                            </li><!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">4</span>. <span data-bind="text: details">{Impact} How important is the paper likely to be, considering both methodological contributions and impact on application areas?</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">The paper will have low overall impact</li>
+                            <!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">5</span>. <span data-bind="text: details">{Clarity} Is the paper well-organized and clearly written?</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">Good: paper is well organized but language
+                                can be improved
+                            </li><!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">6</span>. <span data-bind="text: details">{Evaluation} Are claims well supported by experimental results?</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">Moderate: Experimental results are weak:
+                                important baselines are missing, or improvements are not significant
+                            </li><!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">7</span>. <span data-bind="text: details">{Resources} How impactful will this work be via sharing datasets, code and/or other resources?  (It may help to consult the paper’s reproducibility checklist.)</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">Not applicable: no shared resources</li>
+                            <!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">8</span>. <span data-bind="text: details">(Reproducibility) Would the experiments in the paper be easy to reproduce? (It may help to consult the paper’s reproducibility checklist.)</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">Meets Minimum Standard: e.g., code/data
+                                unavailable, but paper is clear enough that an expert could confidently reproduce
+                            </li><!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">9</span>. <span data-bind="text: details">{Reasons to Accept} Please describe the paper’s key strengths.</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">Provides additional mathematical analysis
+                                focusing on a fundamental question of practical value. Ties well into recent research.
+                            </li><!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">10</span>. <span data-bind="text: details">{Reasons to Reject} Please describe the paper’s key weaknesses.</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">Builds very heavily on Locatello et al.
+                                (2018) and does not have notable scientific insights. The mathematical analysis is not
+                                very deep and the practical method is a minor variant of existing ones.
+                            </li><!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">11</span>. <span data-bind="text: details">{Detailed Comments} Please provide other detailed comments and constructive feedback.</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">Comments after author response: Thank you
+                                for clear responses. Based on other reviews and your response I retain my overall
+                                evaluation. The paper has clearly potential and may become an important contribution for
+                                disentangled VAEs, but in the current form it feels a bit too heuristic and this may
+                                limit the impact. If you were able to better justify the objective (the suggestion that
+                                you can generalize the theorem also beyond normal distribution is a good start) the
+                                paper would become stronger, and combined with slightly stronger empirical results you
+                                could have a great paper.<br><br><br>Novelty: The basic observation of discrepancy
+                                between mean and sample-based TC has already been pointed out by Locatello et al.
+                                (2018). While having a more detailed analysis of this is valuable, the analysis in this
+                                work is restricted for normal distributions for which the result follows fairly directly
+                                from the definition. The new algorithm is minor variant of TC-VAE.<br><br>Soundness: The
+                                development seems to be correct and reasonable, but the essential choices are motivated
+                                on rather high level. For the RTC-VAE method itself, the authors simply state it
+                                "originates from the first term of the law of total covariance" and proceed to discuss
+                                how it may seem a bit counter-intuitive, never really justifying it properly. Similar
+                                line of reasoning could have been written for various other regularisers as well, and it
+                                is not at all apparent from the paper why this particular one is ideal.<br><br>Impact:
+                                There is considerable body of literature on this general theme, with a lot of papers
+                                being published continuously. The paper has high risk of falling into the category of
+                                "yet another VAE variant for disentanglement", but naturally also has the potential of
+                                notable impact in case it turns out to have exceptionally good empirical performance.
+                                This is hard to evaluate due to lack of quantitative demonstrations in applications of
+                                interest.<br><br>Clarity: The paper is fairly well written, but mathematical derivations
+                                are sometimes unnecessarily verbose and convoluted; Theorem 1 is difficult to reason
+                                about, and all of the proofs (especially Proposition 1) in Supplement are very lengthy
+                                compared to what would be sufficient.<br><br>Evaluation: The evaluations are reasonable,
+                                but somewhat qualitative (as tends to be the case for disentanglement works). While the
+                                experiments shed light on how the method works, they do not provide grounds for very
+                                strong conclusions. In particular, it is very hard to evaluate what is the practical
+                                value of the proposed methodology.<br><br>Overall, the paper contributes to an important
+                                topic, as shown by significant number of papers addressing it, and this paper is fairly
+                                prototypical for the literature. It analyses the concept from one angle, improves a bit
+                                from the discussion already provided in previous works, and proceeds to propose a new
+                                method variant. All of the development is sound and the method advances the field, but
+                                the contribution is incremental. In particular, I do not see novel scientific insights
+                                in this work. In conclusion, the work is worth publishing, but probably falls short of
+                                the publication threshold for top-tier venues.
+                            </li><!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">12</span>. <span data-bind="text: details">{QUESTIONS FOR THE AUTHORS} Please provide questions for authors to address during the author feedback period. (Please number them)</span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">1. All of the analysis is for normal
+                                distributions. Can you say anything about other distributions for the latent variables?
+                            </li><!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">14</span>. <span
+                                data-bind="text: details">(OVERALL SCORE) </span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">6 - Above threshold of acceptance</li>
+                            <!-- /ko -->
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><span data-bind="text: order">19</span>. <span data-bind="text: details">I acknowledge that I have read the author's rebuttal and made whatever changes to my review where necessary. </span></strong>
+                        <ul class="inline-list" data-bind="foreach: answers">
+                            <!-- ko if: text -->
+                            <li data-bind="html: text.htmlMultiLineEncode()">Agreement accepted</li><!-- /ko -->
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /ko -->
+                <!-- ko if: files.length --><!-- /ko -->
+                <!-- /ko -->
+                <!-- ko ifnot: isSubmitted --><!-- /ko -->
             </div>
-            <div class="center">
-                <h2>Related Works<br/>
-                </h2>
-                <p>
-                    VAE[1,2] takes the variational approach to approximate the
-                    posterior $p(z|x)$ with $q(z|x)$ by minimizing their KL-divergence, $\mathrm{KL}(q(z|x)\|p(z|x))$,
-                    which is equivalent to maximizing ELBO.
-                    As a result, the high-dimensional real world observations $\rvx$ is encoded into lower-dimension
-                    latent variable $\rvz$ that is expected to be semantically meaningful.
 
-                    In order to learn disentangled representation, \citet{higgins2017beta} proposed a modification of
-                    the VAE framework and introduced an adjustable hyperparameter $\beta$ that balances latent channel
-                    capacity and independence constraints with reconstruction accuracy. %One drawback of $\beta$-VAE is
-                    the trade-off between the reconstruction quality and disentanglement.
 
-                    Motivated by this, \citet{chenisolating} proposed $\beta$-TCVAE which adopts the idea of decomposing
-                    the average ELBO \citep{hoffman2016elbo} and penalizes the TC of latent variables aiming on
-                    regularizing a more precise source of disentanglemnet. Around the same time,
-                    \citet{kim2018disentangling} proposed a similar regularizer penalizing $TC_{sample}$ called
-                    FactorVAE. The major difference between FactorVAE and $\beta$-TCVAE lies in their different
-                    strategies of estimating $TC_{sample}$. \citet{chenisolating} used formulated estimators while
-                    \citet{kim2018disentangling} utilized the density-ratio trick which requires an auxiliary
-                    discriminator network. % and an inner optimization loop.
-                    We will discuss these two strategies more in details in
-                    Section.~\ref{sec:TCestimate}.~\citet{kumar2017variational} introduced DIP-VAE-I\&II, which penalize
-                    on the covariance matrix of mean and sampled latent variables respectively in order to encourage
-                    disentanglement. This strategy could learn an uncorrelated but not independent distribution.
-
-                    \citet{locatello2018challenging} challenged most recent work on disentanglement and argued that
-                    unsupervised learning of disentangled representations without inductive biases is basically
-                    impossible. This makes strong suggestion that researchers should pay attention to representative
-                    learning with inductive biases on both learning approaches and data sets. We refer readers to works
-                    in this direction, e.g. \citet{thomas2018disentangling,bouchacourt2018multi,rolinek2019variational}
-                    and works referred therein. However, their work does not provide an explanation to one of the
-                    observations they made, i.e., why most regularizers are effective at factorizing aggregated
-                    posterior but the corresponding mean representations may be entangled? We answer this question in
-                    the next section.
-
-                </p>
-            </div>
-            <div class="center">
-                <h2>Reference<br/>
-                </h2>
-                <p>[1] Kingma, D. P.; and Welling, M. 2013. <em>Auto-encoding variational bayes</em>.arXiv preprint
-                    arXiv:1312.6114.<br/>
-                    [2] Bengio, Y.; LeCun, Y.; et al. 2007. Scaling learning algo-rithms towards AI.Large-scale kernel
-                    machines34(5): 1–41.<br/>
-                </p>
-
-            </div>
         </div>
     </div>
 </div>
