@@ -51,8 +51,23 @@
         <div class="title">
             <h1>Revisiting Factorizing Aggregated Posterior in Learning Disentangled Representations
                 <br/></h1>
-            <a href="https://arxiv.org/abs/2009.05739">Check out our paper!</a>
-            <p>Here is one of the review we got from some top-tier conference: </p>
+            <a href="https://arxiv.org/abs/2009.05739">To actually read our paper in pdf in depth!</a>
+
+            <p><strong>TL;DR:</strong> (In case it's too long you don't read XD) We analyse conditions for
+                disentanglement of VAE latent representations from the perspective of total correlation,
+                explaining how Total Correlation (TC) of the mean representation can be high even if TC of samples is
+                low.
+                Building on this, a new regularizer is proposed, and its properties are illustrated on
+                benchmark and artificial data.<br>
+                <br>
+                Okay, since you are already here, I believe you should have some ideas about what we are doing here. You
+                might be wondering why I am talking about our own paper...unfortunately, this work missed the <q>criteria</q>
+                for top-tier conference by just a tiny bit, and I am not here to blast the conference bureaucracy with
+                my cynical satires.
+                But I think it might be of value to the greater community to
+                see some of the reviews and discussion we got about this work and offer our view points.
+                <br>
+                Let's go down the list: </p>
             <!--            <div class="top"></div>-->
             <!--            <div class="center">-->
             <!--                <p>In the problem of learning disentangled representations, one of the promising methods is-->
@@ -135,10 +150,10 @@
                 <!-- ko if: isSubmitted -->
                 <!-- ko if: ratings && ratings.length --><!-- /ko -->
                 <!-- ko if: questions.length -->
-                <h4>Questions</h4>
+                <h4>Anonymous Reviewer #1</h4>
                 <ul class="questions" data-bind="foreach: questions">
                     <li>
-                        <strong><span data-bind="text: order">1</span>. <span data-bind="text: details">{Summary} Please summarize the main claims/contributions of the paper in your own words. (Do not provide any review in this box)
+                        <strong><span data-bind="text: order">1</span>. <span data-bind="text: details">{Summary}
 </span></strong>
                         <ul class="inline-list" data-bind="foreach: answers">
                             <!-- ko if: text -->
@@ -304,14 +319,6 @@
                             <!-- ko if: text -->
                             <li data-bind="html: text.htmlMultiLineEncode()">6 - Above threshold of acceptance</li>
                             <!-- /ko -->
-                        </ul>
-                    </li>
-
-                    <li>
-                        <strong><span data-bind="text: order">19</span>. <span data-bind="text: details">I acknowledge that I have read the author's rebuttal and made whatever changes to my review where necessary. </span></strong>
-                        <ul class="inline-list" data-bind="foreach: answers">
-                            <!-- ko if: text -->
-                            <li data-bind="html: text.htmlMultiLineEncode()">Agreement accepted</li><!-- /ko -->
                         </ul>
                     </li>
                 </ul>
