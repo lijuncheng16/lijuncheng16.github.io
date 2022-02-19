@@ -18,6 +18,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Lato:wght@400;700&display=swap"
           rel="stylesheet">
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+
+
+
+
+    </script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
+            type="text/javascript">
+    </script>
     <title>Basic Theory Notbook and pointers</title>
 </head>
 <!-- Navbar -->
@@ -88,7 +98,6 @@
                     <li>Goodfellow book is new, but not necessarily the best written one.</li>
                 </ol>
 
-
                 From my experience, we would need the following background at least to understand what's going on:
                 <li><a href="https://www.youtube.com/watch?v=7UJ4CFRGd-U&list=PL221E2BBF13BECF6C"> Linear Algebra </a>
                     and its <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">
@@ -100,37 +109,253 @@
 
 
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <h5> Expected Value, Variance and Covariance</h5>
-                </div>
-                <div class="col-md-12">
-                    <p> If you claim you know stats, and you flounder at any of the above questions... great
-                        embarrassment.
-                        <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading7b.pdf">Covariance
-                            and Correlation derivation</a>
-                    <li>Why sample variance has a divider of
-                        <a href="https://www.willemsleegers.com/posts/why-divide-by-n-1/">(n-1)?</a>
-                    </li>
-                    <li>Moments of Normal Distribution</li>
-                    <h5> 5 ways to do linear Regression</h5>
-                    <ol>
-                        <li><a href="https://mathworld.wolfram.com/LeastSquaresFitting.html">Least Square</a> method and
-                            it's <a href="https://youtu.be/ewnc1cXJmGA?t=217">derivation</a>
-                            and <a href="https://www.mathsisfun.com/data/least-squares-regression.html">an intuitive
-                                example.</a></li>
-                        <li>Matrix Formulation for <a href="https://youtu.be/K_EH2abOp00?t=677">Multiple Linear
-                            Regression</a>, but need to understand
-                            <a href="https://atmos.washington.edu/~dennis/MatrixCalculus.pdf">Matrix Derivation</a></li>
-                        <li>Projection Matrix</li>
-                    </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <h5> Expected Value, Variance and Covariance</h5>
 
-                    There are so much stuff need to review, updating...
-                    </p>
-                </div>
+                <p> If you claim you know stats, and you flounder at any of the above questions... great
+                    embarrassment.
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading7b.pdf">Covariance
+                        and Correlation derivation</a>
+                <li> Linearity of Expectations $$ \mathbb{E} ( \sum_{j=1}^k c_j g_j(X) )= \sum_{j=1}^k c_j \mathbb{E}
+                    (g_j(X))$$
+                </li>
+                <li> Variance: $\sigma^2={\sf Var}\left(X\right) = \mathbb{E}\left((X-\mu)^2\right)$
+                    ${\sf Var}\left(X\right) = \mathbb{E}\left(X^2\right) - \mu^2.$ where $\mu = \mathbb{E}(X)$.<br/>
+                    If $X_1, \ldots, X_n$ are independent then: $ {\sf Var}\left(\sum_{i=1}^n a_i X_i\right) = \sum_i
+                    a_i^2 {\sf Var}\left(X_i\right). $
+                </li>
+                <li>The covariance is $${\sf Cov}(X,Y) = \mathbb{E}((X-\mu_x)(Y-\mu_y)) = \mathbb{E}(XY)- \mu_X \mu_Y $$
+                    and the correlation is
+                    $\rho(X,Y)= {\sf Cov}(X,Y)/\sigma_x\sigma_y$
+                    Recall that $-1 \leq \rho(X,Y) \leq 1$
+                </li>
+                <li>The <b> conditional expectation</b> of $Y$ given $X$
+                    is the random variable $\mathbb{E}(Y|X)$ whose value, when $X=x$ is
+                    $$
+                    \mathbb{E}(Y|X=x) = \int y \ p(y|x)dy
+                    $$
+                    where
+                    $p(y|x) = \frac{p(x,y)}{p(x)}$.
+                </li>
+                <li><b> Law of Total Expectation or Law of Iterated Expectation </b>:
+                    $$
+                    \mathbb{E}(Y)= \mathbb{E}\bigl[\mathbb{E}(Y|X)\bigr] = \int \mathbb{E}(Y|X=x) p_X(x)dx.
+                    $$
+                    The <b>Law of Total Variance</b> is
+                    $$
+                    {\sf Var}(Y) = {\sf Var}\bigl[ \mathbb{E}(Y|X)\bigr] + \mathbb{E}\bigl[ {\sf Var}(Y|X)\bigr].
+                    $$
+                </li>
+                <li>The sample mean is
+                    $$
+                    \widehat{\mu}_n = \frac{1}{n}\sum_i X_i
+                    $$
+                    Why sample variance has a divider of
+                    <a href="https://www.willemsleegers.com/posts/why-divide-by-n-1/">(n-1)?</a>
+                    $$
+                    \widehat{\sigma}^2_n= \frac{1}{n-1} \sum_i (X_i- \widehat{\mu}_n)^2.
+                    $$
+                    The <strong> sampling distribution</strong> of $\widehat{\mu}_n$ is
+                    $$
+                    G_n(t) = \mathbb{P}(\widehat{\mu}_n \leq t).
+                    $$
+
+                </li>
+                <li>The <b> moment generating function (mgf)</b> is
+                    $$
+                    M_X(t) = \mathbb{E}\left(e^{tX}\right).
+                    $$
+                    If $M_X(t)=M_Y(t)$ for all $t$ in an interval around 0 then
+                    $X\stackrel{d}{=}Y.$
+                    We can take derivatives of the mgf with respect to $t$ and evaluate at $t = 0$, i.e. we have that
+                    $ M^{(n)}_X(t)|_{t=0} = \mathbb{E}\left(X^n\right). $
+
+                </li>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <h5> Common Families of Distributions</h5>
+
+                <li><b>Normal (Gaussian)</b>
+                    $X\sim N(\mu,\sigma^2)$ if
+                    $$
+                    p(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}.
+                    $$
+                    If $X \in \mathbb{R}^d$ then
+                    $X\sim N(\mu,\Sigma)$ if
+                    $$
+                    p(x) = \frac{1}{ (2\pi)^{d/2} |\Sigma|} \exp\left( - \frac{1}{2} (x-\mu)^T \Sigma^{-1}
+                    (x-\mu)\right).
+                    $$
+                    Then
+                    $\mathbb{E}(Y) = \mu$ and
+                    ${\sf cov}(Y) = \Sigma$.
+                    The moment generating function is
+                    $$
+                    M(t) = \exp\left( \mu^T t + \frac{t^T \Sigma t}{2}\right).
+                    $$
+                </li>
+
+                <li><b>Chi-squared</b>
+                    $X\sim \chi^2_p$ if
+                    $X = \sum_{j=1}^p Z_j^2$
+                    where
+                    $Z_1,\ldots, Z_p\sim N(0,1)$.
+
+                    <b>Non-central chi-square.</b>$X \sim \chi^2_1(\mu^2)$ if $X = Z^2$ where $Z \sim N(\mu,1)$.
+
+
+                </li>
+                <li>
+                    <b> Bernoulli.</b>
+                    $X\sim {\rm Bernoulli}(\theta)$ if
+                    $\mathbb{P}(X=1)=\theta$ and
+                    $\mathbb{P}(X=0)=1-\theta$ and hence
+                    $$
+                    p(x)= \theta^x (1-\theta)^{1-x}\ \ \ \ \ \ x=0,1.
+                    $$
+                </li>
+                <li><b> Binomial.</b>
+                    $X\sim {\rm Binomial}(\theta)$ if
+                    $$
+                    p(x)=\mathbb{P}(X=x) = \binom{n}{x} \theta^x (1-\theta)^{n-x}
+                    \ \ \ \ \ \ x\in\{-1,\ldots, n\}.
+                    $$
+                </li>
+                <li><b>Poisson</b>
+                    $X\sim {\rm Poisson}(\lambda)$ if
+                    $P(X=x) = \frac{e^{-\lambda}\lambda^x}{x!}$ $x=0,1,2,\ldots$.
+                    The
+                    $\mathbb{E}\left(X\right) = {\sf Var}\left(X\right) = \lambda$
+                    and
+                    $M_X(t) = e^{\lambda({e^t}-1)}$.
+                    We can use
+                    the mgf to show: if $X_1 \sim {\rm Poisson}(\lambda_1)$, $X_2 \sim {\rm Poisson}(\lambda_2)$,
+                    independent then
+                    $Y=X_1 + X_2 \sim {\rm Poisson} (\lambda_1 + \lambda_2)$.
+
+                </li>
+                <li><b>Exponential</b>
+                    $X\sim {\rm exp}(\beta)$ if
+                    $p_X(x) = \frac{1}{\beta} e^{-x/\beta}$, $x>0$.
+                    Note that ${\rm exp}(\beta)=\Gamma(1,\beta)$.
+                </li>
+                <li><b>Multinomial</b>
+                    The multivariate version of a Binomial is called a Multinomial. Consider
+                    drawing a ball from an urn with has balls with $k$ different colors
+                    labeled ``color 1, color 2, $\ldots$, color $k$.'' Let $p=(p_1,p_2,\ldots,p_k)$
+                    where $\sum_j p_j =1$ and $p_j$ is the probability of drawing color $j$. Draw
+                    $n$ balls from the urn
+                    (independently and with replacement) and let $X=(X_1,X_2,\ldots,X_k)$ be
+                    the count of the number of balls of each color drawn. We say that $X$ has
+                    a Multinomial $(n,p)$ distribution. The pdf is
+                    $$
+                    p(x) = {n \choose {x_1,\ldots,x_k}} p_1^{x_1}\ldots p_k^{x_k}.
+                    $$
+                </li>
+                <li><b> Gamma</b>
+                    $X \sim \Gamma(\alpha,\beta)$ if
+                    $$
+                    p_X(x) = \frac 1{\Gamma(\alpha) \beta^\alpha} x^{\alpha-1} e^{-x/\beta}
+                    $$
+                    for $x>0$
+                    where
+                    $\Gamma(\alpha) = \int_0^\infty \frac 1{\beta^\alpha} x^{\alpha-1} e^{-x/\beta} dx$.
+                </li>
 
 
             </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <h5> Useful Inequalities</h5>
+                <ol>
+                    <li><b>Markov Inequality</b>
+                        The most elementary tail bound is Markov's inequality, which asserts that for a positive random
+                        variable $X \geq 0$,
+                        \begin{align*}
+                        \mathbb{P}(X \geq t) \leq \frac{\mathbb{E}[X]}{t}.
+                        \end{align*}
+                    </li>
+                    <li><b>Chebyshev Inequality</b>
+                        Chebyshev's inequality states that for a random variable $X$, with ${\sf Var}(X) = \sigma^2$:
+                        \begin{align*}
+                        \mathbb{P}( |X - \mathbb{E}[X]| \geq k \sigma) \leq \frac{1}{k^2}~~~~\forall k \geq 0.
+                        \end{align*}
+                        Proof: Chebyshev's inequality is an immediate consequence of Markov's inequality.
+                        \begin{align*}
+                        \mathbb{P}( |X - \mathbb{E}[X]| \geq k \sigma) &= \mathbb{P}( |X - \mathbb{E}[X]|^2 \geq k^2
+                        \sigma^2)
+                        &\leq \frac{\mathbb{E}(|X - \mathbb{E}[X]|^2)}{k^2 \sigma^2} = \frac{1}{k^2}.
+                        \end{align*}
+
+                    </li>
+                    <li>Define, $\mu = \mathbb{E}[X]$. For any $t > 0$, we have that,
+                        \begin{align*}
+                        \mathbb{P}((X - \mu) > u) = \mathbb{P}( \exp(t(X - \mu)) > \exp(t u) ) \leq \frac{
+                        \mathbb{E}[\exp(t(X - \mu))]}{\exp(t u)}.
+                        \end{align*}
+                        Now $t$ is a parameter we can choose to get a tight upper bound, i.e. we can write this bound
+                        as:
+                        \begin{align*}
+                        \mathbb{P}((X - \mu) > u) \leq \inf_{0 \leq t \leq b} \exp (-t(u + \mu))
+                        \mathbb{E}[\exp(tX)].
+                        \end{align*}
+                        This bound is known as <b>Chernoff's bound</b>.
+                    </li>
+                    <li> Formally, a random variable $X$ with mean $\mu$ is <b>sub-Gaussian</b>(tails decay faster than
+                        Gaussian) if there exists a positive number $\sigma$ such that,
+                        \begin{align*}
+                        \mathbb{E}[\exp(t(X - \mu))] \leq \exp (\sigma^2 t^2/2),
+                        \end{align*}
+                        for all $t \in \mathbb{R}$. Gaussian random variables with variance $\sigma^2$ satisfy the above
+                        condition with equality, so a $\sigma$-sub-Gaussian random variable basically just has an mgf
+                        that is dominated by a Gaussian with variance $\sigma$.
+                    </li>
+                    <li>
+                        <b>Jensen's inequality: </b> Jensen's inequality states that for a convex function $g:
+                        \mathbb{R} \mapsto \mathbb{R}$ we have that,
+                        \begin{align*}
+                        \mathbb{E}[g(X)] \geq g(\mathbb{E}[X]).
+                        \end{align*}
+                        If $g$ is concave then the reverse inequality holds.
+
+                    </li>
+                    <li>This in turn yields <b>Hoeffding's</b> bound.
+                        Suppose that, $X_1,\ldots, X_n$ are independent identically distribution <b>bounded</b> random
+                        variables, with $a \leq X_i \leq b$ for all $i$ then,
+                        \begin{align*}
+                        \mathbb{P}\left( \left| \frac{1}{n} \sum_{i=1}^n X_i - \mu \right| \geq t \right) \leq 2 \exp
+                        \left( - \frac{nt^2}{(b-a)^2} \right).
+                        \end{align*}
+                        This is a two-sided exponential tail inequality for the averages of bounded random variables.
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <h5> 5 ways to do linear Regression</h5>
+        <ol>
+            <li><a href="https://mathworld.wolfram.com/LeastSquaresFitting.html">Least Square</a> method and
+                it's <a href="https://youtu.be/ewnc1cXJmGA?t=217">derivation</a>
+                and <a href="https://www.mathsisfun.com/data/least-squares-regression.html">an intuitive
+                    example.</a></li>
+            <li>Matrix Formulation for <a href="https://youtu.be/K_EH2abOp00?t=677">Multiple Linear
+                Regression</a>, but need to understand
+                <a href="https://atmos.washington.edu/~dennis/MatrixCalculus.pdf">Matrix Derivation</a></li>
+            <li>Projection Matrix</li>
+        </ol>
+
+        There are so much stuff need to review, updating...
+        </p>
+    </section>
+</div>
 </body>
 </html>
