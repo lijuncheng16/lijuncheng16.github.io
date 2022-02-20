@@ -113,7 +113,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h5> Expected Value, Variance and Covariance</h5>
+                <h2> Expected Value, Variance and Covariance</h2>
 
                 <p> If you claim you know stats, and you flounder at any of the above questions... great
                     embarrassment.
@@ -162,7 +162,9 @@
                     $$
                     G_n(t) = \mathbb{P}(\widehat{\mu}_n \leq t).
                     $$
-
+                    <a href="https://leetcode.com/problems/random-pick-with-weight/">LeetCode528</a> talks about inverse
+                    CDF sampling.
+                    $X_i = F^{-1}(U_i).$ $U_1,\cdots,U_n$ independently with distribution U[0,1]
                 </li>
                 <li>The <b> moment generating function (mgf)</b> is
                     $$
@@ -180,7 +182,7 @@
 
             <div class="col-md-12">
 
-                <h5> Common Families of Distributions</h5>
+                <h2> Common Families of Distributions</h2>
 
                 <li><b>Normal (Gaussian)</b>
                     $X\sim N(\mu,\sigma^2)$ if
@@ -276,7 +278,7 @@
 
             <div class="col-md-12">
 
-                <h5> Useful Inequalities</h5>
+                <h2> Useful Inequalities</h2>
                 <ol>
                     <li><b>Markov Inequality</b>
                         The most elementary tail bound is Markov's inequality, which asserts that for a positive random
@@ -338,10 +340,77 @@
                         \end{align*}
                         This is a two-sided exponential tail inequality for the averages of bounded random variables.
                     </li>
+                    <li><b>Bernstein's inequality</b>
+                        suppose we had $X_1,\ldots,X_n$ which were i.i.d from a distribution with mean zero, bounded
+                        support $[a,b]$, with variance $\mathbb{E}[(X-\mu)^2] = \sigma^2$. Then,
+                        \begin{align*}
+                        \mathbb{P}(| \widehat{\mu} - \mu| \geq t) \leq 2 \exp\left( - \frac{nt^2}{2(\sigma^2 + (b-a) t)}
+                        \right).
+                        \end{align*}
+                        Roughly this inequality says with probability at least $1 - \delta$,
+                        \begin{align*}
+                        |\widehat{\mu} - \mu| \leq 4 \sigma \sqrt{ \frac{\ln (2/\delta)}{n}} + \frac{ 4(b-a)
+                        \ln(2/\delta)}{n}.
+                        \end{align*}
+                    </li>
+                    <li><b>The union bound.</b>
+                        This is also known as Boole's inequality. It says that if we have events $A_1,\ldots,A_n$ then
+                        \begin{align*}
+                        \mathbb{P}\left( \bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \mathbb{P}(A_i).
+                        \end{align*}
+                    </li>
+                    <li>Levy's inequality/Tsirelson's inequality: Concentration of Lipschitz functions of Gaussian
+                        random variables:
+                        \begin{align*}
+                        |f(X_1,\ldots,X_n) - f(Y_1,\ldots,Y_n)| \leq L \sqrt{\sum_{i=1}^n (X_i - Y_i)^2},
+                        \end{align*}
+                        for all $X_1,\ldots,X_n,Y_1,\ldots,Y_n \in \mathbb{R}$.
+
+                        For such functions we have that if $X_1,\ldots,X_n \sim N(0,1)$ then,
+                        \begin{align*}
+                        \mathbb{P}(|f(X_1,\ldots,X_n) - \mathbb{E}[f(X_1,\ldots,X_n)] | \geq t) \leq 2 \exp \left( -
+                        \frac{t^2}{2L^2} \right).
+                        \end{align*}
+                    </li>
+                    <li>A $U$-statistic is defined by a kernel, which is just a function of two random variables, i.e.
+                        $g: \mathbb{R}^2 \mapsto \mathbb{R}$. The U-statistic is then given as:
+                        \begin{align*}
+                        U(X_1,\ldots,X_n) := \frac{1}{ {n \choose 2} } \sum_{j < k} g(X_j, X_k).
+                        \end{align*}
+                        e.g. Variance, Mean Absolute Deviation.
+                    </li>
+                    <li>Mcdiarmid's Inequality
+                        Formally, we have i.i.d. RVs $X_1,\ldots,X_n$, where each $X_i \in \mathbb{R}$. We have a
+                        function $f: \mathbb{R}^n \mapsto \mathbb{R},$ that satisfies the property that:
+                        \begin{align*}
+                        |f(x_1,\ldots,x_n) - f(x_1,\ldots,x_{k-1}, x'_k, x_{k+1},\ldots,x_n)| \leq L_k,
+                        \end{align*}
+                        for every $x,x' \in \mathbb{R}^n$, i.e. the function changes by at most $L_k$ if its $k$-th
+                        coordinate is changed. This is known as the bounded difference condition.
+
+                        If the random variables $X_1,\ldots, X_n$ are i.i.d then for all $t \geq 0$
+                        \begin{align*}
+                        \mathbb{P}(|f(X_1,\ldots,X_n) - \mathbb{E}[f(X_1,\ldots,X_n)] | \geq t) \leq 2 \exp \left( -
+                        \frac{2t^2}{\sum_{k=1}^n L_k^2} \right).
+                        \end{align*}
+
+                        For bounded $U$-statistics, i.e. if $g(X_i, X_j) \leq b$, we can apply Azuma's inequality to
+                        obtain a concentration bound. Note that since each random variable $X_i$ participates in $(n-1)$
+                        terms we have that,
+                        \begin{align*}
+                        |U(X_1,\ldots,X_n) - U(X_1,\ldots,X_i',\ldots, X_n)| \leq \frac{1}{{n \choose 2}} (n-1)(2b) =
+                        \frac{4b}{n}.
+                        \end{align*}
+                        So that Azuma's inequality tells us that,
+                        \begin{align*}
+                        \mathbb{P}(|U(X_1,\ldots,X_n) - \mathbb{E}[U(X_1,\ldots,X_n)] | \geq t) \leq 2 \exp
+                        (-nt^2/(8b^2)).
+                        \end{align*}
+                    </li>
                 </ol>
             </div>
         </div>
-        <h5> 5 ways to do linear Regression</h5>
+        <h2> 5 ways to do linear Regression</h2>
         <ol>
             <li><a href="https://mathworld.wolfram.com/LeastSquaresFitting.html">Least Square</a> method and
                 it's <a href="https://youtu.be/ewnc1cXJmGA?t=217">derivation</a>
