@@ -24,6 +24,7 @@
 
 
 
+
     </script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
             type="text/javascript">
@@ -106,19 +107,24 @@
                 <li> Statistics</li>
                 <li><a href="https://www.youtube.com/watch?v=WUvTyaaNkzM"> Calculus (Of course)</a></li>
                 As a result, before I go on the job market, there's tons of work for me to keep my memory fresh.
-
-
+                Here's what this page covers:
+                <ol>
+                    <li><a href="#expected-value">Expected Value, Variance and Covariance</a></li>
+                    <li><a href="#distribution">Common Families of Distributions</a></li>
+                    <li><a href="#inequalities">Useful Inequalities</a></li>
+                    <li><a href="#regression">Regression</a></li>
+                </ol>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <h2> Expected Value, Variance and Covariance</h2>
+                <h2 id="expected-value"> Expected Value, Variance and Covariance</h2>
 
                 <p> If you claim you know stats, and you flounder at any of the above questions... great
-                    embarrassment.
-                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading7b.pdf">Covariance
-                        and Correlation derivation</a>
+                    embarrassment.</p>
+                <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading7b.pdf">Covariance
+                    and Correlation derivation</a>
                 <li> Linearity of Expectations $$ \mathbb{E} ( \sum_{j=1}^k c_j g_j(X) )= \sum_{j=1}^k c_j \mathbb{E}
                     (g_j(X))$$
                 </li>
@@ -182,7 +188,7 @@
 
             <div class="col-md-12">
 
-                <h2> Common Families of Distributions</h2>
+                <h2 id="distribution"> Common Families of Distributions</h2>
 
                 <li><b>Normal (Gaussian)</b>
                     $X\sim N(\mu,\sigma^2)$ if
@@ -278,7 +284,7 @@
 
             <div class="col-md-12">
 
-                <h2> Useful Inequalities</h2>
+                <h2 id="inequalities"> Useful Inequalities</h2>
                 <ol>
                     <li><b>Markov Inequality</b>
                         The most elementary tail bound is Markov's inequality, which asserts that for a positive random
@@ -410,7 +416,7 @@
                 </ol>
             </div>
         </div>
-        <h2> 5 ways to do linear Regression</h2>
+        <h2 id="regression"> 5 ways to do linear Regression</h2>
         <ol>
             <li><a href="https://mathworld.wolfram.com/LeastSquaresFitting.html">Least Square</a> method and
                 it's <a href="https://youtu.be/ewnc1cXJmGA?t=217">derivation</a>
