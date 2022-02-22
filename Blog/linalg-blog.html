@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" rel="stylesheet">
+    <!-- Customize CSS -->
+    <link href="./styles.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Lato:wght@400;700&display=swap"
+          rel="stylesheet">
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+
+
+
+    </script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
+            type="text/javascript">
+    </script>
+    <title>Linear Algebra</title>
+
+    <!--    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>-->
+
+</head>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <!--        <a class="navbar-brand" href="#">-->
+        <!--            <img src="./assets/logo.svg" class="logo" alt="logo"/>-->
+        <!--        </a>-->
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" href="../index.html">Back</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <!-- Intro Section -->
+    <section id="intro">
+        <div class="row">
+            <div class="col-sm intro-text">
+                <h1>Linear Algebra</h1>
+
+            </div>
+            <!--            <div class="col-sm">-->
+            <!--                <img src="./assets/intro.png" alt="intro" class="img-fluid">-->
+            <!--            </div>-->
+        </div>
+    </section>
+
+    <!-- End Intro Section -->
+
+    <!-- Stay Informed -->
+    <section id="details">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h5>Resources</h5>
+                <ul>
+                    <li>Gilbert Strang, god of Linear Algebra. This course reignited my desire to learn math.
+                        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen frameborder="0" height="315"
+                                src="https://www.youtube.com/embed/YeyrH-Oc2p4?start=290" title="YouTube video player"
+                                width="560"></iframe>
+                    </li>
+                    <li>This essence series is pure magic, beyond words to describe how helpful it is.
+                        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen frameborder="0" height="315"
+                                src="https://www.youtube.com/embed/fNk_zzaMoSs" title="YouTube video player"
+                                width="560"></iframe>
+                    </li>
+                    <li><a href="https://www.cs.cmu.edu/~zkolter/course/15-884/linalg-review.pdf">Zico's Review is the
+                        most concise written version.</a>
+                        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen frameborder="0" height="315"
+                                src="https://www.youtube.com/embed/_gqI7OZEPVs?start=72" title="YouTube video player"
+                                width="560"></iframe>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-12">
+                <h5>Interesting Facts:</h5>
+                <ol>
+                    <li>Projection:
+                        $$P^2 = P, P^T = P, P = A(A^TA)^{-1}A^T, A\hat{X}= A(A^TA)^{-1}A^Tb$$
+                        Why did we need $proj.$ to begin with?
+                        Since $Ax=b$ might not have a solution, so we instead solve proj of b onto the column space $Ax
+                        = p$
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+
+

@@ -112,6 +112,7 @@
                     <li><a href="#expected-value">Expected Value, Variance and Covariance</a></li>
                     <li><a href="#distribution">Common Families of Distributions</a></li>
                     <li><a href="#inequalities">Useful Inequalities</a></li>
+                    <li><a href="#convergence">Convergence of sequence</a></li>
                     <li><a href="#regression">Regression</a></li>
                 </ol>
             </div>
@@ -383,7 +384,8 @@
                         \begin{align*}
                         U(X_1,\ldots,X_n) := \frac{1}{ {n \choose 2} } \sum_{j < k} g(X_j, X_k).
                         \end{align*}
-                        e.g. Variance, Mean Absolute Deviation.
+                        e.g. Variance: $g(X_j, X_k) = \frac{1}{2}(X_j-X_k)^2$ Mean Absolute Deviation $g(X_j, X_k) =
+                        |X_j-X_k|.
                     </li>
                     <li>Mcdiarmid's Inequality
                         Formally, we have i.i.d. RVs $X_1,\ldots,X_n$, where each $X_i \in \mathbb{R}$. We have a
@@ -412,6 +414,65 @@
                         \mathbb{P}(|U(X_1,\ldots,X_n) - \mathbb{E}[U(X_1,\ldots,X_n)] | \geq t) \leq 2 \exp
                         (-nt^2/(8b^2)).
                         \end{align*}
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <h2 id="convergence"> Convergence of Sequence</h2>
+                <ol>
+                    <li>Almost sure convergence
+                        \begin{align*}
+                        \lim_{n \rightarrow \infty} X_n = X.
+                        \end{align*}
+                        The correct analogue turns out to be to require:
+                        \begin{align*}
+                        \mathbb{P}\left(\lim_{n \rightarrow \infty} X_n = X\right) = 1.
+                        \end{align*}
+                    </li>
+                    <li><b>Convergence in probability</b>:
+                        A sequence of random variables $X_1,\ldots,X_n$ converges in probability to a random variable
+                        $X$ if for every $\epsilon > 0$ we have that,
+                        \begin{align*}
+                        \lim_{n \rightarrow \infty} \mathbb{P}( |X_n - X| \geq \epsilon) = 0.
+                        \end{align*}
+                        Example: <b>Weak Law of Large Numbers</b> Suppose that $Y_1,\ldots,Y_n$ are i.i.d. with
+                        $\mathbb{E}[Y_i] = \mu$ and $\text{Var}(Y_i) = \sigma^2 < \infty$. Define, for $i \in
+                        \{1,\ldots,n\}$,
+                        \begin{align*}
+                        X_i = \frac{1}{i} \sum_{j = 1}^i Y_j.
+                        \end{align*}
+                        The WLLN says that the sequence $X_1,X_2,\ldots$ converges in probability to $\mu$.
+
+                        {\bf Proof: } The proof is simply an application of Chebyshev's inequality. We note that by
+                        Chebyshev's inequality:
+                        \begin{align*}
+                        \mathbb{P}(|X_n - \mathbb{E}[X]| \geq \epsilon) \leq \frac{\sigma^2}{n \epsilon^2}.
+                        \end{align*}
+                        This in turn implies that,
+                        \begin{align*}
+                        \lim_{n \rightarrow \infty} \mathbb{P}(|X_n - \mathbb{E}[X]| \geq \epsilon) = 0,
+                        \end{align*}
+                        as desired. Usually we will construct an estimator $\widehat{\theta}_n$ for some quantity
+                        $\theta^*$.
+                        We will then say that the estimator is <strong>consistent</strong> if the sequence of RVs
+                        $\widehat{\theta}_n$ converges in probability to $\theta^*$.
+                    </li>
+                    <li><b>Convergence in Quadratic Mean</b>:
+                        \begin{align*}
+                        \mathbb{E}(X_n - X)^2 \rightarrow 0,
+                        \end{align*}
+                        as $n \rightarrow \infty$.>
+                    </li>
+                    <li><b>Convergence in Distribution</b>:
+                        We say that a sequence converges to $X$ in distribution if:
+                        \begin{align*}
+                        \lim_{n \rightarrow \infty} F_{X_n}(t) = F_X(t),
+                        \end{align*}
+                        for all points $t$ where the CDF $F_X$ is continuous.
                     </li>
                 </ol>
             </div>
