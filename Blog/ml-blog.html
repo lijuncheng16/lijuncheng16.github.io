@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<body>
+<>
 
 <head>
     <meta charset="utf-8">
@@ -117,7 +117,8 @@
                     <li> SVC solves the following <a
                             href="https://scikit-learn.org/stable/modules/svm.html#svm-classification">primal
                         problem</a>:
-
+                    </li>
+                    <p>
                         \begin{align}\begin{aligned}\min_ {w, b, \zeta} \frac{1}{2} w^T w + C \sum_{i=1}^{n}
                         \zeta_i\\\begin{split}\textrm {subject to } & y_i (w^T \phi (x_i) + b) \geq 1 - \zeta_i,\\
                         & \zeta_i \geq 0, i=1, ..., n\end{split}\end{aligned}\end{align}
@@ -128,7 +129,7 @@
                         But problems are usually not always perfectly separable with a hyperplane, so we allow some
                         samples to be at a distance $\zeta_i$ from their correct margin boundary.
                         The penalty term C controls the strength of this penalty, and as a result, acts as an inverse
-                        regularization parameter (see note below).
+                        regularization parameter (see note below).<br/>
                         The dual problem to the primal is:
                         \begin{align}\begin{aligned}\min_{\alpha} \frac{1}{2} \alpha^T Q \alpha - e^T
                         \alpha\\\begin{split}
@@ -141,22 +142,20 @@
                         This dual representation highlights the fact that training vectors are implicitly mapped into a
                         higher
                         (maybe infinite) dimensional space by the <a
-                                href="https://www.cs.cmu.edu/~aarti/Class/10701_Spring21/Lecs/svm_dual_kernel_inked.pdf">
-                            Kernel Function<a/>. e.g. The <a href="https://youtu.be/Qc5IyLW_hns?t=570">The RBF
-                            kernel.</a>
-                            Once the optimization problem is solved,
-                            the output of decision_function for a given sample x: $\sum_{i\in SV} y_i \alpha_i K(x_i, x)
-                            + b$ and the predicted class correspond to its sign.
-                            The primal problem can be equivalently formulated as
-                            $\min_ {w, b} \frac{1}{2} w^T w + C \sum_{i=1}\max(0, 1 - y_i (w^T \phi(x_i) + b)),$
-                            where we make use of the hinge loss. This is the form that is directly optimized by
-                            LinearSVC,
-                            but unlike the dual form, this one does not involve inner products between samples, so the
-                            famous <a href="https://youtu.be/05VABNfa1ds?t=571">kernel trick</a> cannot be applied.
-
-                    </li>
+                            href="https://www.cs.cmu.edu/~aarti/Class/10701_Spring21/Lecs/svm_dual_kernel_inked.pdf">
+                        Kernel Function<a/>
+                        e.g. The <a href="https://youtu.be/Qc5IyLW_hns?t=570">The RBF kernel.</a>
+                        Once the optimization problem is solved,
+                        the output of decision_function for a given sample x: $\sum_{i\in SV} y_i \alpha_i K(x_i, x)
+                        + b$ and the predicted class correspond to its sign.
+                        The primal problem can be equivalently formulated as
+                        $\min_ {w, b} \frac{1}{2} w^T w + C \sum_{i=1}\max(0, 1 - y_i (w^T \phi(x_i) + b)),$
+                        where we make use of the hinge loss.
+                        This is the form that is directly optimized by LinearSVC, but unlike the dual form, this one
+                        does not involve inner products between samples, so the
+                        famous <a href="https://youtu.be/05VABNfa1ds?t=571">kernel trick</a> cannot be applied.
+                    </p>
                 </ol>
-
             </div>
 
         </div>
@@ -175,13 +174,21 @@
                     <li><a href="https://cs231n.github.io/convolutional-networks/">De facto Convolution
                         resources</a></li>
                     <li><a href="https://youtu.be/8rrHTtUzyZA?t=1292">Wonderful Video</a></li>
+                    <li>
+                        <a href="https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20172018/LectureNotes/IP/LocalStructure/GaussianDerivatives.html">Convolve
+                            with Gaussian</a></li>
+                    <li><a href="https://matthew-brett.github.io/teaching/smoothing_intro.html">Gaussian Smoothing</a>
+                        (This guy also seems to have a lot to offer on his page, especially about Fourier)
+                    </li>
+
                 </ol>
 
                 There are so much stuff need to review, updating...
             </div>
 
         </div>
-</body>
+    </section>
+</div>
 </html>
 
 

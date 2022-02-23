@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<body>
 
 <head>
     <meta charset="utf-8">
@@ -21,6 +20,7 @@
 
 
 
+
     </script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
             type="text/javascript">
@@ -30,6 +30,7 @@
     <!--    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>-->
 
 </head>
+
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <!--        <a class="navbar-brand" href="#">-->
@@ -106,12 +107,33 @@
                         Since $Ax=b$ might not have a solution, so we instead solve proj of b onto the column space $Ax
                         = p$
                     </li>
+                    <li>QR decomposition: $A = QR$,
+                        $Q^{-1} = Q^T$,
+                        $QRx = b$, $Rx = Q^Tb$,
+                    </li>
+                    <li>Determinant:
+                        $Det(I) = 1$, Det is linear to each row! $Det(2A) = 2^nDet(A)$,$Det(AB) = Det(A)Det(B)$,
+                        $Det(A) = Det(A^T)$,$Det(LU) = Det(L^T)Det(U^T)$, $Det(A^{-1}) = \frac{1}{Det(A)}$,
+                        $Det(A^{-1})Det(A) = 1$ Exchange rows reverse sign of Det
+                    </li>
+                    <li>FFT in action:
+                        <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen frameborder="0"
+                                height="315" src="https://www.youtube.com/embed/spUNpyF58BY"
+                                title="YouTube video player"
+                                width="560"></iframe>
+                        <a href="https://www.youtube.com/watch?v=h7apO7q16V0">Derivation of FFT in action</a>
+                        Using FFT to process audio with librosa, making use of stft, and power_to_db.
+                        <a href="https://github.com/DalyaG/CodeSnippetsForPosterity/blob/master/GettingToKnowTheMelSpectrogram/GettingToKnowTheMelSpectrogram.ipynb">Librosa</a>
+                        Fun edge case when doing fft on a masked signal.
+                        <a href="https://www.reddit.com/r/math/comments/kf50ga/step_function_fourier_series_visualized_oc/">Step
+                            Fourier </a>
+                    </li>
                 </ol>
             </div>
         </div>
     </section>
-
-</body>
+</div>
 </html>
 
 
