@@ -136,11 +136,13 @@
                         The penalty term $C$ controls the strength of this penalty, and as a result, acts as an inverse
                         regularization parameter. Basically, the smaller $C$ is, the more SVM can tolerate slack
                         variable,
-                        and thus allowing more misclassification.(also see note below).<br/>
+                        and thus allowing more misclassification.
+                        For very tiny values of $C$, you should get misclassified examples, often even if your training
+                        data is linearly separable.(also see note below).<br/>
                         The dual problem to the primal is:
                         \begin{align}\begin{aligned}\min_{\alpha} \frac{1}{2} \alpha^T Q \alpha - e^T
                         \alpha\\\begin{split}
-                        \textrm {subject to } & y^T \alpha = 0
+                        \textrm {subject to } & y^T \alpha = 0 \\
                         & 0 \leq \alpha_i \leq C, i=1, ..., n\end{split}\end{aligned}\end{align}
                         where $e$ is the vector of all ones, and $Q$ is an n by n positive semidefinite matrix, $Q_{ij}
                         \equiv y_i y_j K(x_i, x_j)$,
