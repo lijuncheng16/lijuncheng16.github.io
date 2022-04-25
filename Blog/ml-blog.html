@@ -105,6 +105,9 @@
             <div class="col-md-12">
                 <h5>SVM</h5>
                 <ol>
+                    <li>TL;DR: SVM is about find a soft margin (supporting hyper plane) that best separates the data.
+                        If we cannot find such separatable instance, we can move to higher dimension by using Kernels.
+                    </li>
                     <li>Understanding <a href="https://www.youtube.com/watch?v=gb25CfVZm3Q">RKHS</a> is the basis of
                         understanding Kernels.
                     </li>
@@ -122,32 +125,37 @@
                         \begin{align}\begin{aligned}\min_ {w, b, \zeta} \frac{1}{2} w^T w + C \sum_{i=1}^{n}
                         \zeta_i\\\begin{split}\textrm {subject to } & y_i (w^T \phi (x_i) + b) \geq 1 - \zeta_i,\\
                         & \zeta_i \geq 0, i=1, ..., n\end{split}\end{aligned}\end{align}
+
                         Intuitively, we’re trying to maximize the margin (by minimizing $||w||^2 = w^Tw$), while
                         incurring a penalty when a sample is misclassified or within the margin boundary.
-                        Ideally, the value $y_i (w^T \phi (x_i) + b) $would be for all samples, which indicates a
+                        Ideally, the value $y_i (w^T \phi (x_i) + b) $would be $\geq 1 $for all samples, which indicates
+                        a
                         perfect prediction.
                         But problems are usually not always perfectly separable with a hyperplane, so we allow some
-                        samples to be at a distance $\zeta_i$ from their correct margin boundary.
-                        The penalty term C controls the strength of this penalty, and as a result, acts as an inverse
-                        regularization parameter (see note below).<br/>
+                        samples to be at a distance $\zeta_i$ (Slack Variable) from their correct margin boundary.
+                        The penalty term $C$ controls the strength of this penalty, and as a result, acts as an inverse
+                        regularization parameter. Basically, the smaller $C$ is, the more SVM can tolerate slack
+                        variable,
+                        and thus allowing more misclassification.(also see note below).<br/>
                         The dual problem to the primal is:
                         \begin{align}\begin{aligned}\min_{\alpha} \frac{1}{2} \alpha^T Q \alpha - e^T
                         \alpha\\\begin{split}
-                        \textrm {subject to } & y^T \alpha = 0\\
+                        \textrm {subject to } & y^T \alpha = 0
                         & 0 \leq \alpha_i \leq C, i=1, ..., n\end{split}\end{aligned}\end{align}
                         where $e$ is the vector of all ones, and $Q$ is an n by n positive semidefinite matrix, $Q_{ij}
                         \equiv y_i y_j K(x_i, x_j)$,
                         where $K(x_i, x_j) = \phi (x_i)^T \phi (x_j)$ is the kernel.
                         The terms $\alpha_i$ are called the dual coefficients, and they are upper-bounded by $C$.
                         This dual representation highlights the fact that training vectors are implicitly mapped into a
-                        higher
-                        (maybe infinite) dimensional space by the <a
+                        higher (maybe infinite) dimensional space by the <a
                             href="https://www.cs.cmu.edu/~aarti/Class/10701_Spring21/Lecs/svm_dual_kernel_inked.pdf">
                         Kernel Function</a>
-                        e.g. The <a href="https://youtu.be/Qc5IyLW_hns?t=570">The RBF kernel.</a>
+                        e.g. The <a href="https://youtu.be/Qc5IyLW_hns?t=570">The RBF kernel.</a><br/>
+
                         Once the optimization problem is solved,
                         the output of decision_function for a given sample x: $\sum_{i\in SV} y_i \alpha_i K(x_i, x)
-                        + b$ and the predicted class correspond to its sign.
+                        + b$ and the predicted class correspond to its sign.<br/>
+
                         The primal problem can be equivalently formulated as
                         $\min_ {w, b} \frac{1}{2} w^T w + C \sum_{i=1}\max(0, 1 - y_i (w^T \phi(x_i) + b)),$
                         where we make use of the hinge loss.
