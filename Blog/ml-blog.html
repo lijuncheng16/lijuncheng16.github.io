@@ -24,7 +24,7 @@
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
             type="text/javascript">
     </script>
-    <title>NeuralNetwork Pointers</title>
+    <title>ML Pointers</title>
 
     <!--    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>-->
 
@@ -71,7 +71,44 @@
     <!-- Stay Informed -->
     <section id="details">
         <div class="row">
+            <div class="col-md-12">
+                <h5> MLE, MAP </h5>
+                <ol>
+                    <li>\begin{align}
 
+                        \theta_{MLE} &= \mathop{\rm arg\,max}\limits_{\theta} P(D \vert \theta) \\[10pt]
+                        &= \mathop{\rm arg\,max}\limits_{\theta} \prod_i P(x_i \vert \theta)
+
+                        \end{align}
+                        To avoid underflow, we will instead work in the log space, as logarithm is monotonically
+                        increasing,
+                        so maximizing a function is equal to maximizing the log of that function.
+                        \begin{align}
+
+                        \theta_{MLE} &= \mathop{\rm arg\,max}\limits_{\theta} \log P(X \vert \theta) \\[10pt]
+                        &= \mathop{\rm arg\,max}\limits_{\theta} \log \prod_i P(x_i \vert \theta) \\[10pt]
+                        &= \mathop{\rm arg\,max}\limits_{\theta} \sum_i \log P(x_i \vert \theta)
+
+                        \end{align}
+                        MAP
+                        \begin{align}
+
+                        P(\theta \vert X) &= \frac{P(X \vert \theta) P(\theta)}{P(X)} \\[10pt]
+                        &\propto P(X \vert \theta) P(\theta)
+
+                        \end{align}
+                        \begin{align}
+
+                        \theta_{MAP} &= \mathop{\rm arg\,max}\limits_{\theta} P(X \vert \theta) P(\theta) \\[10pt]
+                        &= \mathop{\rm arg\,max}\limits_{\theta} \log P(X \vert \theta) + \log P(\theta) \\[10pt]
+                        &= \mathop{\rm arg\,max}\limits_{\theta} \log \prod_i P(x_i \vert \theta) + \log P(\theta)
+                        \\[10pt]
+                        &= \mathop{\rm arg\,max}\limits_{\theta} \sum_i \log P(x_i \vert \theta) + \log P(\theta)
+
+                        \end{align}
+                    </li>
+                </ol>
+            </div>
             <div class="col-md-12">
                 <h5> Logistic Regression </h5>
                 <ol>
@@ -83,6 +120,7 @@
                         interpreted as
                         confidence in a decision
                     </li>
+                    <li>LR is a linear classifier: decision rule is a hyperplane</li>
                     <li>As an optimization problem, binary class $\ell_2$
                         penalized <a
                                 href="https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression">logistic
@@ -98,7 +136,7 @@
                         where $\rho$ controls the strength of $\ell_1$
                         regularization vs. $\ell_2$
                         regularization (it corresponds to the l1_ratio parameter). No regularization amounts to setting
-                        C to a very high value..
+                        C to a very high value. Maximum conditional a posteriori corresponds to regularization.
                     </li>
                 </ol>
             </div>
