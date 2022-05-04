@@ -16,13 +16,11 @@
           rel="stylesheet">
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
             type="text/javascript">
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <title>ML Pointers</title>
 
@@ -342,6 +340,7 @@
         </article>
     </div>
 </div>
+
 <script type="text/javascript">
     function loadComments(data) {
         for (var i = 0; i < data.length; i++) {
@@ -360,7 +359,7 @@
                 cuser +
                 "</a>" + " @ " +
                 "<a class='commentdate' href=\"" + clink + "\">" +
-                cdate.toLocaleDateString("en") +
+                cdate.toLocaleString("en") +
                 "</a>" + ":" +
                 "</div>" +
                 "<div class='comment-text'>" +
