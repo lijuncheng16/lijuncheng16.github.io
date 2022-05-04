@@ -1417,13 +1417,35 @@ body.offcanvas {
   padding-bottom: 1em; }
   @media screen and (max-width: 768px) {
     .row-bottom-padded-sm {
-      padding-bottom: 1em; } }
+        padding-bottom: 1em;
+    }
+  }
 
 .row-pt-md {
-  padding-top: 3em; }
+    padding-top: 3em;
+}
 
 .col-padding {
-  padding: 10px !important; }
+    padding: 10px !important;
+}
 
 .js .animate-box {
-  opacity: 0; }
+    opacity: 0;
+}
+
+comment {
+    background-color: #F1FAF6;
+}
+
+.comment-row {
+    padding-bottom: 15px;
+}
+
+.comment-text {
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
