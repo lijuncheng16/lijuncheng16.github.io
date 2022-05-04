@@ -236,17 +236,18 @@
                 <li>Disjoint Set, Union Find: Union function and find function, quick union, quick find, or union with
                     rank
                     <pre class="line-numbers">
-                       <code id="python_code">
+                       <code class="python_code">
                        def isBipartite(self, graph: List[List[int]]) -> bool:
                             length = len(graph)
                             parent = [i for i in range(length)]
 
                             def find(x):
                                 if x!=parent[x]:
-                                    parent[x]=find(parent[x])#rank compression
+                                    parent[x]=find(parent[x]) #rank compression
                                 return parent[x]
 
-                            def union(x,y):
+                            def union(x,y): # union by rank can balance the tree
+                            #whichever is taller tree will dominate
                                 px,py=find(x),find(y)
                                 if px!=py:
                                     parent[px]=py
@@ -254,15 +255,66 @@
                             for i in range(length):
                                 pari=find(i)
                                 for j in graph[i]:
+                                    #check connected or not
                                     if find(j)==pari:
                                         return False
                                     union(graph[i][0],j)
-
                             return True
                        </code>
                     </pre>
                 </li>
-                <li>DFS (stack, recursion), BFS Template(queue, priority queue)</li>
+                <li> BFS Template(queue, priority queue)</li>
+                <pre class="line-numbers">
+                       <code class="python_code">
+                       def cloneGraph(self, node: 'Node') -> 'Node':
+                            if not node:
+                                return node
+                            queue = [node]
+                            seen = {}
+                            seen[node] = Node(node.val, [])
+                            while queue:
+                                curr_node = queue.pop(0)
+                                for neighbor in curr_node.neighbors:
+                                    if neighbor not in seen:
+                                        seen[neighbor] = Node(neighbor.val, [])
+                                        queue.append(neighbor)
+                                    seen[curr_node].neighbors.append(seen[neighbor])
+                            return seen[node]
+                       </code>
+                    </pre>
+                <li> DFS Template</li>
+                <pre class="line-numbers">
+                       <code class="python_code">
+                       class Solution:
+                        def isValidBST(self, root: Optional[TreeNode]) -> bool:
+
+                            if root is None:
+                                return True
+
+                            dfs_stack = [root]
+                            self._add_all_left_nodes(root, dfs_stack)
+
+                            prev_val = dfs_stack[-1].val - 1 # could use math.min as well
+
+                            while len(dfs_stack) > 0:
+                                node = dfs_stack.pop()
+                                if prev_val < node.val:
+                                    prev_val = node.val
+                                else:
+                                    return False
+                                if node.right is not None:
+                                    dfs_stack.append(node.right)
+                                    self._add_all_left_nodes(node.right, dfs_stack)
+
+                            return True
+
+
+                        def _add_all_left_nodes(self, node, s):
+                            while node.left is not None:
+                                s.append(node.left)
+                                node = node.left
+                       </code>
+                </pre>
                 <li>Dijkstra's, A-Star</li>
                 <li>A good start is to build adjacency list</li>
                 <li>Lots of word, string, char type of questions are implicit Graph questions, like word ladder and
@@ -311,18 +363,20 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
         window.onload = function () {
-            var codeElement = document.getElementById('python_code');
+            var codeElements = document.getElementsByClassName('python_code');
             // Add code mirror class for coloring (default is the theme)
-            codeElement.classList.add('cm-s-default');
-            var code = codeElement.innerText;
+            for (const codeElement of codeElements) {
+                codeElement.classList.add('cm-s-default');
+                var code = codeElement.innerText;
 
-            codeElement.innerHTML = "";
+                codeElement.innerHTML = "";
 
-            CodeMirror.runMode(
-                code,
-                'python',
-                codeElement
-            );
+                CodeMirror.runMode(
+                    code,
+                    'python',
+                    codeElement
+                );
+            }
         };
     </script>
 </body>
