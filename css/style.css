@@ -1450,3 +1450,6 @@ comment {
     padding-bottom: 6px;
 }
 
+#more-news {
+  display: none;
+}

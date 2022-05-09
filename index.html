@@ -405,12 +405,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 animate-box">
-                            <p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i
-                                    class="icon-reload"></i></a></p>
-                        </div>
-                    </div>
+
                 </div>
             </section>
 
@@ -971,45 +966,56 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 text-center animate-box">
-                            <div class="services color-6">
-								<span class="icon">
-									<i class="icon-paper"></i>
-								</span>
-                                <div class="desc">
-                                    <h3>ICASSP 2019 (Brighton, UK)</h3>
-                                    <a href=2019ICASSP_slides.pdf> Slides </a>
-                                    Presented "A Comparison of Five Multiple Instance Learning Pooling Functions for
-                                    Sound Event Detection with Weak Labeling"</p>
+                        <div id="more-news">
+                            <div class="col-md-4 text-center animate-box">
+                                <div class="services color-6">
+                                    <span class="icon">
+                                        <i class="icon-paper"></i>
+                                    </span>
+                                    <div class="desc">
+                                        <h3>ICASSP 2019 (Brighton, UK)</h3>
+                                        <a href=2019ICASSP_slides.pdf> Slides </a>
+                                        Presented "A Comparison of Five Multiple Instance Learning Pooling Functions for
+                                        Sound Event Detection with Weak Labeling"</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center animate-box">
+                                <div class="services color-5">
+                                    <span class="icon">
+                                        <i class="icon-paper"></i>
+                                    </span>
+                                    <div class="desc">
+                                        <h3>ICMR 2018 (Yokohama, Japan) Best Paper Award</h3>
+                                        <p><a href="https://par.nsf.gov/servlets/purl/10064324">Our paper</a> won <a
+                                                href="http://www.sigmm.org/archive/ICMR/icmr18/award.html">the Best
+                                            Paper
+                                            Award </a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 text-center animate-box">
+                                <div class="services color-6">
+                                    <span class="icon">
+                                        <i class="icon-paper"></i>
+                                    </span>
+                                    <div class="desc">
+                                        <h3>ICASSP 2017 (New Orleans)</h3>
+                                        <p>Presented two pieces of work: <a
+                                                href="https://ieeexplore.ieee.org/abstract/document/7952131">Environment
+                                            Sound Classification</a> and <a
+                                                href="https://ieeexplore.ieee.org/abstract/document/7952190">VGG for
+                                            Sound</a></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 text-center animate-box">
-                            <div class="services color-5">
-								<span class="icon">
-									<i class="icon-paper"></i>
-								</span>
-                                <div class="desc">
-                                    <h3>ICMR 2018 (Yokohama, Japan) Best Paper Award</h3>
-                                    <p><a href="https://par.nsf.gov/servlets/purl/10064324">Our paper</a> won <a
-                                            href="http://www.sigmm.org/archive/ICMR/icmr18/award.html">the Best Paper
-                                        Award </a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-center animate-box">
-                            <div class="services color-6">
-								<span class="icon">
-									<i class="icon-paper"></i>
-								</span>
-                                <div class="desc">
-                                    <h3>ICASSP 2017 (New Orleans)</h3>
-                                    <p>Presented two pieces of work: <a
-                                            href="https://ieeexplore.ieee.org/abstract/document/7952131">Environment
-                                        Sound Classification</a> and <a
-                                            href="https://ieeexplore.ieee.org/abstract/document/7952190">VGG for
-                                        Sound</a></p>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-12 animate-box">
+                                <button class="btn btn-primary btn-lg btn-load-more" id="moreNewsBtn"
+                                        onclick="loadMoreNews()">Read more news <i
+                                        class="icon-reload"></i></button>
                             </div>
                         </div>
                     </div>
@@ -1108,6 +1114,20 @@
 <script src="js/owl.carousel.min.js"></script>
 <!-- Counters -->
 <script src="js/jquery.countTo.js"></script>
+<script>
+    function loadMoreNews() {
+        var moreText = document.getElementById("more-news");
+        var btnText = document.getElementById("moreNewsBtn");
+        if (moreText.style.display === "inline") {
+            console.log('btn click and no display');
+            btnText.innerHTML = "Read more news <i class=\"icon-reload\"></i>";
+            moreText.style.display = "none";
+        } else {
+            btnText.innerHTML = "Read less news <i class=\"icon-reload\"></i>";
+            moreText.style.display = "inline";
+        }
+    }
+</script>
 
 
 <!-- MAIN JS -->
