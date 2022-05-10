@@ -349,10 +349,27 @@
                     <a href="https://github.com/lijuncheng16/codingInterview/blob/main/BackTrack.ipynb">Backtrack
                         questions I
                         practiced</a>
-                <li>The core idea about backtracking is it incrementally builds candidates to the solutions,
-                    and abandons a candidate ("backtrack") as soon as it determines that this candidate cannot lead
-                    to a
-                    final solution.
+                    <li>The core idea about backtracking is it incrementally builds candidates to the solutions,
+                        and abandons a candidate ("backtrack") as soon as it determines that this candidate cannot lead
+                        to a final solution.
+                <pre class="line-numbers">
+                           <code class="python_code">
+                           def backtrack(candidate):
+                                if find_solution(candidate):
+                                    output(candidate)
+                                    return
+
+                                # iterate all possible candidates.
+                                for next_candidate in list_of_candidates:
+                                    if is_valid(next_candidate):
+                                        # try this partial candidate solution
+                                        place(next_candidate)
+                                        # given the candidate, explore further.
+                                        backtrack(next_candidate)
+                                        # backtrack
+                                        remove(next_candidate)
+                           </code>
+                    </pre>
                 </li>
                 <li>This is a great resource for <a
                         href="https://leetcode.com/problems/combination-sum/discuss/429538/General-Backtracking-questions-solutions-in-Python-for-reference-%3A">
