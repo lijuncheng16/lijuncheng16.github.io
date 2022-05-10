@@ -1443,13 +1443,21 @@ comment {
 
 .comment-text {
     background-color: #ffffff;
-    border-radius: 6px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 6px;
-    padding-bottom: 6px;
+  border-radius: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 #more-news {
+  display: none;
+}
+
+#more-blogs {
+  display: none;
+}
+
+#more-works {
   display: none;
 }
