@@ -94,13 +94,43 @@
                                 width="560"></iframe>
                         <br>
                     </li>
-                    <li><a href="https://www.cs.cmu.edu/~zkolter/course/15-884/linalg-review.pdf">Zico's Review is the
-                        most concise written version.</a><br>
+                    <li><a href="https://www.cs.cmu.edu/~zkolter/course/15-884/linalg-review.pdf">Zico's Review </a>is
+                        the
+                        most concise written version. <a href="https://youtu.be/4k5n1H1vZdA">Fundamentals; </a><br>
                         <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen frameborder="0" height="315"
                                 src="https://www.youtube.com/embed/_gqI7OZEPVs?start=72" title="YouTube video player"
                                 width="560"></iframe>
                         <br>
+                        <a href="https://youtu.be/BXMVlKobSJg">Matrix Calculus:</a><br>
+
+                        Jacobian: $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$,
+                        $D_x f(x) \in \mathbb{R}^{m \times n}$<br>
+                        $(D_x f(x))_{ij} = \frac{\partial f_i(x)}{\partial x_j}$
+                        <br>
+
+
+                        Gradient:$f: \mathbb{R}^n \rightarrow \mathbb{R}$, $\nabla_x f(x) = \begin{bmatrix}
+                        \frac{\partial f(x)}{\partial x_1} \\
+                        \frac{\partial f(x)}{\partial x_2} \\
+                        \vdots \\
+                        \frac{\partial f(x)}{\partial x_n}
+                        \end{bmatrix}= (D_x f(x))^T$<br>
+
+                        Hessian:$f: \mathbb{R}^n \rightarrow \mathbb{R}$,
+                        $\nabla^2_x f(x) = \mathbb{R}^{n \times m} = D_x (\nabla_x f(x)) =
+                        \begin{bmatrix}
+                        \frac{\partial^2 f(x)}{\partial x_1\partial x_1} &\frac{\partial^2 f(x)}{\partial x_1\partial
+                        x_2} &\cdots &\frac{\partial^2 f(x)}{\partial x_1\partial x_n} \\
+                        \frac{\partial^2 f(x)}{\partial x_2\partial x_1} & & & \\
+                        \vdots &\ddots & &\vdots \\
+                        \frac{\partial^2 f(x)}{\partial x_n\partial x_1} & & & \frac{\partial^2 f(x)}{\partial x_n^2}
+                        \end{bmatrix}
+                        $<br>
+                        Symmetric by construction,
+                        $f(x) = X^T Ax, x \in \mathbb{R}^n, A \in \mathbb{R}^{n \times m}$,
+                        $\nabla_x f(x) = (A + A^T) x$,
+                        $\nabla_x^2 f(x) = A + A^T $
                     </li>
                 </ul>
             </div>
@@ -121,6 +151,23 @@
                         $Det(I) = 1$, Det is linear to each row! $Det(2A) = 2^nDet(A)$,$Det(AB) = Det(A)Det(B)$,
                         $Det(A) = Det(A^T)$,$Det(LU) = Det(L^T)Det(U^T)$, $Det(A^{-1}) = \frac{1}{Det(A)}$,
                         $Det(A^{-1})Det(A) = 1$ Exchange rows reverse sign of Det
+                    </li>
+                    <li>Eigenvalues and eigenvectors:<br>
+                        Intuition: multiply by $A$ doesn't change the direction, instead just scales it.
+                        $A \in \mathbb{R}^{n\times n}, x \in \mathbb{C}^n, \lambda \in \mathbb{C}$ <br>
+                        at most you could have $n$ independent eigen values and $n$ eigen vectors <br>
+                        $Ax = \lambda x$<br>
+                        $AX = X\Lambda \Leftrightarrow A = X\Lambda X^{-1}$ (if $X$ invertible), where
+                        $\Lambda = \begin{bmatrix}
+                        \lambda_{1} & & & \\
+                        & \lambda_{2} & & \\
+                        & & \ddots & \\
+                        & & & \lambda_{n}
+                        \end{bmatrix}$<br>
+                        $A^2 = X\Lambda X^{-1}X\Lambda X^{-1} = X\Lambda^{2}X^{-1}$<br>
+                        What can we say about $A^k$ when $k \rightarrow \infty$?<br>
+                        As long as there's one eigen value $> 1$, gets to $\infty$.
+                        VS. Every eigen value $<1$, $A^k \rightarrow 0$
                     </li>
                 </ol>
             </div>
