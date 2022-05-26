@@ -22,7 +22,9 @@
 
 
 
+
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
             type="text/javascript">
     </script>
@@ -31,7 +33,7 @@
     <!--    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>-->
 
 </head>
-
+<body>
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <!--        <a class="navbar-brand" href="#">-->
@@ -148,6 +150,61 @@
         </div>
     </section>
 </div>
+<div class="container">
+    <div class="clearfix"></div>
+    <br>
+    <div id="comments">
+        <div class="post-header bg-{{site.default_post_color}}">
+            <h1 class="h1 post-title">Comments</h1>
+        </div>
+
+        <article class="post-content">
+            <p>Want to leave a comment? Visit <a href="https://github.com/lijuncheng16/lijuncheng16.github.io/issues/4">
+                this post's issue page on GitHub</a> (you'll need a GitHub account).</p>
+        </article>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    function loadComments(data) {
+        for (var i = 0; i < data.length; i++) {
+            var cuser = data[i].user.login;
+            var cuserlink = data[i].user.html_url;
+            var clink = data[i].html_url;
+            var cbody = data[i].body_html;
+            var cavatarlink = data[i].user.avatar_url;
+            var cdate = new Date(data[i].created_at);
+            var dopts = {month: 'short', day: 'numeric', year: 'numeric'}
+            $("#comments").append(
+                "<div class='comment'>" +
+                "<div class='comment-row'>" +
+                '<img src="' + cavatarlink + '" alt="" width="30" height="30">' +
+                "<a class='commentuser' href=\"" + cuserlink + "\">" + " " +
+                cuser +
+                "</a>" + " @ " +
+                "<a class='commentdate' href=\"" + clink + "\">" +
+                cdate.toLocaleString("en") +
+                "</a>" + ":" +
+                "</div>" +
+                "<div class='comment-text'>" +
+                cbody +
+                "</div>" +
+                "</div>"
+            );
+            // $("#comments").append('<br><div class="post-header bg-{{site.default_post_color}}"><span class="post-meta">'
+            //     + cdate.toLocaleDateString("en", dopts) + '</span><br><a class="post-link" href="' + cuserlink + '"><h3 class="h3 post-title">' + cuser + '</h3></a></div><article class="post-content">' + cbody + '</article>');
+        }
+    }
+
+    $.ajax("https://api.github.com/repos/lijuncheng16/lijuncheng16.github.io/issues/4/comments", {
+        headers: {Accept: "application/vnd.github.v3.html+json"},
+        dataType: "json",
+        success: function (msg) {
+            console.log(msg)
+            loadComments(msg);
+        }
+    });
+</script>
 </html>
 
 
