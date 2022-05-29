@@ -113,6 +113,12 @@
                     <li><a href="#convergence">Convergence of sequence</a></li>
                     <li><a href="#regression">Regression</a></li>
                 </ol>
+                References used on this notebook:
+                <li><a href="https://www.stat.cmu.edu/~siva/teaching/705/">36705 Notes by Siva Balakrishnan</a></li>
+                <li><a href="https://www.stat.cmu.edu/~siva/teaching/410/alllecs36410.pdf">36410 Notes by Siva
+                    Balakrishnan</a></li>
+                <ol>
+                </ol>
             </div>
         </div>
 
@@ -154,7 +160,8 @@
                     {\sf Var}(Y) = {\sf Var}\bigl[ \mathbb{E}(Y|X)\bigr] + \mathbb{E}\bigl[ {\sf Var}(Y|X)\bigr].
                     $$
                 </li>
-                <li>The sample mean is
+                <li><b>Sampling:</b><br>
+                    The sample mean is
                     $$
                     \widehat{\mu}_n = \frac{1}{n}\sum_i X_i
                     $$
@@ -170,6 +177,21 @@
                     <a href="https://leetcode.com/problems/random-pick-with-weight/">LeetCode528</a> talks about inverse
                     CDF sampling.
                     $X_i = F^{-1}(U_i).$ $U_1,\cdots,U_n$ independently with distribution U[0,1]
+                </li>
+                <li>
+                    <b>Gibbs Sampling:</b>
+                    The idea in Gibbs sampling is that we start in some state $(x_1, . . . , x_n)$ and run the following
+                    algorithm:
+                    <ol>
+                        <li>Choose a coordinate to update, uniformly at random, i.e. with probability $\frac{1}{n}$ we
+                            select
+                            co-ordinate $j$.
+                        </li>
+                        <li>Update its value by sampling from the conditional distribution keeping all other coordinates
+                            fixed, i.e. we sample a new value for $x_j$ :
+                            $x_j \sim \pi(x_j |(x_1, . . . , x_{j−1}, x_{j+1}, . . . , x_n))$.
+                        </li>
+                    </ol>
                 </li>
                 <li>The <b> moment generating function (mgf)</b> is
                     $$
@@ -383,7 +405,7 @@
                         U(X_1,\ldots,X_n) := \frac{1}{ {n \choose 2} } \sum_{j < k} g(X_j, X_k).
                         \end{align*}
                         e.g. Variance: $g(X_j, X_k) = \frac{1}{2}(X_j-X_k)^2$ Mean Absolute Deviation $g(X_j, X_k) =
-                        |X_j-X_k|.
+                        |X_j-X_k|$.
                     </li>
                     <li>Mcdiarmid's Inequality
                         Formally, we have i.i.d. RVs $X_1,\ldots,X_n$, where each $X_i \in \mathbb{R}$. We have a
