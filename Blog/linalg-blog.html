@@ -138,14 +138,48 @@
                 <h5>Interesting Facts:</h5>
                 <ol>
                     <li>Projection:
-                        $$P^2 = P, P^T = P, P = A(A^TA)^{-1}A^T, A\hat{X}= A(A^TA)^{-1}A^Tb$$
+                        $$P^2 = P,\\ P^T = P,\\ P = A(A^TA)^{-1}A^T, \\ A\hat{X}= A(A^TA)^{-1}A^Tb$$
                         Why did we need $proj.$ to begin with?
                         Since $Ax=b$ might not have a solution, so we instead solve proj of b onto the column space $Ax
                         = p$
                     </li>
-                    <li>QR decomposition: $A = QR$,
-                        $Q^{-1} = Q^T$,
-                        $QRx = b$, $Rx = Q^Tb$,
+
+                    \(
+                    \newcommand{\rotvert}{\rotatebox[origin=c]{90}{$\vert$}}
+                    \newcommand{\rowsvdots}{\vdots}
+                    \newcommand{\brows}[1]{%
+                    \begin{bmatrix}
+                    \begin{array}{@{\protect\rotvert\;}c@{\;\protect\rotvert}}
+                    #1
+                    \end{array}
+                    \end{bmatrix}
+                    }
+                    \)
+
+                    <li>QR decomposition (Gram Schmidt): <br>
+                        Orthonomal vectors:
+                        $q_i^T \cdot q_j = \begin{cases}
+                        1 & \text{if i $\neq$ j }\\
+                        0 & \text{if i = j}
+                        \end{cases}$<br>
+
+                        $ Q^T Q = \brows{q_1^T \\ q_2^T \\ \rowsvdots \\ q_n^T}
+                        \begin{bmatrix}
+                        \vert & \vert \\
+                        \vec{q_1} & \vec{q_n} \\
+                        \vert & \vert
+                        \end{bmatrix} = \begin{bmatrix}
+                        1 & & & \\
+                        & 1 & & \\
+                        & & \ddots & \\
+                        & & & 1
+                        \end{bmatrix}=I
+                        $
+
+                        $$A = QR,\\
+                        Q^{-1} = Q^T,\\
+                        QRx = b,\\
+                        Rx = Q^Tb$$
                     </li>
                     <li>Determinant:
                         $Det(I) = 1$, Det is linear to each row! $Det(2A) = 2^nDet(A)$,$Det(AB) = Det(A)Det(B)$,
