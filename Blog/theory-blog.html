@@ -508,7 +508,25 @@
             <li>Matrix Formulation for <a href="https://youtu.be/K_EH2abOp00?t=677">Multiple Linear
                 Regression</a>, but need to understand
                 <a href="https://atmos.washington.edu/~dennis/MatrixCalculus.pdf">Matrix Derivation</a></li>
-            <li>Projection Matrix</li>
+            <li><a href="/Blog/linalg-blog.html">Projection Matrix</a></li>
+
+            <li>Weighted Least Square:<br>
+                We would like to fit a linear regression model to the dataset
+                $
+                \mathcal{D} = \left\{\left(\mathbf{x}^{(1)},y^{(1)}\right),
+                \left(\mathbf{x}^{(2)},y^{(2)}\right),\cdots, \left(\mathbf{x}^{(N)},y^{(N)}\right)\right\}
+                $ with $\mathbf{x}^{(i)} \in \mathbb{R}^M$ by minimizing the ordinary least square (OLS) objective
+                function:
+                $
+                J(\mathbf{w}) = \frac{1}{2}\sum_{i=1}^N\left(y^{(i)} - \sum_{j=1}^M w_j x_j^{(i)}\right)^2
+                $
+                Specifically, we solve for each linear regression coefficient $w_k, 1\leq k\leq M$, by deriving an
+                expression for $w_k$ from the critical point $\frac{\partial J(\mathbf{w})}{\partial w_k} = 0$.
+                expression for each $w_k$: $w_k = \frac{\sum_{i=1}^N x_k^{(i)}\left(y^{(i)}-\sum_{j=1,j\neq k}^M w_j
+                x_j^{(i)}\right)}{\sum_{i=1}^N \left(x_k^{(i)}\right)^2}$<br>
+
+                $\hat{\beta}_{WLS} = \underset{\beta}{argmin}{\sum\limits_{i=1}^n{\epsilon_i^2}} = (X^T WX)^{−1}X^T WY$
+            </li>
         </ol>
 
         There are so much stuff need to review, updating...
