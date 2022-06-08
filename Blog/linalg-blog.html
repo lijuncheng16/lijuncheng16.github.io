@@ -141,7 +141,9 @@
                         $$P^2 = P,\\ P^T = P,\\ P = A(A^TA)^{-1}A^T, \\ A\hat{X}= A(A^TA)^{-1}A^Tb$$
                         Why did we need $proj.$ to begin with?
                         Since $Ax=b$ might not have a solution, so we instead solve proj of b onto the column space $Ax
-                        = p$
+                        = p$<br>
+                        If b in column space, $Pb = b$<br>
+                        If b $\perp$ column space, $Pb = 0$ (in the null space of $A^T$)
                     </li>
 
                     \(
@@ -182,7 +184,9 @@
                         Rx = Q^Tb$$
                     </li>
                     <li>Determinant:
-                        $Det(I) = 1$, Det is linear to each row! $Det(2A) = 2^nDet(A)$,$Det(AB) = Det(A)Det(B)$,
+                        $Det(I) = 1$,<br>
+                        Det is linear to each row! Det( <br>
+                        $Det(2A) = 2^nDet(A)$,$Det(AB) = Det(A)Det(B)$,
                         $Det(A) = Det(A^T)$,$Det(LU) = Det(L^T)Det(U^T)$, $Det(A^{-1}) = \frac{1}{Det(A)}$,
                         $Det(A^{-1})Det(A) = 1$ Exchange rows reverse sign of Det
                     </li>
