@@ -105,6 +105,19 @@
 
                         \end{align}
                     </li>
+                    <li>
+                        Example: $n$ random variables $x_i$ drawn from Gaussian $\mu, \sigma$:
+                        $$log(\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi}\sigma} exp\{ \frac{-(x_i - \mu)^2}{2\sigma^2}\}
+                        = -n log(\sqrt{2\pi}\sigma) - \frac{1}{2\sigma^2}\sum_{i=1}^{n}{(x_i - \mu)^2}$$
+                        MLE for variance: $$\nabla_{\sigma}l (x_1, x_2, \cdots, x_n | \mu, \sigma^2) = 0 $$
+                        $$ \frac{1}{n}\sum_{i=1}^{n}{(x_i - \mu)^2} = \sigma^2$$
+                    </li>
+                    <li>
+                        Example: $n$ random variables $x_i$ drawn from Bernoulli $\theta$:
+                        $$(\sum_{i=1}^{n}x_i)log(\theta)+(n - \sum_{i=1}^{n}x_i)log(1-\theta)$$
+                        MLE for variance: $$\nabla_{\theta}l (x_1, x_2, \cdots, x_n | \theta) = 0 $$
+                        $$ \hat{\theta} = \frac{1}{n}\sum_{i=1}^{n}{X_i}$$
+                    </li>
                 </ol>
             </div>
             <div class="col-md-12">
@@ -114,11 +127,18 @@
                             allowfullscreen frameborder="0" height="315"
                             src="https://www.youtube.com/embed/yIYKR4sgzI8?start=472" title="YouTube video player"
                             width="560"></iframe>
+                    <li> $$\frac{\exp{w^Tx}}{1+\exp{w^Tx}} = \frac{1}{1+\exp{(-w^Tx)}}$$
+                        this can also be viewed as a special case of softmax with only 2-classes:
+                        $$\frac{1}{1+\exp{(-w^Tx)}} \geq \frac{1}{2} \rightarrow w^Tx \geq 0 $$
+                        hence the decision boundary is linear in the binary case
+                    </li>
                     <li>LR gives us an unconstrained, smooth objective. LR gives calibrated probabilities that can be
                         interpreted as
                         confidence in a decision
                     </li>
-                    <li>LR is a linear classifier: decision rule is a hyperplane</li>
+                    <li>LR is a linear classifier: decision rule is a hyperplane. When feature is quadratic, could be
+                        ellipse, regularization will enlarge such ellipse.
+                    </li>
                     <li>As an optimization problem, binary class $\ell_2$
                         penalized <a
                                 href="https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression">logistic
@@ -208,122 +228,142 @@
         <div class="row">
 
             <div class="col-md-12">
-                <h5> Convolutional Networks</h5>
+                <h5> Fully Connected Networks</h5>
             </div>
             <div class="col-md-12">
-                <h5> 3 Resources that covers pretty much all about ConvNets</h5>
-                $$(f * g )(t) \stackrel{\mathrm{def}}{=}\ \int_{-\infty}^\infty f(\tau)\,
-                g(t - \tau)\, d\tau$$
-                Conv Nets are a discrete version of the generalized smoothed convolution in math.
-                $$o_i = \sum_{j=0}^{N-1}{n_j g_{i-j}}$$
-
-                \begin{split}\begin{pmatrix}
-                xa + yb + zc \\
-                xd + ye + zf
-                \end{pmatrix}
-                =
-                \begin{pmatrix}
-                x & y & z
-                \end{pmatrix}
-                \begin{pmatrix}
-                a & d \\
-                b & e \\
-                c & f
-                \end{pmatrix}\end{split}
-
-
                 <ol>
-                    <li><a href="https://datascience-enthusiast.com/DL/Convolution_model_Step_by_Stepv2.html">Implementation</a>
-                        of
-                        an example Convolution Network from Strach.
+                    <li>Example: $N$ layer neural network that takes in a scalar input $x$, where each layer consists of
+                        a single
+                        neuron. $x = o_0$,
+                        $$s_i = w_i o_{i-1} + b_i$$
+                        $$o_i = \sigma(s_i)$$
+                        $$\frac{\partial{o_N}}{\partial{w_1}} =
+                        \frac{\partial{o_N}}{\partial{o_{N-1}}}\frac{\partial{o_{N-1}}}{\partial{o_{N-2}}}
+                        \cdots \frac{\partial{o_1}}{\partial{w_1}} = \frac{\partial{o_1}}{\partial{w_1}}
+                        \prod_{i=2}^{N}\frac{\partial{o_{i}}}{\partial{o_{i-1}}} = \sigma'(s_1)x
+                        \prod_{i=2}^{N}\sigma'(s_i)w_i \leq x(\frac{1}{4})^N$$
                     </li>
-                    <li><a href="https://cs231n.github.io/convolutional-networks/">De facto Convolution
-                        resources</a> and <a href="https://www.youtube.com/watch?v=u6aEYuemt0M">a lecture</a>
-                        Key takeaway of The Conv Layer:
-                        Accepts a volume of size W1×H1×D1 <br>
-                        Requires four hyperparameters:<br>
-                        Number of filters K,<br>
-                        their spatial extent F,<br>
-                        the stride S,<br>
-                        the amount of zero padding P.<br>
-                        Produces a volume of size W2×H2×D2 where:<br>
-                        W2=(W1−F+2P)/S+1<br>
-                        H2=(H1−F+2P)/S+1 (i.e. width and height are computed equally by symmetry)<br>
-                        D2=K<br>
-                        With parameter sharing, it introduces F⋅F⋅D1 weights per filter, for a total of (F⋅F⋅D1)⋅K
-                        weights and K biases.<br>
-                        In the output volume, the d-th depth slice (of size W2×H2) is the result of performing a valid
-                        convolution of the d-th filter over the input volume with a stride of S, and then offset by d-th
-                        bias.
-                    </li>
-                    <li><a href="https://youtu.be/8rrHTtUzyZA?t=1292">Wonderful Video</a>
-                        \begin{bmatrix}
-                        -0.5 & -1.0 & -0.5\\
-                        -1.0 & 7.0 & -1.0\\
-                        -0.5 & -1.0 & -0.5\\
-                        \end{bmatrix} This matrix is actually a sharpening kernel, sum to 1 and doesn't change color!
-                        \begin{split}\begin{bmatrix}
-                        1 & 0 & -1\\
-                        2 & 0 & -2\\
-                        1 & 0 & -1\\
-                        \end{bmatrix} = \begin{bmatrix}
-                        1\\
-                        2\\
-                        1\\
-                        \end{bmatrix}\begin{bmatrix}
-                        1 & 0 & -1
-                        \end{bmatrix} =
-                        \begin{bmatrix}
-                        1\\
-                        1\\
-                        \end{bmatrix}* \begin{bmatrix}
-                        1\\
-                        1\\
-                        \end{bmatrix}\begin{bmatrix}
-                        1 & -1
-                        \end{bmatrix} * \begin{bmatrix}
-                        1 & 1
-                        \end{bmatrix}
-                        \end{split}
-                        This is Sobel Filter (vertical edge detection) since it deals with finding the gradient change
-                        $G_x$. Interestingly, all the elements sum up to 0.<br>
-
-                        Remember: $$ (k_0 + k_1x + k_2x^2)(a_0 + a_1x + a_2x^2 + a_3x^3 + a_4x^4 + a_5x^5 + a_6x^6 +
-                        \cdots)$$
-                        the constant for $x^3$ term is $(k_2a_1 + k_1a_2 + k_0a_3)$ Why?<br>
-                        Let's first flip the kernel: $(k_2x^2 + k_1x + k_0)$ and let it march through:
-                        $(a_0 + a_1x + a_2x^2 + a_3x^3 + a_4x^4 + a_5x^5 + a_6x^6 + \cdots)$<br>
-                        $(k_0a_0)x^0 + $<br>
-                        $(k_1a_0 + k_0a_1)x^1 + $<br>
-                        $(k_2a_0+ k_1a_1 + k_0a_2)x^1 + $<br>
-                        $(k_2a_1+ k_1a_2 + k_0a_3)x^2 + $<br>
-                        $(k_2a_2+ k_1a_3 + k_0a_4)x^3 + $<br>
-                        $(k_2a_3+ k_1a_4 + k_0a_5)x^4 + $<br>
-                        $(k_2a_4+ k_1a_5 + k_0a_6)x^5 + $<br>
-                        replace $x$ with $e^{2\pi if}$, $(a_0 + a_1(e^{2\pi if}) + a_2(e^{2\pi if})^2 + a_3(e^{2\pi
-                        if})^3 + a_4(e^{2\pi if})^4 + a_5(e^{2\pi if})^5 + a_6(e^{2\pi if})^6 + \cdots)$
-                        becomes Fourier Series.<br>
-                        This is the exact convolving process mentioned as above: $f * g$.
-                        These stuff are all referenced from the awesome MIT course: <a
-                                href="https://computationalthinking.mit.edu/Fall20/">Computational Thinking</a>
-
-
-                    </li>
-                    <li>
-                        <a href="https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20172018/LectureNotes/IP/LocalStructure/GaussianDerivatives.html">Convolve
-                            with Gaussian</a>
-                        $G^s(x,y) = \frac{1}{2\pi s^2}\exp\left(-\frac{x^2+y^2}{2s^2}\right)$
-                    </li>
-                    <li><a href="https://matthew-brett.github.io/teaching/smoothing_intro.html">Gaussian Smoothing</a>
-                        (This guy also seems to have a lot to offer on his page, especially about Fourier)
-                    </li>
-
                 </ol>
-
-                There are so much stuff need to review, updating...
             </div>
+            <div class="row">
 
-        </div>
+                <div class="col-md-12">
+                    <h5> Convolutional Networks</h5>
+                </div>
+                <div class="col-md-12">
+                    <h5> 3 Resources that covers pretty much all about ConvNets</h5>
+                    $$(f * g )(t) \stackrel{\mathrm{def}}{=}\ \int_{-\infty}^\infty f(\tau)\,
+                    g(t - \tau)\, d\tau$$
+                    Conv Nets are a discrete version of the generalized smoothed convolution in math.
+                    $$o_i = \sum_{j=0}^{N-1}{n_j g_{i-j}}$$
+
+                    \begin{split}\begin{pmatrix}
+                    xa + yb + zc \\
+                    xd + ye + zf
+                    \end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                    x & y & z
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                    a & d \\
+                    b & e \\
+                    c & f
+                    \end{pmatrix}\end{split}
+
+
+                    <ol>
+                        <li><a href="https://datascience-enthusiast.com/DL/Convolution_model_Step_by_Stepv2.html">Implementation</a>
+                            of
+                            an example Convolution Network from Strach.
+                        </li>
+                        <li><a href="https://cs231n.github.io/convolutional-networks/">De facto Convolution
+                            resources</a> and <a href="https://www.youtube.com/watch?v=u6aEYuemt0M">a lecture</a>
+                            Key takeaway of The Conv Layer:
+                            Accepts a volume of size W1×H1×D1 <br>
+                            Requires four hyperparameters:<br>
+                            Number of filters K,<br>
+                            their spatial extent F,<br>
+                            the stride S,<br>
+                            the amount of zero padding P.<br>
+                            Produces a volume of size W2×H2×D2 where:<br>
+                            W2=(W1−F+2P)/S+1<br>
+                            H2=(H1−F+2P)/S+1 (i.e. width and height are computed equally by symmetry)<br>
+                            D2=K<br>
+                            With parameter sharing, it introduces F⋅F⋅D1 weights per filter, for a total of (F⋅F⋅D1)⋅K
+                            weights and K biases.<br>
+                            In the output volume, the d-th depth slice (of size W2×H2) is the result of performing a valid
+                            convolution of the d-th filter over the input volume with a stride of S, and then offset by d-th
+                            bias.
+                        </li>
+                        <li><a href="https://youtu.be/8rrHTtUzyZA?t=1292">Wonderful Video</a>
+                            \begin{bmatrix}
+                            -0.5 & -1.0 & -0.5\\
+                            -1.0 & 7.0 & -1.0\\
+                            -0.5 & -1.0 & -0.5\\
+                            \end{bmatrix} This matrix is actually a sharpening kernel, sum to 1 and doesn't change color!
+                            \begin{split}\begin{bmatrix}
+                            1 & 0 & -1\\
+                            2 & 0 & -2\\
+                            1 & 0 & -1\\
+                            \end{bmatrix} = \begin{bmatrix}
+                            1\\
+                            2\\
+                            1\\
+                            \end{bmatrix}\begin{bmatrix}
+                            1 & 0 & -1
+                            \end{bmatrix} =
+                            \begin{bmatrix}
+                            1\\
+                            1\\
+                            \end{bmatrix}* \begin{bmatrix}
+                            1\\
+                            1\\
+                            \end{bmatrix}\begin{bmatrix}
+                            1 & -1
+                            \end{bmatrix} * \begin{bmatrix}
+                            1 & 1
+                            \end{bmatrix}
+                            \end{split}
+                            This is Sobel Filter (vertical edge detection) since it deals with finding the gradient change
+                            $G_x$. Interestingly, all the elements sum up to 0.<br>
+
+                            Remember: $$ (k_0 + k_1x + k_2x^2)(a_0 + a_1x + a_2x^2 + a_3x^3 + a_4x^4 + a_5x^5 + a_6x^6 +
+                            \cdots)$$
+                            the constant for $x^3$ term is $(k_2a_1 + k_1a_2 + k_0a_3)$ Why?<br>
+                            Let's first flip the kernel: $(k_2x^2 + k_1x + k_0)$ and let it march through:
+                            $(a_0 + a_1x + a_2x^2 + a_3x^3 + a_4x^4 + a_5x^5 + a_6x^6 + \cdots)$<br>
+                            $(k_0a_0)x^0 + $<br>
+                            $(k_1a_0 + k_0a_1)x^1 + $<br>
+                            $(k_2a_0+ k_1a_1 + k_0a_2)x^1 + $<br>
+                            $(k_2a_1+ k_1a_2 + k_0a_3)x^2 + $<br>
+                            $(k_2a_2+ k_1a_3 + k_0a_4)x^3 + $<br>
+                            $(k_2a_3+ k_1a_4 + k_0a_5)x^4 + $<br>
+                            $(k_2a_4+ k_1a_5 + k_0a_6)x^5 + $<br>
+                            replace $x$ with $e^{2\pi if}$, $(a_0 + a_1(e^{2\pi if}) + a_2(e^{2\pi if})^2 + a_3(e^{2\pi
+                            if})^3 + a_4(e^{2\pi if})^4 + a_5(e^{2\pi if})^5 + a_6(e^{2\pi if})^6 + \cdots)$
+                            becomes Fourier Series.<br>
+                            This is the exact convolving process mentioned as above: $f * g$.
+                            These stuff are all referenced from the awesome MIT course: <a
+                                    href="https://computationalthinking.mit.edu/Fall20/">Computational Thinking</a>
+
+
+                        </li>
+                        <li>
+                            <a href="https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20172018/LectureNotes/IP/LocalStructure/GaussianDerivatives.html">Convolve
+                                with Gaussian</a>
+                            $G^s(x,y) = \frac{1}{2\pi s^2}\exp\left(-\frac{x^2+y^2}{2s^2}\right)$
+                        </li>
+                        <li><a href="https://matthew-brett.github.io/teaching/smoothing_intro.html">Gaussian Smoothing</a>
+                            (This guy also seems to have a lot to offer on his page, especially about Fourier)
+                        </li>
+
+                    </ol>
+
+                    There are so much stuff need to review, updating...
+                </div>
+
+            </div>
     </section>
 </div>
 <div class="container">
