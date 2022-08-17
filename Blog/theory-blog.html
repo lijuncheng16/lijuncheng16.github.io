@@ -311,7 +311,7 @@
                 <ol>
                     <li><b>Markov Inequality</b>
                         The most elementary tail bound is Markov's inequality, which asserts that for a positive random
-                        variable $X \geq 0$,
+                        variable $X \geq 0$, (only for non-negative!)
                         \begin{align*}
                         \mathbb{P}(X \geq t) \leq \frac{\mathbb{E}[X]}{t}.
                         \end{align*}
@@ -327,6 +327,9 @@
                         \sigma^2)
                         &\leq \frac{\mathbb{E}(|X - \mathbb{E}[X]|^2)}{k^2 \sigma^2} = \frac{1}{k^2}.
                         \end{align*}
+                        Good enough for constant-probability statements. Things usually are around a few standard
+                        deviations.
+                        Only requires pairwise independence.
 
                     </li>
                     <li>Define, $\mu = \mathbb{E}[X]$. For any $t > 0$, we have that,
@@ -381,6 +384,8 @@
                         |\widehat{\mu} - \mu| \leq 4 \sigma \sqrt{ \frac{\ln (2/\delta)}{n}} + \frac{ 4(b-a)
                         \ln(2/\delta)}{n}.
                         \end{align*}
+                        Intuition: both <b>subgaussian</b> (near the mean) and <b>subexponential</b> (far tails) parts:
+                        "Poisson-like" bounds.
                     </li>
                     <li><b>The union bound.</b>
                         This is also known as Boole's inequality. It says that if we have events $A_1,\ldots,A_n$ then
