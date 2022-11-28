@@ -212,7 +212,9 @@
                                             tenacity and a stable mindset to be able to stomach the up and downs.
                                             Never be arrogant, or you will get taught a lesson very soon! <br/>
                                             <strong>I am currently on the academic job market for Fall 2023!</strong>
-
+                                            <span class="scholar" publi-id="citations" with-link="false"></span>
+                                            <!-- add a loading image here -->
+                                            </span>
                                         </p>
                                     </div>
                                 </div>
@@ -1191,6 +1193,8 @@
 <script src="js/owl.carousel.min.js"></script>
 <!-- Counters -->
 <script src="js/jquery.countTo.js"></script>
+<script src="js/scholar.min.js"></script>
+
 <script>
     function loadMoreNews() {
         var moreText = document.getElementById("more-news");
@@ -1230,6 +1234,13 @@
             moreText.style.display = "inline";
         }
     }
+
+    // Scholar.load("fBnAdlkAAAAJ&hl");
+    Scholar.load("fBnAdlkAAAAJ&hl");
+    Scholar.debug = true; // (optional) Enable debug message on console.
+    Scholar.not_found_msg = '&#10008' // (optional) Customize the displayed result if the publication is not found.
+    // Find it on your Google Scholar profile
+
 </script>
 
 
