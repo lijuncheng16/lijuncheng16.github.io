@@ -1461,3 +1461,27 @@ comment {
 #more-works {
   display: none;
 }
+
+.colorlib-services .row.row-pt-md {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.colorlib-services .row.row-pt-md > [class*="col-"] {
+  display: flex;
+}
+
+.colorlib-services .row.row-pt-md .services {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 991px) {
+  .colorlib-services .row.row-pt-md {
+    display: block;
+  }
+
+  .colorlib-services .row.row-pt-md > [class*="col-"] {
+    display: block;
+  }
+}
