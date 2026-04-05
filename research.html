@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Research &amp; Papers | Billy Li</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Newsreader:ital,wght@1,400;1,500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "inverse-on-surface": "#313032",
+          "surface-container-lowest": "#0e0e10",
+          "on-secondary": "#283500",
+          "on-tertiary-fixed-variant": "#38485d",
+          "secondary-container": "#c3f400",
+          "primary-container": "#00d4ff",
+          "primary": "#a8e8ff",
+          "surface-container-highest": "#353437",
+          "outline": "#859398",
+          "on-surface": "#e5e1e4",
+          "tertiary": "#cfe0fa",
+          "tertiary-fixed": "#d3e4fe",
+          "surface-variant": "#353437",
+          "on-error": "#690005",
+          "on-secondary-fixed-variant": "#3c4d00",
+          "on-error-container": "#ffdad6",
+          "on-secondary-fixed": "#161e00",
+          "on-background": "#e5e1e4",
+          "on-tertiary": "#213145",
+          "surface-container-low": "#1c1b1d",
+          "on-tertiary-fixed": "#0b1c30",
+          "tertiary-fixed-dim": "#b7c8e1",
+          "surface-dim": "#131315",
+          "surface-tint": "#3cd7ff",
+          "secondary": "#ffffff",
+          "inverse-surface": "#e5e1e4",
+          "on-primary-container": "#00586b",
+          "primary-fixed": "#b4ebff",
+          "error": "#ffb4ab",
+          "surface-bright": "#39393b",
+          "surface-container": "#201f21",
+          "surface-container-high": "#2a2a2c",
+          "on-surface-variant": "#bbc9cf",
+          "surface": "#131315",
+          "background": "#131315",
+          "tertiary-container": "#b3c4de",
+          "on-primary-fixed": "#001f27",
+          "on-primary-fixed-variant": "#004e5f",
+          "secondary-fixed": "#c3f400",
+          "outline-variant": "#3c494e",
+          "primary-fixed-dim": "#3cd7ff",
+          "on-secondary-container": "#556d00",
+          "secondary-fixed-dim": "#abd600",
+          "on-tertiary-container": "#415167",
+          "on-primary": "#003642",
+          "error-container": "#93000a",
+          "inverse-primary": "#00677e",
+          "multimodal-accent": "#d4b3ff",
+          "multimodal-container": "#3d2e54"
+        },
+        fontFamily: {
+          "headline": ["Space Grotesk"],
+          "body": ["Inter"],
+          "label": ["Space Grotesk"]
+        },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .glass-card {
+    background: rgba(42, 42, 44, 0.4);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(168, 232, 255, 0.1);
+    border-left: 1px solid rgba(168, 232, 255, 0.1);
+  }
+  body {
+    background-color: #131315;
+    color: #bbc9cf;
+    font-family: 'Inter', sans-serif;
+    background-image: radial-gradient(circle at 50% 0%, #1a1a1e 0%, #131315 100%);
+  }
+</style>
+</head>
+<body class="selection:bg-primary/30 selection:text-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#050b18]/80 backdrop-blur-xl border-b border-white/5">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto w-full">
+    <div class="text-xl font-bold text-[#b6c4ff] font-headline tracking-widest">Billy Li</div>
+    <div class="hidden md:flex items-center gap-8 flex-1 justify-center px-8">
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-tight text-[11px] uppercase font-semibold" href="index.html">About Me</a>
+      <a class="text-[#b6c4ff] border-b border-[#b6c4ff] pb-1 font-label tracking-tight text-[11px] uppercase font-semibold" href="research.html">Research</a>
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-tight text-[11px] uppercase font-semibold" href="experience.html">Experience</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="mailto:junchenl@andrew.cmu.edu" class="hidden md:inline-block bg-[#00D4FF] text-[#001f27] px-6 py-2 font-label tracking-tight text-[11px] uppercase font-bold hover:bg-[#00b8e6] transition-all duration-300 border border-[#00D4FF]/20 rounded-lg">Contact</a>
+      <button class="md:hidden text-[#b6c4ff] p-1" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-[#050b18] border-t border-white/5 px-8 py-4 space-y-1">
+    <a class="block text-slate-400 hover:text-[#b6c4ff] transition-colors font-label text-[11px] uppercase font-semibold py-3" href="index.html">About Me</a>
+    <a class="block text-[#b6c4ff] font-label text-[11px] uppercase font-semibold py-3 border-b border-[#b6c4ff] w-fit" href="research.html">Research</a>
+    <a class="block text-slate-400 hover:text-[#b6c4ff] transition-colors font-label text-[11px] uppercase font-semibold py-3" href="experience.html">Experience</a>
+    <div class="pt-3 pb-1">
+      <a href="mailto:junchenl@andrew.cmu.edu" class="inline-block bg-[#00D4FF] text-[#001f27] px-6 py-2 font-label text-[11px] uppercase font-bold hover:bg-[#a8e8ff] transition-all duration-300">Contact</a>
+    </div>
+  </div>
+</nav>
+<main class="pt-32 pb-24 max-w-7xl mx-auto px-6 md:px-12">
+  <!-- Hero Section -->
+  <header class="mb-16">
+    <div class="inline-block px-3 py-1 mb-6 rounded-full bg-surface-container-highest text-on-surface-variant font-label text-[10px] tracking-[0.2em] uppercase">
+      Academic Portfolio
+    </div>
+    <h1 class="font-headline font-bold text-on-surface tracking-tighter leading-none mb-8 text-4xl md:text-6xl">
+      Research &amp; <span class="text-primary-fixed-dim italic font-light">Publications</span>
+    </h1>
+    <p class="max-w-2xl text-lg text-on-surface-variant leading-relaxed font-body">
+      Investigating the frontiers of intelligence through the lens of robustness, efficient adaptation, and multi-modal synthesis.
+    </p>
+  </header>
+  <!-- Metric Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
+    <div class="glass-card p-8 rounded-xl border-l-4 border-primary-fixed-dim">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="material-symbols-outlined text-primary-fixed-dim">analytics</span>
+        <span class="font-label text-[10px] text-on-surface-variant tracking-[0.2em] uppercase">Academic Impact</span>
+      </div>
+      <div id="stat-citations" class="text-3xl font-headline font-bold text-on-surface mb-1">2,876 Citations</div>
+    </div>
+    <div class="glass-card p-8 rounded-xl border-l-4 border-secondary-fixed">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="material-symbols-outlined text-secondary-fixed">psychology</span>
+        <span class="font-label text-[10px] text-on-surface-variant tracking-[0.2em] uppercase">Scholarly Depth</span>
+      </div>
+      <div id="stat-hindex" class="text-3xl font-headline font-bold text-on-surface mb-1">H-Index 17</div>
+    </div>
+    <div class="glass-card p-8 rounded-xl border-l-4 border-multimodal-accent">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="material-symbols-outlined text-multimodal-accent">library_books</span>
+        <span class="font-label text-[10px] text-on-surface-variant tracking-[0.2em] uppercase">Volume</span>
+      </div>
+      <div id="stat-publications" class="text-3xl font-headline font-bold text-on-surface mb-1">38 Publications</div>
+    </div>
+  </div>
+  <!-- Research Grid -->
+  <div class="space-y-24">
+    <!-- Category: LLM Post-Training -->
+    <section id="llm-retuning">
+      <div class="flex items-center gap-4 mb-12">
+        <span class="material-symbols-outlined text-primary" style='font-variation-settings: "FILL" 1;'>memory</span>
+        <h2 class="font-headline text-2xl uppercase tracking-[0.15em] font-bold text-on-surface">LLM POST-TRAINING</h2>
+        <div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4">
+          <div class="sticky top-32 p-8 surface-container-low rounded-xl border-l-2 border-primary-fixed-dim">
+            <h3 class="font-headline text-lg text-primary mb-4 uppercase tracking-widest text-[11px]">Focus Area</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+              Optimization strategies for large language models, focusing on Parameter-Efficient Fine-Tuning (PEFT) and continuous domain adaptation without catastrophic forgetting.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">PEFT</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">LORA</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">TRANSFORMERS</span>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-8 space-y-8">
+          <!-- Paper: SMT -->
+          <div class="glass-card p-8 rounded-xl group transition-all duration-300 hover:bg-surface-container-high">
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-label text-xs text-secondary-fixed tracking-widest uppercase">ICLR 2025</span>
+              <div class="flex gap-4">
+                <a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 text-xs" href="https://arxiv.org/abs/2405.15525" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">description</span> PAPER
+                </a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 text-xs" href="https://github.com/HectorHHZ/Sparse_Matrix_Tuning" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">code</span> CODE
+                </a>
+              </div>
+            </div>
+            <h4 class="text-xl font-headline font-semibold text-on-surface mb-3 group-hover:text-primary transition-colors">SMT: Fine-tuning large language models with sparse matrices</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed mb-6">TL; DR: Instead of low-rank updates, selecting task-relevant sub-matrices enables PEFT to outperform LoRA and better match full fine-tuning.</p>
+            <div class="flex items-center gap-4">
+              <div class="text-xs italic text-zinc-400">H He, <span class="text-white font-semibold">JB Li</span>, X Jiang, H Miller.</div>
+            </div>
+          </div>
+          <!-- Paper: Finetuning MoE -->
+          <div class="glass-card p-8 rounded-xl group transition-all duration-300 hover:bg-surface-container-high">
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-label text-xs text-secondary-fixed tracking-widest uppercase">COLM 2025 (In submission)</span>
+            </div>
+            <h4 class="text-xl font-headline font-semibold text-on-surface mb-3 group-hover:text-primary transition-colors">Finetuning MoE LLMs with Condenser Experts</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed mb-6">TL; DR: We stabilize MoE fine-tuning by eliminating auxiliary losses and preserving rare expert knowledge, achieving stronger downstream performance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Category: Robust AI -->
+    <section id="robust-ai">
+      <div class="flex items-center gap-4 mb-12">
+        <span class="material-symbols-outlined text-secondary-fixed" style='font-variation-settings: "FILL" 1;'>security</span>
+        <h2 class="font-headline text-2xl uppercase tracking-[0.15em] font-bold text-on-surface">Robust AI</h2>
+        <div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4">
+          <div class="sticky top-32 p-8 surface-container-low rounded-xl border-l-2 border-secondary-fixed">
+            <h3 class="font-headline text-lg text-secondary-fixed mb-4 uppercase tracking-widest text-[11px]">Focus Area</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+              Ensuring model safety and consistency through adversarial training, uncertainty quantification, and structural bias mitigation in high-stakes environments.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">ADVERSARIAL</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">UNCERTAINTY</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">RELIABILITY</span>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-8 space-y-8">
+          <!-- Paper: ICASSP 2022 -->
+          <div class="glass-card p-8 rounded-xl group transition-all duration-300 hover:bg-surface-container-high">
+            <div class="flex justify-between items-start mb-4">
+              <div class="flex items-center gap-3">
+                <span class="font-label text-xs text-secondary-fixed tracking-widest uppercase">ICASSP 2022</span>
+                <span class="px-2 py-0.5 bg-secondary-fixed/20 text-secondary-fixed font-label text-[9px] tracking-wider uppercase rounded">Best Student Paper</span>
+              </div>
+              <div class="flex gap-4">
+                <a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 text-xs" href="https://arxiv.org/abs/2203.12122" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">description</span> PAPER
+                </a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 text-xs" href="https://github.com/lijuncheng16/AudioSetDoneRight" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">code</span> CODE
+                </a>
+              </div>
+            </div>
+            <h4 class="text-xl font-headline font-semibold text-on-surface mb-3 group-hover:text-primary transition-colors">On adversarial robustness of large-scale audio visual learning</h4>
+            <div class="text-xs italic text-zinc-400"><span class="text-white font-semibold">JB Li</span>, S Qu, X Li, PYB Huang, F Metze.</div>
+          </div>
+          <!-- Paper: ICML 2019 camera stickers -->
+          <div class="glass-card p-8 rounded-xl group transition-all duration-300 hover:bg-surface-container-high">
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-label text-xs text-secondary-fixed tracking-widest uppercase">ICML 2019</span>
+              <div class="flex gap-4">
+                <a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 text-xs" href="https://arxiv.org/abs/1904.00759" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">description</span> PAPER
+                </a>
+              </div>
+            </div>
+            <h4 class="text-xl font-headline font-semibold text-on-surface mb-3 group-hover:text-primary transition-colors">Adversarial camera stickers: A physical camera-based attack on deep learning systems</h4>
+            <div class="text-xs italic text-zinc-400"><span class="text-white font-semibold">JB Li</span>, FR Schmidt, JZ Kolter.</div>
+          </div>
+          <!-- Paper: NeurIPS 2019 adversarial music -->
+          <div class="glass-card p-8 rounded-xl group transition-all duration-300 hover:bg-surface-container-high">
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-label text-xs text-secondary-fixed tracking-widest uppercase">NEURIPS 2019</span>
+              <div class="flex gap-4">
+                <a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 text-xs" href="https://arxiv.org/abs/1911.00126" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">description</span> PAPER
+                </a>
+              </div>
+            </div>
+            <h4 class="text-xl font-headline font-semibold text-on-surface mb-3 group-hover:text-primary transition-colors">Adversarial music: Real world audio adversary against wake-word detection system</h4>
+            <div class="text-xs italic text-zinc-400"><span class="text-white font-semibold">JB Li</span>, S Qu, X Li, J Szurley, JZ Kolter, F Metze.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Category: Audio & Multimodal -->
+    <section id="audio-multimodal">
+      <div class="flex items-center gap-4 mb-12">
+        <span class="material-symbols-outlined text-multimodal-accent" style='font-variation-settings: "FILL" 1;'>graphic_eq</span>
+        <h2 class="font-headline text-2xl uppercase tracking-[0.15em] font-bold text-on-surface">Audio &amp; Multimodal</h2>
+        <div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4">
+          <div class="sticky top-32 p-8 surface-container-low rounded-xl border-l-2 border-multimodal-accent">
+            <h3 class="font-headline text-lg text-multimodal-accent mb-4 uppercase tracking-widest text-[11px]">Focus Area</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+              Cross-modal representation learning and generative audio synthesis, exploring the intersection of visual semantics and spatial audio reconstruction.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">SPECTROGRAMS</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">CROSS-MODAL</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">SPATIAL</span>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-8 space-y-8">
+          <!-- Paper: Audio-journey -->
+          <div class="glass-card p-8 rounded-xl group transition-all duration-300 hover:bg-surface-container-high">
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-label text-xs text-multimodal-accent tracking-widest uppercase">ICML 2023 Workshop + ICASSP 2024</span>
+              <div class="flex gap-4">
+                <a class="text-on-surface-variant hover:text-multimodal-accent transition-colors flex items-center gap-1 text-xs" href="https://openreview.net/forum?id=vzMXsTCdFB" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">description</span> PAPER
+                </a>
+                <a class="text-on-surface-variant hover:text-multimodal-accent transition-colors flex items-center gap-1 text-xs" href="https://audiojourney.github.io/" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">code</span> PROJECT
+                </a>
+              </div>
+            </div>
+            <h4 class="text-xl font-headline font-semibold text-on-surface mb-3 group-hover:text-multimodal-accent transition-colors">Audio-journey: Efficient visual+ llm-aided audio encodec diffusion</h4>
+            <div class="text-xs italic text-zinc-400"><span class="text-white font-semibold">JB Li</span>, JS Michaels, L Yao, L Yu, Z Wood-Doughty, F Metze.</div>
+          </div>
+          <!-- Paper: AudioMAE -->
+          <div class="glass-card p-8 rounded-xl group transition-all duration-300 hover:bg-surface-container-high">
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-label text-xs text-multimodal-accent tracking-widest uppercase">NEURIPS 2022</span>
+              <div class="flex gap-4">
+                <a class="text-on-surface-variant hover:text-multimodal-accent transition-colors flex items-center gap-1 text-xs" href="https://arxiv.org/abs/2207.06405" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">description</span> PAPER
+                </a>
+                <a class="text-on-surface-variant hover:text-multimodal-accent transition-colors flex items-center gap-1 text-xs" href="https://github.com/facebookresearch/AudioMAE" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">code</span> CODE
+                </a>
+              </div>
+            </div>
+            <h4 class="text-xl font-headline font-semibold text-on-surface mb-3 group-hover:text-multimodal-accent transition-colors">Masked autoencoders that listen</h4>
+            <div class="text-xs italic text-zinc-400">PY Huang, H Xu, <span class="text-white font-semibold">JB Li</span>, A Baevski, M Auli, W Galuba, F Metze, ...</div>
+          </div>
+          <!-- Paper: Zero-shot Phonemic AAAI 2020 -->
+          <div class="glass-card p-8 rounded-xl group transition-all duration-300 hover:bg-surface-container-high">
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-label text-xs text-multimodal-accent tracking-widest uppercase">AAAI 2020</span>
+              <div class="flex gap-4">
+                <a class="text-on-surface-variant hover:text-multimodal-accent transition-colors flex items-center gap-1 text-xs" href="https://arxiv.org/abs/2002.11781" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">description</span> PAPER
+                </a>
+              </div>
+            </div>
+            <h4 class="text-xl font-headline font-semibold text-on-surface mb-3 group-hover:text-multimodal-accent transition-colors">Towards Zero-shot Learning for Automatic Phonemic Transcription</h4>
+            <div class="text-xs italic text-zinc-400">X Li, S Dalmia, DR Mortensen, <span class="text-white font-semibold">JB Li</span>, AW Black, F Metze.</div>
+          </div>
+          <!-- Paper: Joint embeddings ICMR -->
+          <div class="glass-card p-8 rounded-xl group transition-all duration-300 hover:bg-surface-container-high">
+            <div class="flex justify-between items-start mb-4">
+              <div class="flex items-center gap-3">
+                <span class="font-label text-xs text-multimodal-accent tracking-widest uppercase">ICMR 2018</span>
+                <span class="px-2 py-0.5 bg-multimodal-accent/20 text-multimodal-accent font-label text-[9px] font-bold tracking-wider uppercase rounded shadow-[0_0_10px_rgba(212,179,255,0.2)]">Best Paper</span>
+              </div>
+              <div class="flex gap-4">
+                <a class="text-on-surface-variant hover:text-multimodal-accent transition-colors flex items-center gap-1 text-xs" href="https://dl.acm.org/doi/10.1145/3206025.3206064" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">description</span> PAPER
+                </a>
+                <a class="text-on-surface-variant hover:text-multimodal-accent transition-colors flex items-center gap-1 text-xs" href="https://github.com/niluthpol/multimodal_vtt" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined text-sm">code</span> CODE
+                </a>
+              </div>
+            </div>
+            <h4 class="text-xl font-headline font-semibold text-on-surface mb-3 group-hover:text-multimodal-accent transition-colors">Joint embeddings with multimodal cues for video-text retrieval</h4>
+            <div class="text-xs italic text-zinc-400">NC Mithun, <span class="text-white font-semibold">JB Li</span>, F Metze, AK Roy-Chowdhury.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 border-t border-white/5 bg-[#000000]">
+  <div class="flex flex-col md:flex-row justify-between items-center px-8 md:px-12 max-w-7xl mx-auto gap-6">
+    <div class="font-display text-sm text-slate-500">© 2026 Billy Li. Frontier Intelligence Research.</div>
+    <div class="flex gap-8">
+      <a class="text-on-surface/60 hover:text-primary transition-colors flex items-center gap-2 text-[11px] font-display uppercase tracking-widest font-bold" href="https://scholar.google.com/citations?user=fBnAdlkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+        <span class="material-symbols-outlined text-base">school</span> SCHOLAR
+      </a>
+      <a class="text-on-surface/60 hover:text-primary transition-colors flex items-center gap-2 text-[11px] font-display uppercase tracking-widest font-bold" href="https://www.linkedin.com/in/billy-li-48690b50/" target="_blank" rel="noopener noreferrer">
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg> LINKEDIN
+      </a>
+      <a class="text-on-surface/60 hover:text-primary transition-colors flex items-center gap-2 text-[11px] font-display uppercase tracking-widest font-bold" href="https://x.com/JunchengLi" target="_blank" rel="noopener noreferrer">
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X
+      </a>
+    </div>
+  </div>
+</footer>
+<script>
+  fetch('scholar_data.json?nocache=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      const fmt = n => n.toLocaleString();
+      document.getElementById('stat-citations').textContent    = fmt(data.citations)   + ' Citations';
+      document.getElementById('stat-hindex').textContent       = 'H-Index ' + data.h_index;
+      document.getElementById('stat-publications').textContent = data.publications     + ' Publications';
+    })
+    .catch(() => { /* silently keep hardcoded defaults if fetch fails */ });
+</script>
+</body>
+</html>
