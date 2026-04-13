@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Linear Algebra | Billy Li</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W7ZYGDT27"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2W7ZYGDT27');
+  gtag('event', 'view_linalg_blog', {
+    page_title: 'Linear Algebra',
+    page_path: '/linear-algebra.html'
+  });
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = { darkMode: "class", theme: { extend: { colors: {
+    "surface":"#131315","surface-container-low":"#1c1b1d","surface-container-high":"#2a2a2c","surface-container-highest":"#353437","on-surface":"#e5e1e4","on-surface-variant":"#bbc9cf","outline-variant":"#3c494e","secondary-fixed":"#c3f400"
+  }, fontFamily: { "headline":["Space Grotesk"], "body":["Inter"], "label":["Space Grotesk"] } } } }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  body { background-color:#131315; color:#bbc9cf; font-family:'Inter',sans-serif; background-image:radial-gradient(circle at 50% 0%, #1a1a1e 0%, #131315 100%); }
+  .glass-card { background:rgba(42,42,44,0.45); backdrop-filter:blur(20px); border-top:1px solid rgba(168,232,255,0.1); border-left:1px solid rgba(168,232,255,0.1); }
+</style>
+</head>
+<body class="selection:bg-secondary-fixed/30 selection:text-secondary-fixed">
+<nav class="fixed top-0 w-full z-50 bg-[#050b18]/80 backdrop-blur-xl border-b border-white/5">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto w-full">
+    <div class="text-xl font-bold text-[#b6c4ff] font-headline tracking-widest">Billy Li</div>
+    <div class="hidden md:flex items-center gap-8 flex-1 justify-center px-8">
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-wider text-xs uppercase font-semibold" href="index.html">About Me</a>
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-wider text-xs uppercase font-semibold" href="research.html">Research</a>
+      <a class="text-[#b6c4ff] border-b border-[#b6c4ff] pb-1 font-label tracking-wider text-xs uppercase font-semibold" href="blog.html">Blog</a>
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-wider text-xs uppercase font-semibold" href="experience.html">Experience</a>
+    </div>
+  </div>
+</nav>
+<main class="pt-32 pb-24 max-w-6xl mx-auto px-6 md:px-12 space-y-8">
+  <header>
+    <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-[0.2em] uppercase mb-6">
+      <span class="material-symbols-outlined text-secondary-fixed text-base">schema</span>
+      Linear Algebra
+    </div>
+    <h1 class="font-headline text-4xl md:text-6xl text-on-surface tracking-tight leading-none mb-6">Interesting Things I Learned About <span class="text-secondary-fixed italic font-light">Linear Algebra</span></h1>
+    <p class="max-w-3xl text-lg text-on-surface-variant leading-relaxed">Like a lot of people, I took linear algebra courses without really understanding why they mattered. Revisiting it later with better teachers and better examples made it feel less like symbolic bookkeeping and more like a language for transforming problems.</p>
+  </header>
+
+  <section class="glass-card rounded-xl p-8 border border-outline-variant/20">
+    <h2 class="font-headline text-2xl text-on-surface mb-5">Motivation</h2>
+    <div class="space-y-4 text-on-surface-variant leading-relaxed">
+      <p>Before diving into the actual material, it is important to find the core drive behind learning linear algebra. Lots of us took linear algebra courses in college, but never really understood how it was useful or why we needed to learn it in the first place.</p>
+      <p>Most likely, our remnant knowledge was reduced to numerical operations between two or three vectors: determinant tricks, dot products, and symbolic manipulations. That is pure sadness.</p>
+      <p>After watching <a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://www.masterclass.com/classes/terence-tao-teaches-mathematical-thinking?utm_campaign=Share&utm_medium=Copy&utm_source=class_guest_next" target="_blank" rel="noopener noreferrer">Terence Tao's master class</a>, I had a small epiphany: mathematics should guide how you transform your way of thinking and how you construct a narrative for a problem.</p>
+      <ul class="space-y-3 list-disc pl-5">
+        <li>Magic squares can be reframed as tic-tac-toe.</li>
+        <li>Counterfeit coin problems connect to compression and sensing.</li>
+        <li>Sampling, optimization, and geometry all become more intuitive when the representation changes.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid md:grid-cols-2 gap-6">
+    <div class="glass-card rounded-xl p-8 border border-outline-variant/20">
+      <h2 class="font-headline text-2xl text-on-surface mb-5">Resources</h2>
+      <ul class="space-y-3 text-on-surface-variant leading-relaxed list-disc pl-5">
+        <li><a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://www.youtube.com/embed/YeyrH-Oc2p4?start=290" target="_blank" rel="noopener noreferrer">Gilbert Strang</a> remains the default recommendation.</li>
+        <li><a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://www.youtube.com/embed/fNk_zzaMoSs" target="_blank" rel="noopener noreferrer">The Essence of Linear Algebra</a> series is still magical for geometric intuition.</li>
+        <li><a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://www.cs.cmu.edu/~zkolter/course/15-884/linalg-review.pdf" target="_blank" rel="noopener noreferrer">Zico Kolter’s review</a> is one of the most concise written references, plus <a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://youtu.be/4k5n1H1vZdA" target="_blank" rel="noopener noreferrer">fundamentals</a>.</li>
+        <li><a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://youtu.be/BXMVlKobSJg" target="_blank" rel="noopener noreferrer">Matrix calculus</a> notes were especially useful for reconnecting linear algebra to ML optimization: Jacobian, gradient, Hessian, and quadratic forms.</li>
+        <li><a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://twitter.com/TivadarDanka/status/1570736015723364352?s=20&t=i6d8DpF3Dnx7oNyx7Hd-jA" target="_blank" rel="noopener noreferrer">LU, QR, SVD</a> is still a good visual pointer.</li>
+      </ul>
+    </div>
+    <div class="glass-card rounded-xl p-8 border border-outline-variant/20">
+      <h2 class="font-headline text-2xl text-on-surface mb-5">Interesting Facts</h2>
+      <ul class="space-y-3 text-on-surface-variant leading-relaxed list-disc pl-5">
+        <li>Projection matrices satisfy $$P^2=P$$ and, in the orthogonal case, $$P^T=P$$. Projection matters because $Ax=b$ may not have a solution, so you project onto the column space.</li>
+        <li>QR decomposition is where orthonormality becomes operational rather than abstract: $$A = QR,\; Q^{-1}=Q^T,\; Rx = Q^Tb.$$</li>
+        <li>Determinant facts become easier to remember once you view them as structure-preserving transformations.</li>
+        <li>Eigenvectors matter because multiplication by $A$ preserves direction while scaling magnitude. As long as one eigenvalue is greater than one, powers of $A$ can blow up; if every eigenvalue is less than one, powers shrink toward zero.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid md:grid-cols-2 gap-6">
+    <div class="glass-card rounded-xl p-8 border border-outline-variant/20">
+      <h2 class="font-headline text-2xl text-on-surface mb-5">Fourier</h2>
+      <ul class="space-y-3 text-on-surface-variant leading-relaxed list-disc pl-5">
+        <li><a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://www.youtube.com/embed/spUNpyF58BY" target="_blank" rel="noopener noreferrer">FFT in action</a> is one of the clearest demonstrations that linear algebra and signal processing are deeply connected.</li>
+        <li><a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://www.youtube.com/watch?v=h7apO7q16V0" target="_blank" rel="noopener noreferrer">Derivation of FFT</a>, plus <a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://youtu.be/iTMn0Kt18tg" target="_blank" rel="noopener noreferrer">STFT / DFT / FFT lecture</a>, are still good references.</li>
+        <li>Using FFT to process audio with <code>librosa</code>, <code>stft</code>, and spectrogram transforms makes the abstractions concrete. The original note also pointed to <a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://github.com/DalyaG/CodeSnippetsForPosterity/blob/master/GettingToKnowTheMelSpectrogram/GettingToKnowTheMelSpectrogram.ipynb" target="_blank" rel="noopener noreferrer">this librosa notebook</a> and a <a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://www.reddit.com/r/math/comments/kf50ga/step_function_fourier_series_visualized_oc/" target="_blank" rel="noopener noreferrer">step function Fourier example</a>.</li>
+      </ul>
+    </div>
+    <div class="glass-card rounded-xl p-8 border border-outline-variant/20">
+      <h2 class="font-headline text-2xl text-on-surface mb-5">Translating Math to Code</h2>
+      <ul class="space-y-3 text-on-surface-variant leading-relaxed list-disc pl-5">
+        <li><a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://github.com/ricomnl/Tensor-Puzzles/blob/main/Tensor_Puzzles.ipynb" target="_blank" rel="noopener noreferrer">Tensor puzzles</a> are a good way to pressure-test whether linear algebra intuition survives contact with PyTorch.</li>
+        <li>Even interview-style matrix problems can often be reframed cleanly with linear algebra, such as <a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://github.com/lijuncheng16/codingInterview/blob/main/Matrix.ipynb" target="_blank" rel="noopener noreferrer">image overlap</a>.</li>
+        <li>Hardware acceleration is also a linear algebra story: <a class="text-secondary-fixed hover:text-on-surface transition-colors" href="https://dlsyscourse.org/slides/11-hardware-acceleration.pdf" target="_blank" rel="noopener noreferrer">breaking down matrix multiplication cost</a> and understanding how to speed it up.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+</body>
+</html>

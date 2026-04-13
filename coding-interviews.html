@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coding Interviews | Billy Li</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W7ZYGDT27"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2W7ZYGDT27');
+  gtag('event', 'view_coding_interview_blog', {
+    page_title: 'Coding Interviews',
+    page_path: '/coding-interviews.html'
+  });
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = { darkMode: "class", theme: { extend: { colors: {
+    "primary":"#a8e8ff","surface":"#131315","surface-container-low":"#1c1b1d","surface-container-high":"#2a2a2c","surface-container-highest":"#353437","on-surface":"#e5e1e4","on-surface-variant":"#bbc9cf","outline-variant":"#3c494e","primary-fixed-dim":"#3cd7ff","secondary-fixed":"#c3f400","multimodal-accent":"#d4b3ff"
+  }, fontFamily: { "headline":["Space Grotesk"], "body":["Inter"], "label":["Space Grotesk"] } } } }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  body { background-color:#131315; color:#bbc9cf; font-family:'Inter',sans-serif; background-image:radial-gradient(circle at 50% 0%, #1a1a1e 0%, #131315 100%); }
+  .glass-card { background:rgba(42,42,44,0.45); backdrop-filter:blur(20px); border-top:1px solid rgba(168,232,255,0.1); border-left:1px solid rgba(168,232,255,0.1); }
+</style>
+</head>
+<body class="selection:bg-primary/30 selection:text-primary">
+<nav class="fixed top-0 w-full z-50 bg-[#050b18]/80 backdrop-blur-xl border-b border-white/5">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto w-full">
+    <div class="text-xl font-bold text-[#b6c4ff] font-headline tracking-widest">Billy Li</div>
+    <div class="hidden md:flex items-center gap-8 flex-1 justify-center px-8">
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-wider text-xs uppercase font-semibold" href="index.html">About Me</a>
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-wider text-xs uppercase font-semibold" href="research.html">Research</a>
+      <a class="text-[#b6c4ff] border-b border-[#b6c4ff] pb-1 font-label tracking-wider text-xs uppercase font-semibold" href="blog.html">Blog</a>
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-wider text-xs uppercase font-semibold" href="experience.html">Experience</a>
+    </div>
+  </div>
+</nav>
+<main class="pt-32 pb-24 max-w-6xl mx-auto px-6 md:px-12">
+  <header class="mb-12">
+    <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-[0.2em] uppercase mb-6">
+      <span class="material-symbols-outlined text-secondary-fixed text-base">code</span>
+      Algorithms &amp; Hiring
+    </div>
+    <h1 class="font-headline text-4xl md:text-6xl text-on-surface tracking-tight leading-none mb-6">My Mixed Feelings About <span class="text-secondary-fixed italic font-light">Coding Interviews</span></h1>
+    <p class="max-w-3xl text-lg text-on-surface-variant leading-relaxed">Thoughts on interview prep, LeetCode, and the algorithmic categories that mattered most during practice.</p>
+  </header>
+
+  <section class="grid lg:grid-cols-[1.45fr_0.75fr] gap-8 mb-10">
+    <article class="glass-card rounded-xl p-8 border border-outline-variant/20 space-y-5">
+      <p class="text-on-surface-variant leading-relaxed">These days, coding interviews are like security checks before getting into big companies, and they keep getting more competitive. It is not uncommon to hear someone fail coding rounds multiple times before eventually landing a decent job. I got dinged twice myself at the beginning of 2021, which is why I started rethinking what I should do about this trend, whether I like it or not.</p>
+      <p class="text-on-surface-variant leading-relaxed">I have heard many people, usually mid-senior level and often the losers of this coding game, argue that coding interviews are not reflective of a person's actual capability. There is truth to that. However, in a market-driven economy, coding interviews are still a proven and efficient way to screen people. Back when I was interviewing candidates at Bosch, I understood the pain of choosing among many qualified people. A coding round can act like an efficient weeder for the less prepared candidates. It is imperfect, but it is also practical.</p>
+      <p class="text-on-surface-variant leading-relaxed">The real question is how we should navigate a market that already works like this. <strong>Coding interview skills</strong> are not exactly the same as actual coding skills because the game is heavily algorithmic. In my years of doing ML research, I almost never needed a heap or fancy data structures to process my day-to-day work. Yet on a coding prep site, there is always a decent chance you will run into a heap question. Should I complain? Should I just keep doing research, publish papers, and stay in academia? Or should I get on the train and do LeetCode as well?</p>
+      <p class="text-on-surface-variant leading-relaxed">I am more of a realist, so my answer is to tackle LeetCode questions with a clear structure and to use that process to rebuild a stronger algorithmic foundation. ML, stats, or math skills are like the "devil fruit" power, but coding skills are still the basic combat power you rely on in a rapidly evolving tech world.</p>
+      <p><a class="text-primary hover:text-primary-fixed-dim transition-colors" href="https://github.com/lijuncheng16/codingInterview" target="_blank" rel="noopener noreferrer">I am taking my baby steps.</a></p>
+    </article>
+    <aside class="glass-card rounded-xl p-6 border border-outline-variant/20">
+      <h2 class="font-headline text-xl text-on-surface mb-4">P.S. updated 8-22-2021, 2-18-2022, 4-28-2022, 10-22-2022, 4-22-2023, 1-17-2024, 3-24-2026</h2>
+      <ul class="space-y-3 text-sm text-on-surface-variant leading-relaxed list-disc pl-5">
+        <li>In the LLM era, memorizing answers matters less than before. Explaining tradeoffs and showing real understanding matter more.</li>
+        <li>Interview coding is different from research coding; do it or not do it, but stop whining.</li>
+        <li>Doing questions by categories is more efficient than doing them randomly.</li>
+        <li>Need to take notes and review. We all lose to the forgetting curve.</li>
+        <li>Discipline, discipline, and discipline. Laziness is the biggest enemy.</li>
+        <li>Write succinct code. Short, readable, and direct.</li>
+        <li>Try to explain every major implementation step and edge case.</li>
+        <li>Try to talk like a likeable person during interview: positive, smart, willing to listen and debug.</li>
+        <li>Eventually, muscle memory works faster than the brain. Some patterns simply need repetition.</li>
+        <li>Thought process is more important than actual coding.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="grid md:grid-cols-2 gap-6 mb-6">
+    <div class="glass-card rounded-xl p-6 border border-outline-variant/20">
+      <h2 class="font-headline text-2xl text-on-surface mb-4">Array, Stack, Heap</h2>
+      <ul class="space-y-3 text-on-surface-variant leading-relaxed list-disc pl-5">
+        <li>Array questions are prevalent but often combined with other categories. <a class="text-primary hover:text-primary-fixed-dim" href="https://github.com/lijuncheng16/codingInterview/blob/main/Array.ipynb" target="_blank" rel="noopener noreferrer">Array questions I practiced</a>.</li>
+        <li><a class="text-primary hover:text-primary-fixed-dim" href="https://github.com/lijuncheng16/codingInterview/blob/main/2pointers.ipynb" target="_blank" rel="noopener noreferrer">Two Pointers</a> are large enough to deserve their own page.</li>
+        <li>Common array subpatterns: hashmap / Two Sum, graph problems hidden in words, and matrix-style scanning.</li>
+        <li>Stack questions on LeetCode are not very intuitive. If not thought through carefully, they can fool you into <code>O(n^2)</code> solutions. The correct answers are most of the time <code>O(n)</code>.</li>
+        <li>The trick often lives in a <code>while</code> loop nested within the main pass, or in using a two-dimensional stack rather than a one-dimensional one.</li>
+        <li>Heap questions are intrinsically more challenging, but once you get used to priority queues in 2D heaps and two-heap moving-stream problems, many others look like variants of the same idea.</li>
+        <li>The core idea about heaps is to leverage their natural sorting capability: top-K, merge many sorted streams, and maintain moving order statistics.</li>
+      </ul>
+    </div>
+    <div class="glass-card rounded-xl p-6 border border-outline-variant/20">
+      <h2 class="font-headline text-2xl text-on-surface mb-4">Tree and Graph</h2>
+      <ul class="space-y-3 text-on-surface-variant leading-relaxed list-disc pl-5">
+        <li><a class="text-primary hover:text-primary-fixed-dim" href="https://github.com/lijuncheng16/codingInterview/blob/main/Tree.ipynb" target="_blank" rel="noopener noreferrer">Tree questions</a> revolve mostly around BSTs. To grasp them well, it still helps to go back to CLRS and read the BST chapter thoroughly.</li>
+        <li>Important reminders: recursion base case first, get comfortable with stack for DFS and queue for BFS, and practice serialization / deserialization and tree construction from traversals.</li>
+        <li>Graph questions are involved, but once the pattern clicks, they are much more within control: union-find, BFS templates, DFS templates, Dijkstra, A-star, and building adjacency lists early.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid md:grid-cols-2 gap-6 mb-6">
+    <div class="glass-card rounded-xl p-6 border border-outline-variant/20">
+      <h2 class="font-headline text-2xl text-on-surface mb-4">DP and Backtracking</h2>
+      <ul class="space-y-3 text-on-surface-variant leading-relaxed list-disc pl-5">
+        <li>For DP: base case, transition function, and how to break a problem into subproblems. Starting with recursion, then adding memoization, then tabular DP remains the cleanest path.</li>
+        <li>Backtracking is a tricky category, but templates help: subsets, permutations, combinations, combination sum, and palindrome partitioning. The core is still incremental construction plus abandoning a candidate as soon as it cannot lead to a final solution.</li>
+      </ul>
+    </div>
+    <div></div>
+  </section>
+
+  <section class="glass-card rounded-xl p-8 border border-outline-variant/20">
+    <h2 class="font-headline text-2xl text-on-surface mb-4">The Practical Summary</h2>
+    <p class="text-on-surface-variant leading-relaxed">Eventually, muscle memory works faster than the brain. There are patterns in each category, and some of them simply need repetition. In the LLM era, I do not see much value in merely memorizing answers, since these tools can outperform that kind of preparation very easily. What still matters is demonstrating your understanding of the problem and the quality of your thought process.</p>
+  </section>
+</main>
+</body>
+</html>

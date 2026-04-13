@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ML Pointers | Billy Li</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W7ZYGDT27"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2W7ZYGDT27');
+  gtag('event', 'view_ml_blog', {
+    page_title: 'ML Pointers',
+    page_path: '/ml-pointers.html'
+  });
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = { darkMode: "class", theme: { extend: { colors: {
+    "primary":"#a8e8ff","surface":"#131315","surface-container-low":"#1c1b1d","surface-container-high":"#2a2a2c","surface-container-highest":"#353437","on-surface":"#e5e1e4","on-surface-variant":"#bbc9cf","outline-variant":"#3c494e","multimodal-accent":"#d4b3ff"
+  }, fontFamily: { "headline":["Space Grotesk"], "body":["Inter"], "label":["Space Grotesk"] } } } }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  body { background-color:#131315; color:#bbc9cf; font-family:'Inter',sans-serif; background-image:radial-gradient(circle at 50% 0%, #1a1a1e 0%, #131315 100%); }
+  .glass-card { background:rgba(42,42,44,0.45); backdrop-filter:blur(20px); border-top:1px solid rgba(168,232,255,0.1); border-left:1px solid rgba(168,232,255,0.1); }
+</style>
+</head>
+<body class="selection:bg-primary/30 selection:text-primary">
+<nav class="fixed top-0 w-full z-50 bg-[#050b18]/80 backdrop-blur-xl border-b border-white/5">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto w-full">
+    <div class="text-xl font-bold text-[#b6c4ff] font-headline tracking-widest">Billy Li</div>
+    <div class="hidden md:flex items-center gap-8 flex-1 justify-center px-8">
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-wider text-xs uppercase font-semibold" href="index.html">About Me</a>
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-wider text-xs uppercase font-semibold" href="research.html">Research</a>
+      <a class="text-[#b6c4ff] border-b border-[#b6c4ff] pb-1 font-label tracking-wider text-xs uppercase font-semibold" href="blog.html">Blog</a>
+      <a class="text-slate-400 hover:text-[#b6c4ff] transition-colors duration-300 font-label tracking-wider text-xs uppercase font-semibold" href="experience.html">Experience</a>
+    </div>
+  </div>
+</nav>
+<main class="pt-32 pb-24 max-w-6xl mx-auto px-6 md:px-12 space-y-8">
+  <header>
+    <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-[0.2em] uppercase mb-6">
+      <span class="material-symbols-outlined text-multimodal-accent text-base">analytics</span>
+      Core Machine Learning
+    </div>
+    <h1 class="font-headline text-4xl md:text-6xl text-on-surface tracking-tight leading-none mb-6">Machine Learning <span class="text-multimodal-accent italic font-light">Pointers</span></h1>
+    <p class="max-w-3xl text-lg text-on-surface-variant leading-relaxed">Pointers, derivations, and reminders on classical machine learning topics I keep coming back to.</p>
+  </header>
+
+  <section class="glass-card rounded-xl p-8 border border-outline-variant/20">
+    <h2 class="font-headline text-2xl text-on-surface mb-5">MLE and MAP</h2>
+    <div class="space-y-4 text-on-surface-variant leading-relaxed">
+      <p>$$\theta_{MLE} = \arg\max_{\theta} P(D | \theta) = \arg\max_{\theta} \prod_i P(x_i | \theta)$$</p>
+      <p>To avoid underflow, I would rather work in log space, since logarithm is monotonically increasing, so maximizing a function is the same as maximizing the log of that function.</p>
+      <p>$$\theta_{MLE} = \arg\max_{\theta} \log P(X | \theta) = \arg\max_{\theta} \sum_i \log P(x_i | \theta)$$</p>
+      <p>For MAP:</p>
+      <p>$$P(\theta | X) = \frac{P(X | \theta)P(\theta)}{P(X)} \propto P(X | \theta)P(\theta)$$</p>
+      <p>$$\theta_{MAP} = \arg\max_{\theta} \log P(X | \theta) + \log P(\theta)$$</p>
+      <ul class="space-y-3 list-disc pl-5">
+        <li>Example: for Gaussian random variables, the log likelihood reduces to the average squared deviation, so MLE for variance becomes $$\frac{1}{n}\sum_{i=1}^{n}(x_i-\mu)^2 = \sigma^2.$$</li>
+        <li>Example: for Bernoulli random variables, MLE gives $$\hat{\theta} = \frac{1}{n}\sum_{i=1}^{n}X_i.$$</li>
+        <li>These derivations are basic, but useful enough that I still like keeping them written down.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid md:grid-cols-2 gap-6">
+    <div class="glass-card rounded-xl p-8 border border-outline-variant/20">
+      <h2 class="font-headline text-2xl text-on-surface mb-5">Logistic Regression</h2>
+      <p class="mb-4 text-on-surface-variant leading-relaxed"><a class="text-primary hover:text-multimodal-accent transition-colors" href="https://www.youtube.com/embed/yIYKR4sgzI8?start=472" target="_blank" rel="noopener noreferrer">Original video reference</a></p>
+      <ul class="space-y-3 text-on-surface-variant leading-relaxed list-disc pl-5">
+        <li>$$\frac{\exp(w^Tx)}{1+\exp(w^Tx)} = \frac{1}{1+\exp(-w^Tx)}$$ and this can also be viewed as a special case of softmax with only two classes.</li>
+        <li>$$\frac{1}{1+\exp(-w^Tx)} \ge \frac{1}{2} \rightarrow w^Tx \ge 0,$$ hence the decision boundary is linear in the binary case.</li>
+        <li>Logistic regression gives an unconstrained, smooth objective. It also gives calibrated probabilities that can be interpreted as confidence in a decision.</li>
+        <li>As an optimization problem, $\ell_2$, $\ell_1$, and elastic-net regularized <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression" target="_blank" rel="noopener noreferrer">logistic regression</a> are all worth remembering because maximum conditional a posteriori corresponds naturally to regularization.</li>
+      </ul>
+    </div>
+    <div class="glass-card rounded-xl p-8 border border-outline-variant/20">
+      <h2 class="font-headline text-2xl text-on-surface mb-5">SVM</h2>
+      <ul class="space-y-3 text-on-surface-variant leading-relaxed list-disc pl-5">
+        <li>TL;DR: SVM is about finding a soft margin, or supporting hyperplane, that best separates the data. If we cannot find such a separable instance, we can move to a higher dimension by using kernels.</li>
+        <li>Understanding <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://www.youtube.com/watch?v=gb25CfVZm3Q" target="_blank" rel="noopener noreferrer">RKHS</a> is the basis of understanding kernels.</li>
+        <li>The primal view is useful because it shows the role of slack variables and the penalty term $C$ directly. The original note pointed to the <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://scikit-learn.org/stable/modules/svm.html#svm-classification" target="_blank" rel="noopener noreferrer">SVC primal problem</a>.</li>
+        <li>The dual view highlights that the training vectors are implicitly mapped into a higher-dimensional space by the <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://www.cs.cmu.edu/~aarti/Class/10701_Spring21/Lecs/svm_dual_kernel_inked.pdf" target="_blank" rel="noopener noreferrer">kernel function</a>, for example the <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://youtu.be/Qc5IyLW_hns?t=570" target="_blank" rel="noopener noreferrer">RBF kernel</a>.</li>
+        <li>The famous <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://youtu.be/05VABNfa1ds?t=571" target="_blank" rel="noopener noreferrer">kernel trick</a> is exactly why the dual formulation is worth understanding.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="glass-card rounded-xl p-8 border border-outline-variant/20">
+    <h2 class="font-headline text-2xl text-on-surface mb-5">Fully Connected Nets and Convolutional Nets</h2>
+    <div class="space-y-4 text-on-surface-variant leading-relaxed">
+      <p>The original notebook also kept reminders on fully connected networks and convolutional nets.</p>
+      <ul class="space-y-3 list-disc pl-5">
+        <li>For deep fully connected nets, writing out the derivative chain directly makes vanishing gradients painfully obvious.</li>
+        <li>For convolutional nets, I still like the view that convolution is just the discrete version of smoothed convolution in math, and many image-processing kernels become intuitive once you stare at them long enough.</li>
+        <li><a class="text-primary hover:text-multimodal-accent transition-colors" href="https://github.com/lijuncheng16/codingInterview/blob/main/Matrix.ipynb" target="_blank" rel="noopener noreferrer">Implementation notes</a>, <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://cs231n.github.io/convolutional-networks/" target="_blank" rel="noopener noreferrer">CS231n</a>, <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://www.youtube.com/watch?v=u6aEYuemt0M" target="_blank" rel="noopener noreferrer">lecture notes</a>, and <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://youtu.be/8rrHTtUzyZA?t=1292" target="_blank" rel="noopener noreferrer">the MIT video</a> were some of the most useful references in the original notebook.</li>
+        <li>I also kept links for <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20172018/LectureNotes/IP/LocalStructure/GaussianDerivatives.html" target="_blank" rel="noopener noreferrer">Gaussian derivatives</a>, <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://matthew-brett.github.io/teaching/smoothing_intro.html" target="_blank" rel="noopener noreferrer">Gaussian smoothing</a>, <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://dlsyscourse.org/slides/conv_nets.pdf" target="_blank" rel="noopener noreferrer">convolution as matrix vector product</a>, and <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://github.com/dlsyscourse/public_notebooks/blob/main/convolution_implementation.ipynb" target="_blank" rel="noopener noreferrer">a proper implementation</a> of convolution.</li>
+        <li>Convolution also ties surprisingly well back to coding questions like <a class="text-primary hover:text-multimodal-accent transition-colors" href="https://github.com/lijuncheng16/codingInterview/blob/main/Matrix.ipynb" target="_blank" rel="noopener noreferrer">image overlap</a>, which is one reason I kept those notes connected.</li>
+      </ul>
+      <p>There are still many details here that need periodic review. I prefer to keep this page notebook-like rather than make it sound more polished than it really is.</p>
+      <p><a class="text-primary hover:text-multimodal-accent transition-colors" href="https://github.com/lijuncheng16/codingInterview/blob/main/README.md" target="_blank" rel="noopener noreferrer">Browse the broader coding and ML note repo</a></p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

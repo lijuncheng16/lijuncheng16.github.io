@@ -33,40 +33,19 @@
           "tertiary": "#cfe0fa",
           "tertiary-fixed": "#d3e4fe",
           "surface-variant": "#353437",
-          "on-error": "#690005",
-          "on-secondary-fixed-variant": "#3c4d00",
-          "on-error-container": "#ffdad6",
-          "on-secondary-fixed": "#161e00",
           "on-background": "#e5e1e4",
-          "on-tertiary": "#213145",
           "surface-container-low": "#1c1b1d",
-          "on-tertiary-fixed": "#0b1c30",
           "tertiary-fixed-dim": "#b7c8e1",
           "surface-dim": "#131315",
-          "surface-tint": "#3cd7ff",
           "secondary": "#ffffff",
-          "inverse-surface": "#e5e1e4",
-          "on-primary-container": "#00586b",
-          "primary-fixed": "#b4ebff",
-          "error": "#ffb4ab",
-          "surface-bright": "#39393b",
           "surface-container": "#201f21",
           "surface-container-high": "#2a2a2c",
           "on-surface-variant": "#bbc9cf",
           "surface": "#131315",
           "background": "#131315",
-          "tertiary-container": "#b3c4de",
-          "on-primary-fixed": "#001f27",
-          "on-primary-fixed-variant": "#004e5f",
           "secondary-fixed": "#c3f400",
           "outline-variant": "#3c494e",
           "primary-fixed-dim": "#3cd7ff",
-          "on-secondary-container": "#556d00",
-          "secondary-fixed-dim": "#abd600",
-          "on-tertiary-container": "#415167",
-          "on-primary": "#003642",
-          "error-container": "#93000a",
-          "inverse-primary": "#00677e",
           "multimodal-accent": "#d4b3ff"
         },
         fontFamily: {
@@ -75,9 +54,9 @@
           "label": ["Space Grotesk"],
           "display": ["Space Grotesk"]
         },
-        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
-      },
-    },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"}
+      }
+    }
   }
 </script>
 <style>
@@ -98,6 +77,9 @@
   }
   .blog-shell {
     background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  }
+  .archive-card:hover {
+    transform: translateY(-2px);
   }
 </style>
 </head>
@@ -135,157 +117,53 @@
     <div class="inline-block px-3 py-1 mb-6 rounded-full bg-surface-container-highest text-on-surface-variant font-label text-[10px] tracking-[0.2em] uppercase">Notes Archive</div>
     <h1 class="font-headline font-bold text-on-surface tracking-tighter leading-none mb-8 text-4xl md:text-6xl">Blogs &amp; <span class="text-primary-fixed-dim italic font-light">Working Notes</span></h1>
     <p class="max-w-3xl text-lg text-on-surface-variant leading-relaxed font-body">
-      A restored archive of the notes I wrote while learning theory, machine learning, coding interviews, and more recently, LLMs. The content is old in places, but the point is still the same: think clearly, write things down, and keep compounding understanding.
+      Notes on LLMs, coding interviews, machine learning, theory, and linear algebra.
     </p>
   </header>
 
-  <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-20">
-    <a href="#llm-notes" class="glass-card rounded-xl p-8 block hover:bg-surface-container-high transition-all duration-300 border-l-4 border-primary-fixed-dim">
+  <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-16">
+    <a href="llm-notes.html" class="archive-card glass-card rounded-xl p-8 block transition-all duration-300 border-l-4 border-primary-fixed-dim">
       <div class="flex items-center gap-3 mb-4">
         <span class="material-symbols-outlined text-primary-fixed-dim">memory</span>
-        <span class="font-label text-[10px] tracking-[0.2em] uppercase text-on-surface-variant">March 2026</span>
+        <span class="font-label text-[10px] tracking-[0.2em] uppercase text-on-surface-variant">2026</span>
       </div>
       <h2 class="font-headline text-2xl text-on-surface mb-3">LLM Notes</h2>
-      <p class="text-on-surface-variant leading-relaxed text-sm">How I think about LLMs, post-training, judgment, agents, and why taste matters more as models get stronger.</p>
+      <p class="text-on-surface-variant leading-relaxed text-sm">Not ready yet. I am leaving this one unpublished for now rather than pretending it is a finished note.</p>
     </a>
-    <a href="#coding-interviews" class="glass-card rounded-xl p-8 block hover:bg-surface-container-high transition-all duration-300 border-l-4 border-secondary-fixed">
+    <a href="coding-interviews.html" class="archive-card glass-card rounded-xl p-8 block transition-all duration-300 border-l-4 border-secondary-fixed">
       <div class="flex items-center gap-3 mb-4">
         <span class="material-symbols-outlined text-secondary-fixed">code</span>
         <span class="font-label text-[10px] tracking-[0.2em] uppercase text-on-surface-variant">Algorithms</span>
       </div>
       <h2 class="font-headline text-2xl text-on-surface mb-3">Coding Interviews</h2>
-      <p class="text-on-surface-variant leading-relaxed text-sm">A realistic take on LeetCode, interview prep, and what still matters now that everyone has access to strong coding copilots.</p>
+      <p class="text-on-surface-variant leading-relaxed text-sm">The original essay plus category notes on arrays, heaps, trees, graphs, DP, and backtracking.</p>
     </a>
-    <a href="#ml-pointers" class="glass-card rounded-xl p-8 block hover:bg-surface-container-high transition-all duration-300 border-l-4 border-multimodal-accent">
+    <a href="ml-pointers.html" class="archive-card glass-card rounded-xl p-8 block transition-all duration-300 border-l-4 border-multimodal-accent">
       <div class="flex items-center gap-3 mb-4">
         <span class="material-symbols-outlined text-multimodal-accent">analytics</span>
         <span class="font-label text-[10px] tracking-[0.2em] uppercase text-on-surface-variant">Core ML</span>
       </div>
       <h2 class="font-headline text-2xl text-on-surface mb-3">ML Pointers</h2>
-      <p class="text-on-surface-variant leading-relaxed text-sm">Collected notes on MLE, MAP, logistic regression, SVM, optimization, and the classical ideas worth revisiting.</p>
+      <p class="text-on-surface-variant leading-relaxed text-sm">MLE, MAP, logistic regression, SVMs, and the classical machine learning foundations worth keeping fresh.</p>
     </a>
-    <a href="#theory-notebook" class="glass-card rounded-xl p-8 block hover:bg-surface-container-high transition-all duration-300 border-l-4 border-primary">
+    <a href="theory-notebook.html" class="archive-card glass-card rounded-xl p-8 block transition-all duration-300 border-l-4 border-primary">
       <div class="flex items-center gap-3 mb-4">
         <span class="material-symbols-outlined text-primary">functions</span>
         <span class="font-label text-[10px] tracking-[0.2em] uppercase text-on-surface-variant">Math &amp; Stats</span>
       </div>
       <h2 class="font-headline text-2xl text-on-surface mb-3">Theory Notebook</h2>
-      <p class="text-on-surface-variant leading-relaxed text-sm">Probability, statistics, convergence, regression, and the math foundations that still sit underneath modern AI.</p>
+      <p class="text-on-surface-variant leading-relaxed text-sm">Probability, statistics, inequalities, convergence, and the mathematical instincts underneath modern ML.</p>
     </a>
-    <a href="#linear-algebra" class="glass-card rounded-xl p-8 block hover:bg-surface-container-high transition-all duration-300 border-l-4 border-secondary-container">
+    <a href="linear-algebra.html" class="archive-card glass-card rounded-xl p-8 block transition-all duration-300 border-l-4 border-secondary-container">
       <div class="flex items-center gap-3 mb-4">
         <span class="material-symbols-outlined text-secondary-container">schema</span>
         <span class="font-label text-[10px] tracking-[0.2em] uppercase text-on-surface-variant">Linear Algebra</span>
       </div>
       <h2 class="font-headline text-2xl text-on-surface mb-3">Linear Algebra</h2>
-      <p class="text-on-surface-variant leading-relaxed text-sm">Interesting things I learned while rebuilding intuition for matrix operations, decompositions, eigenspaces, and geometry.</p>
+      <p class="text-on-surface-variant leading-relaxed text-sm">Motivation, resources, and the geometric facts that made linear algebra finally click for me.</p>
     </a>
   </section>
 
-  <div class="space-y-20">
-    <section id="llm-notes" class="glass-card rounded-xl p-8 md:p-10 border-l-4 border-primary-fixed-dim">
-      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
-        <div>
-          <div class="font-label text-[10px] tracking-[0.2em] uppercase text-primary-fixed-dim mb-3">LLM Notes • Updated March 2026</div>
-          <h2 class="font-headline text-3xl text-on-surface mb-4">Some Notes on LLMs</h2>
-          <p class="text-on-surface-variant text-base leading-relaxed max-w-3xl">LLMs have already changed research, engineering, and knowledge work. I choose to embrace them, but the real edge now comes from judgment: data inspection, evaluation, post-training, system design, and knowing where the models fail.</p>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">POST-TRAINING</span>
-          <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">AGENTS</span>
-          <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label text-[10px] rounded-full">EVALUATION</span>
-        </div>
-      </div>
-      <div class="grid lg:grid-cols-[1.6fr_1fr] gap-8">
-        <div class="space-y-5 text-on-surface-variant leading-relaxed">
-          <p>My basic view is simple: LLMs are powerful tools with unusual strengths, and the right response is neither hype nor denial. Once everyone has access to strong models, the bottleneck moves upward: better questions, better evaluation, better systems, and better taste.</p>
-          <p>What I have learned from post-training work is that inspecting data is often more important than blindly training. The real bias, useful signal, hidden assumptions, and failure modes are buried in the data itself. If you do not look carefully, you are optimizing blind.</p>
-          <p>I also increasingly believe boring work should be delegated to agents. Save your own attention for the places where judgment, debugging, and prioritization actually matter. That is where human leverage still compounds the fastest.</p>
-          <p>The field moves too quickly for dogma. The best way to form opinions is still to build directly with the models and let contact with reality correct your abstractions.</p>
-        </div>
-        <div class="rounded-xl bg-surface-container-lowest/80 border border-outline-variant/20 p-6">
-          <h3 class="font-headline text-xl text-on-surface mb-4">Current Beliefs</h3>
-          <ul class="space-y-3 text-sm text-on-surface-variant leading-relaxed list-disc pl-5">
-            <li>Memorization matters less; evaluation and framing matter more.</li>
-            <li>Post-training and integration often matter as much as the base model.</li>
-            <li>The scarcest resource is taste and attention, not raw information.</li>
-            <li>The best understanding still comes from direct use, not distant argument.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="coding-interviews" class="glass-card rounded-xl p-8 md:p-10 border-l-4 border-secondary-fixed">
-      <div class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed mb-3">Algorithms &amp; Hiring</div>
-      <h2 class="font-headline text-3xl text-on-surface mb-4">My Mixed Feelings About Coding Interviews</h2>
-      <div class="space-y-5 text-on-surface-variant leading-relaxed">
-        <p>Coding interviews are still an imperfect but practical filter. They are not the same thing as research coding or production engineering, but the market uses them because they are standardized and efficient.</p>
-        <p>The useful response is not to keep complaining. It is to separate “interview coding” from “real coding,” accept the game for what it is, and rebuild algorithmic foundations with enough repetition to make the patterns second nature.</p>
-        <p>My own strongest lessons were: practice by category, review aggressively, explain every design step out loud, and optimize for thought process rather than memorized answers. In the LLM era, that matters even more.</p>
-        <div class="rounded-xl bg-surface-container-lowest/80 border border-outline-variant/20 p-6">
-          <h3 class="font-headline text-xl text-on-surface mb-4">What I Would Still Tell Candidates</h3>
-          <ul class="space-y-3 text-sm text-on-surface-variant leading-relaxed list-disc pl-5">
-            <li>Group problems by pattern instead of solving randomly.</li>
-            <li>Take notes and review or you will forget faster than you think.</li>
-            <li>Readable concise code beats messy brute force.</li>
-            <li>Let the interviewer see your reasoning, not just the final answer.</li>
-          </ul>
-        </div>
-        <p><a class="text-primary hover:text-primary-fixed-dim transition-colors" href="https://github.com/lijuncheng16/codingInterview" target="_blank" rel="noopener noreferrer">My coding interview repo</a> still contains the raw notebooks and category notes that grew out of this process.</p>
-      </div>
-    </section>
-
-    <section id="ml-pointers" class="glass-card rounded-xl p-8 md:p-10 border-l-4 border-multimodal-accent">
-      <div class="font-label text-[10px] tracking-[0.2em] uppercase text-multimodal-accent mb-3">Core Machine Learning</div>
-      <h2 class="font-headline text-3xl text-on-surface mb-4">Machine Learning Pointers</h2>
-      <div class="grid md:grid-cols-2 gap-6 text-on-surface-variant">
-        <div class="rounded-xl bg-surface-container-lowest/80 border border-outline-variant/20 p-6">
-          <h3 class="font-headline text-xl text-on-surface mb-3">Topics Covered</h3>
-          <ul class="space-y-3 text-sm leading-relaxed list-disc pl-5">
-            <li>MLE and MAP from first principles</li>
-            <li>Logistic regression and calibrated probabilities</li>
-            <li>SVM primal and dual views</li>
-            <li>Optimization intuitions that keep showing up</li>
-          </ul>
-        </div>
-        <div class="rounded-xl bg-surface-container-lowest/80 border border-outline-variant/20 p-6">
-          <h3 class="font-headline text-xl text-on-surface mb-3">Why Keep These Notes</h3>
-          <p class="text-sm leading-relaxed">A lot of newer ML work moves quickly, but the classical concepts still anchor how I reason about objectives, estimation, regularization, and model behavior. Revisiting them pays off more often than people admit.</p>
-        </div>
-      </div>
-      <p class="mt-6 text-on-surface-variant leading-relaxed">This notebook started as a place to collect practical reminders: the derivations I keep forgetting, the explanations that make an idea stick, and the references worth returning to when intuition gets fuzzy.</p>
-    </section>
-
-    <section id="theory-notebook" class="glass-card rounded-xl p-8 md:p-10 border-l-4 border-primary">
-      <div class="font-label text-[10px] tracking-[0.2em] uppercase text-primary mb-3">Math &amp; Statistics</div>
-      <h2 class="font-headline text-3xl text-on-surface mb-4">Basic Theory Notebook and Pointers</h2>
-      <div class="space-y-5 text-on-surface-variant leading-relaxed">
-        <p>Working in AI without strong math and statistics eventually hits a ceiling. Nobody knows everything, but you need enough instinct for probability, regression, and convergence to tell whether a method actually makes sense.</p>
-        <p>This notebook was my attempt to keep those foundations alive: expected value, variance, covariance, distribution families, useful inequalities, convergence, and the regression tools that keep reappearing underneath newer methods.</p>
-        <div class="rounded-xl bg-surface-container-lowest/80 border border-outline-variant/20 p-6">
-          <h3 class="font-headline text-xl text-on-surface mb-3">Core References</h3>
-          <ul class="space-y-3 text-sm leading-relaxed list-disc pl-5">
-            <li>Siva Balakrishnan’s CMU statistics notes</li>
-            <li>Linear algebra, probability, statistics, and calculus refreshers</li>
-            <li>Books and lecture notes that rebuild intuition instead of only formulas</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="linear-algebra" class="glass-card rounded-xl p-8 md:p-10 border-l-4 border-secondary-container">
-      <div class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-container mb-3">Linear Algebra</div>
-      <h2 class="font-headline text-3xl text-on-surface mb-4">Interesting Things I Learned About Linear Algebra</h2>
-      <p class="text-on-surface-variant leading-relaxed mb-5">Linear algebra is one of those subjects that looks clean on paper and then gets more interesting every time you revisit it with better geometric intuition. This notebook exists to keep those ideas tangible: spaces, projections, decompositions, and matrix facts that actually matter in machine learning.</p>
-      <div class="rounded-xl bg-surface-container-lowest/80 border border-outline-variant/20 p-6">
-        <ul class="space-y-3 text-sm leading-relaxed list-disc pl-5 text-on-surface-variant">
-          <li>How eigenvectors, projections, and decompositions show up in real models</li>
-          <li>Why matrix factorization keeps reappearing across recommendation, compression, and representation learning</li>
-          <li>The value of geometric intuition, not just symbolic manipulation</li>
-        </ul>
-      </div>
-    </section>
-  </div>
 </main>
 <footer class="w-full py-12 border-t border-white/5 bg-[#000000]">
   <div class="flex flex-col md:flex-row justify-between items-center px-8 md:px-12 max-w-7xl mx-auto gap-6">
