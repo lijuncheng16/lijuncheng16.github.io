@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>LLM Notes | Billy Li</title>
+<title>Parameter-Golf Notes | Billy Li</title>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2W7ZYGDT27"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,7 +11,7 @@
   gtag('js', new Date());
   gtag('config', 'G-2W7ZYGDT27');
   gtag('event', 'view_llm_blog', {
-    page_title: 'LLM Notes',
+    page_title: 'Parameter-Golf Notes',
     page_path: '/llm-notes.html'
   });
 </script>
@@ -21,12 +21,33 @@
 <script id="tailwind-config">
   tailwind.config = { darkMode: "class", theme: { extend: { colors: {
     "primary":"#a8e8ff","surface":"#131315","surface-container-low":"#1c1b1d","surface-container-high":"#2a2a2c","surface-container-highest":"#353437","on-surface":"#e5e1e4","on-surface-variant":"#bbc9cf","outline-variant":"#3c494e","primary-fixed-dim":"#3cd7ff","secondary-fixed":"#c3f400","multimodal-accent":"#d4b3ff"
-  }, fontFamily: { "headline":["Space Grotesk"], "body":["Inter"], "label":["Space Grotesk"], "display":["Space Grotesk"] } } } }
+  }, fontFamily: { "headline":["Space Grotesk"], "body":["Inter"], "label":["Space Grotesk"], "display":["Space Grotesk"], "accent":["Newsreader"] } } } }
 </script>
 <style>
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-  body { background-color:#131315; color:#bbc9cf; font-family:'Inter',sans-serif; background-image:radial-gradient(circle at 30% 0%, #172030 0%, #131315 60%); }
+  body { background-color:#131315; color:#bbc9cf; font-family:'Inter',sans-serif; background-image:radial-gradient(circle at 20% 0%, #172030 0%, #131315 42%), radial-gradient(circle at 100% 20%, rgba(60,215,255,0.08) 0%, rgba(19,19,21,0) 35%); }
   .glass-card { background:rgba(42,42,44,0.45); backdrop-filter:blur(20px); border-top:1px solid rgba(168,232,255,0.1); border-left:1px solid rgba(168,232,255,0.1); }
+  .log-section { position:relative; }
+  .log-section::before {
+    content:"";
+    position:absolute;
+    left:-1.2rem;
+    top:0.85rem;
+    width:0.65rem;
+    height:0.65rem;
+    border-radius:9999px;
+    background:linear-gradient(135deg, #3cd7ff, #c3f400);
+    box-shadow:0 0 0 6px rgba(60,215,255,0.08);
+  }
+  .log-rail::before {
+    content:"";
+    position:absolute;
+    left:-0.92rem;
+    top:0;
+    bottom:0;
+    width:1px;
+    background:linear-gradient(to bottom, rgba(60,215,255,0.35), rgba(195,244,0,0.08));
+  }
 </style>
 </head>
 <body class="selection:bg-primary/30 selection:text-primary">
@@ -46,24 +67,103 @@
     <div class="grid lg:grid-cols-[1.3fr_0.7fr] gap-0">
       <div class="p-8 md:p-12">
         <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-[0.2em] uppercase mb-6">
-          <span class="material-symbols-outlined text-primary-fixed-dim text-base">memory</span>
-          Draft
+          <span class="material-symbols-outlined text-primary-fixed-dim text-base">lab_profile</span>
+          Notes
         </div>
-        <h1 class="font-headline text-4xl md:text-6xl text-on-surface tracking-tight leading-none mb-6">LLM Notes</h1>
-        <p class="max-w-2xl text-lg text-on-surface-variant leading-relaxed">This page is not ready yet. The current draft is too loose and too hallucination-prone, so I would rather leave it unpublished than overstate half-formed thoughts.</p>
+        <h1 class="font-headline text-4xl md:text-6xl text-on-surface tracking-tight leading-none mb-6">Parameter-Golf Notes</h1>
+        <p class="max-w-2xl text-lg text-on-surface-variant leading-relaxed mb-6">A working writeup of how we approached the challenge: what seemed promising, what actually moved the number, and which ideas simply did not earn their keep under a brutal training budget.</p>
+        <div class="flex flex-wrap gap-3 text-xs font-label uppercase tracking-[0.18em] text-on-surface-variant">
+          <span class="rounded-full border border-outline-variant/40 px-3 py-2">April 2026</span>
+          <span class="rounded-full border border-outline-variant/40 px-3 py-2">Tokenization</span>
+          <span class="rounded-full border border-outline-variant/40 px-3 py-2">Optimizer</span>
+          <span class="rounded-full border border-outline-variant/40 px-3 py-2">Test-Time Compute</span>
+        </div>
       </div>
-      <div class="p-8 md:p-12 bg-gradient-to-br from-[#0b1528] to-[#162d48] flex items-center justify-center">
-        <div class="w-36 h-36 rounded-3xl border border-white/10 bg-white/5 flex items-center justify-center shadow-[0_0_40px_rgba(60,215,255,0.12)]">
-          <span class="material-symbols-outlined text-primary-fixed-dim text-7xl">neurology</span>
+      <div class="p-8 md:p-12 bg-gradient-to-br from-[#0b1528] via-[#10213a] to-[#162d48] flex items-center justify-center">
+        <div class="w-44 h-44 rounded-[2rem] border border-white/10 bg-white/5 flex items-center justify-center shadow-[0_0_50px_rgba(60,215,255,0.12)] relative overflow-hidden">
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(195,244,0,0.18),transparent_32%),radial-gradient(circle_at_70%_70%,rgba(60,215,255,0.18),transparent_36%)]"></div>
+          <span class="material-symbols-outlined text-primary-fixed-dim text-8xl relative">neurology</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="glass-card rounded-xl p-8 border border-outline-variant/20 max-w-3xl">
-    <h2 class="font-headline text-2xl text-on-surface mb-5">Status</h2>
-    <p class="text-on-surface-variant leading-relaxed mb-4">I want to rewrite this one from scratch. The current version mixes some real observations with too much vague synthesis, and that is not a standard worth keeping on the site.</p>
-    <p class="text-on-surface-variant leading-relaxed">For now, I am parking it here as a draft and will bring it back only when the writing is concrete enough to be worth reading.</p>
+  <section class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+    <article class="glass-card rounded-2xl border border-outline-variant/20 p-8 md:p-10">
+      <div class="max-w-3xl">
+        <p class="text-on-surface-variant leading-relaxed mb-5">This was a joint effort with Tim Shen. Thanks also to Xingyuan Ding for helping with additional experiments, and to Bill (Yiyuan) Li for several meaningful discussions about tokenizers.</p>
+        <p class="text-on-surface-variant leading-relaxed mb-5">I started looking seriously at the challenge around <span class="text-on-surface">April 20, 2026</span>. At that point the merged leaderboard had mostly stopped moving, and it did not change much after that either.</p>
+        <p class="text-on-surface-variant leading-relaxed mb-5">The first thing I did was analyze the baseline implementation and skim the PRs that existed at the time. There was already a lot of good work in flight. It was exciting, but also honestly a bit overwhelming.</p>
+        <p class="text-on-surface-variant leading-relaxed mb-8">What helped was reducing the task to a sequence of smaller parts:</p>
+        <div class="rounded-2xl bg-[#0d1421] border border-white/5 px-6 py-5 mb-10 overflow-x-auto">
+          <code class="font-headline text-lg md:text-xl text-primary-fixed-dim tracking-wide">data -&gt; tokenization -&gt; model architecture -&gt; optimizer -&gt; quantization -&gt; test-time compute</code>
+        </div>
+
+        <div class="relative pl-6 log-rail space-y-12">
+          <section class="log-section">
+            <h2 class="font-headline text-2xl text-on-surface mb-4">Data</h2>
+            <p class="text-on-surface-variant leading-relaxed mb-4">On the data side, one trend showed up very clearly: smaller vocabularies had a low ceiling. Across many of the later successful PRs, <span class="text-on-surface font-medium">8192</span> seemed to be the sweet spot.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">That said, relying on a SentencePiece tokenizer never felt like the final answer. I kept coming back to the idea that the tokenization scheme needed to preserve enough difficulty. If the task became too easy, this network simply plateaued.</p>
+            <ul class="space-y-3 text-on-surface-variant leading-relaxed list-disc pl-5 marker:text-primary-fixed-dim">
+              <li>I suspected full-word tokenization was wasteful under the challenge's time and compute limits.</li>
+              <li>I tried pruning vocabularies and removing long words that could be reconstructed from shorter subword tokens already in the vocab.</li>
+              <li>That did not help. One run came out roughly <span class="text-on-surface">+0.001 bpb</span>, which was directionally worse.</li>
+              <li>Lowercasing the data helped, while treating leading capitalization as a special token.</li>
+              <li>I also tried normalizing the dataset by stripping long URLs and other rare, awkward patterns from FineWeb.</li>
+            </ul>
+            <p class="text-on-surface-variant leading-relaxed mt-4">Another useful signal was that training on only <span class="text-on-surface">1024 tokens</span> kept showing a low ceiling. My interpretation is that tokenization has to make the modeling problem hard enough. If it over-simplifies the sequence, this model family peaks too early.</p>
+          </section>
+
+          <section class="log-section">
+            <h2 class="font-headline text-2xl text-on-surface mb-4">Model Architecture</h2>
+            <p class="text-on-surface-variant leading-relaxed mb-4">When I first saw the 9-layer baseline, it looked fairly standard. Depth recurrence was already there, and that felt like one of the community tricks that had already proved itself.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">From there I explored whether replacing <span class="text-on-surface">GQA</span> with <span class="text-on-surface">MHA</span> might be worth it: spend a little more parameter budget, hope for better quality. I also implemented a more elaborate local attention head. That idea failed badly.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">The issue was not just theory, it was systems. The implementation was inherently inefficient and could not take advantage of the optimized FlashAttention-style ecosystem, so whatever benefit it might have had on paper got crushed by practical cost.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">I also looked at several fancier ideas: DeepSeek engrams, value embeddings, and embedding factorizations. None of them paid off in this regime. With only about ten minutes of training time, they simply did not become useful fast enough.</p>
+            <p class="text-on-surface leading-relaxed font-medium">Vanilla attention plus MLP was extremely hard to beat under this budget.</p>
+            <p class="text-on-surface-variant leading-relaxed mt-4">If anything reliably helped, it was making the MLPs wider. Most other architectural tweaks did not show enough return on investment.</p>
+          </section>
+
+          <section class="log-section">
+            <h2 class="font-headline text-2xl text-on-surface mb-4">Optimizer</h2>
+            <p class="text-on-surface-variant leading-relaxed mb-4">We first ran ablations between <span class="text-on-surface">Muon</span> and <span class="text-on-surface">AdamW</span>. I initially expected AdamW to stay reasonably close on a relatively small dataset. That turned out to be wrong.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">In our experiments, AdamW consistently lagged Muon. After that, I spent some time looking inside Muon itself to see where the remaining slack might be.</p>
+            <p class="text-on-surface-variant leading-relaxed">One target was the all-reduce communication overhead. I eventually got a very small gain from what I was informally calling the <span class="text-on-surface">0427 trick</span>, but the improvement was only about <span class="text-on-surface">0.0005</span>. Useful, but not game-changing.</p>
+          </section>
+
+          <section class="log-section">
+            <h2 class="font-headline text-2xl text-on-surface mb-4">Quantization</h2>
+            <p class="text-on-surface-variant leading-relaxed mb-4">Quantization still felt somewhat like a black box to me, even though we had done it before. My intuition was that group quantization should provide a more stable estimate of parameter statistics and therefore be better suited for <span class="text-on-surface">GPTQ</span>.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">In practice, though, the group statistics also take space. That pushed the submission file toward the size limit, and the gain just did not justify the cost.</p>
+            <p class="text-on-surface-variant leading-relaxed">My intuition still says <span class="text-on-surface">QAT</span> should work better eventually, but I never got a successful QAT run during this round.</p>
+          </section>
+
+          <section class="log-section">
+            <h2 class="font-headline text-2xl text-on-surface mb-4">Test-Time Compute</h2>
+            <p class="text-on-surface-variant leading-relaxed mb-4">Test-time compute felt the most like a backdoor lottery ticket. The space was noisy, and a lot of it felt less principled than the earlier parts of the stack.</p>
+            <p class="text-on-surface-variant leading-relaxed">The main theme, at least from my perspective, was to align the trained distribution with the test-time distribution as much as possible. Beyond that, many of the gains felt opportunistic rather than deeply structural.</p>
+          </section>
+        </div>
+      </div>
+    </article>
+
+    <aside class="space-y-6">
+      <section class="glass-card rounded-2xl border border-outline-variant/20 p-6">
+        <h2 class="font-headline text-lg text-on-surface mb-4">Why This Page Exists</h2>
+        <p class="text-sm text-on-surface-variant leading-relaxed">I wanted to preserve the false starts, partial intuitions, and small local lessons instead of polishing the process into something tidier than it really was.</p>
+      </section>
+
+      <section class="glass-card rounded-2xl border border-outline-variant/20 p-6">
+        <h2 class="font-headline text-lg text-on-surface mb-4">Takeaways</h2>
+        <ul class="space-y-3 text-sm text-on-surface-variant leading-relaxed list-disc pl-5 marker:text-secondary-fixed">
+          <li>8192 vocab looked like the best tradeoff.</li>
+          <li>Tokenization should not make the task too easy.</li>
+          <li>Wider MLPs paid off more than fancy architecture tweaks.</li>
+          <li>Muon beat AdamW more clearly than I expected.</li>
+          <li>Quantization gains were real but hard to realize cleanly.</li>
+        </ul>
+      </section>
+    </aside>
   </section>
 </main>
 </body>
