@@ -418,6 +418,19 @@ x = torch.cat([x[:, :1], x[:, 1:] + g * x[:, :-1] * not_bos], dim=1)</code></pre
             <p class="text-on-surface-variant leading-relaxed mb-4">A second thing worth flagging is the substrate. The agentic loop runs on hardware that has not gotten cheaper or more available. A <span class="text-on-surface">600-second</span> wall-clock cap on <span class="text-on-surface">8× H100s</span> is a small experiment by frontier standards, but every iteration of the search tree above still cost real GPU-hours. Most of the project's calendar time was spent waiting for jobs to slot into a shared queue, not waiting for the agent to think. Compute is now the binding constraint on how fast agentic research can move — not the agent's bandwidth, not the human's. We were lucky to have access; many researchers in this design space are not.</p>
             <p class="text-on-surface-variant leading-relaxed mb-4">A third thing to say out loud is that the slow parts left in the loop are the parts that most need a human. Picking which hypothesis is worth a sweep, recognizing that the chunk-0 SMT mask was unstable rather than just noisy, deciding to call A1 a "toss-up" instead of a "refutation" — those judgment calls were ours. The agents could implement and measure, but the framing of what to measure, and the read of why a number was the size it was, still benefited noticeably from the human. Research efficiency has gone up enormously; the parts that didn't speed up are the parts where intuition and an honest second look at the data still matter, and for now those still seem to be a place where human researchers have an edge over LLM agents. We expect that gap to close. It hasn't yet.</p>
           </section>
+
+          <section class="log-section">
+            <h2 class="font-headline text-2xl text-on-surface mb-4">Citation</h2>
+            <p class="text-on-surface-variant leading-relaxed mb-4">If you would like to cite this writeup:</p>
+            <pre class="rounded-lg bg-[#0d1421] border border-white/5 px-4 py-4 mb-0 overflow-x-auto"><code class="font-headline text-sm text-primary-fixed-dim">@misc{li2026paramgolf,
+  author       = {Li, Billy and Shen, Tim},
+  title        = {Ten Minutes, 16 Megabytes: A Parameter-Golf Field Report},
+  year         = {2026},
+  month        = apr,
+  howpublished = {\url{https://www.junchengbillyli.com/llm-notes.html}},
+  note         = {Submission: \url{https://github.com/openai/parameter-golf/pull/1987}}
+}</code></pre>
+          </section>
         </div>
       </div>
     </article>
