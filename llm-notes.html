@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Parameter-Golf Notes | Billy Li</title>
+<title>Ten Minutes, 16 Megabytes: A Parameter-Golf Field Report | Billy Li</title>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2W7ZYGDT27"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,7 +11,7 @@
   gtag('js', new Date());
   gtag('config', 'G-2W7ZYGDT27');
   gtag('event', 'view_llm_blog', {
-    page_title: 'Parameter-Golf Notes',
+    page_title: 'Ten Minutes, 16 Megabytes — A Parameter-Golf Field Report',
     page_path: '/llm-notes.html'
   });
 </script>
@@ -72,10 +72,13 @@
       <div class="p-8 md:p-12">
         <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-[0.2em] uppercase mb-6">
           <span class="material-symbols-outlined text-primary-fixed-dim text-base">lab_profile</span>
-          Notes
+          Field Report
         </div>
-        <h1 class="font-headline text-4xl md:text-6xl text-on-surface tracking-tight leading-none mb-6">Parameter-Golf Notes</h1>
-        <p class="max-w-2xl text-lg text-on-surface-variant leading-relaxed mb-6">A working writeup of how we approached the challenge: what seemed promising, what actually moved the number, and which ideas simply did not earn their keep under a brutal training budget.</p>
+        <h1 class="font-headline text-4xl md:text-6xl text-on-surface tracking-tight leading-none mb-3">Ten Minutes, 16 Megabytes</h1>
+        <p class="font-headline text-xl md:text-2xl text-primary-fixed-dim mb-6">A Parameter-Golf Field Report</p>
+        <p class="max-w-2xl text-lg text-on-surface-variant leading-relaxed mb-6">A hypothesis-by-hypothesis writeup of OpenAI's Parameter-Golf challenge: what we tried, what moved the number, and which ideas simply did not earn their keep under a brutal training budget.</p>
+        <p class="max-w-2xl text-base text-on-surface mb-2">By <a href="https://www.junchengbillyli.com" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Billy Li</a> and <a href="https://github.com/TimS-ml" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Tim Shen</a>.</p>
+        <p class="max-w-2xl text-sm text-on-surface-variant leading-relaxed mb-6">With thanks to <span class="text-on-surface">Prof. Lin Hao</span> (Fordham University) for sponsoring the <span class="text-on-surface">8× H100 SXM</span> and <span class="text-on-surface">4× RTX 4090</span> compute used in this submission, and to <span class="text-on-surface">Haoze (Hector) He</span> for lending his GPU. Additional thanks to <a href="https://www.linkedin.com/in/xingyuan-ding-1b1349130" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Xingyuan Ding</a> for additional experiments, <a href="https://scholar.google.com/citations?user=MwifxdcAAAAJ&amp;hl=en" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Bill (Yiyuan) Li</a> for several meaningful discussions about tokenizers, <a href="https://github.com/Lijun-Yu" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Liju Yu</a> for invaluable insights, and <a href="https://github.com/greyjoeyzhou" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Hang Zhou</a> for project discussions.</p>
         <div class="flex flex-wrap gap-3 text-xs font-label uppercase tracking-[0.18em] text-on-surface-variant">
           <span class="rounded-full border border-outline-variant/40 px-3 py-2">April 2026</span>
           <span class="rounded-full border border-outline-variant/40 px-3 py-2">Tokenization</span>
@@ -92,9 +95,9 @@
     </div>
   </section>
 
-  <section class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+  <section class="grid gap-8">
     <article class="glass-card rounded-2xl border border-outline-variant/20 p-8 md:p-10">
-      <div class="max-w-3xl">
+      <div>
         <p class="text-on-surface-variant leading-relaxed mb-5"><a class="text-on-surface font-medium underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors" target="_blank" rel="noopener" href="https://openai.com/index/parameter-golf/">Parameter-Golf</a> is OpenAI's <a class="text-on-surface font-medium underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors" target="_blank" rel="noopener" href="https://github.com/openai/parameter-golf">Model Craft Challenge</a>: train the best language model you can in <span class="text-on-surface">10 minutes on 8× H100s</span>, with the final artifact constrained to a <span class="text-on-surface">16 MB compressed file</span>. The score is <a class="text-primary-fixed-dim hover:text-primary underline decoration-1 underline-offset-2 transition-colors" target="_blank" rel="noopener" href="https://github.com/openai/parameter-golf/blob/fdde8dc/train_gpt.py#L274-L278">bits-per-byte (BpB)</a> on the FineWeb validation set — lower is better. The wall-clock cap is end-to-end: training, post-training quantization, and any test-time compute all live inside that same 10-minute budget.</p>
         <details class="bpb-details mb-6">
           <summary class="text-on-surface font-medium">What is bits-per-byte?</summary>
@@ -134,7 +137,6 @@ val_bpb          = bits_per_token × tokens_per_byte</code></pre>
           </table>
           <p class="text-xs text-on-surface-variant/80 mt-4 leading-relaxed">Δ vs the prior leaderboard record (<a href="https://github.com/openai/parameter-golf/pull/1493" target="_blank" rel="noopener" class="text-primary-fixed-dim hover:text-primary underline decoration-1 underline-offset-2 transition-colors">PR #1493</a>): <span class="text-on-surface">-0.01916 bpb</span>. Built on top of <a href="https://github.com/openai/parameter-golf/pull/1948" target="_blank" rel="noopener" class="text-primary-fixed-dim hover:text-primary underline decoration-1 underline-offset-2 transition-colors">PR #1948</a> and <a href="https://github.com/openai/parameter-golf/pull/1855" target="_blank" rel="noopener" class="text-primary-fixed-dim hover:text-primary underline decoration-1 underline-offset-2 transition-colors">PR #1855</a>. Headline change: switch from <span class="text-on-surface">GQA (kv=4)</span> to <span class="text-on-surface">MHA (kv=8)</span> with <span class="text-on-surface">MLP_MULT 4.0 → 3.5</span> to stay cap-legal, plus the 9-hparam tuning stack ported from PR #1855 and a switch from <code>brotli</code> to <code>lrzip pergroup</code> compression (≈ −270 KB). The two free wins from PR #1948 (Leaky ReLU² slope = 0.3, reverse-Cholesky GPTQ Hinv) carry forward unchanged.</p>
         </div>
-        <p class="text-on-surface-variant leading-relaxed mb-5">This was a joint effort with <a href="https://github.com/TimS-ml" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Tim Shen</a>. Thanks also to <a href="https://www.linkedin.com/in/xingyuan-ding-1b1349130" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Xingyuan Ding</a> for additional experiments, to <a href="https://scholar.google.com/citations?user=MwifxdcAAAAJ&amp;hl=en" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Bill (Yiyuan) Li</a> for several meaningful discussions about tokenizers, to <a href="https://github.com/Lijun-Yu" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Liju Yu</a> for invaluable insights, and to <a href="https://github.com/greyjoeyzhou" target="_blank" rel="noopener" class="text-on-surface underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors">Hang Zhou</a> for project discussions.</p>
         <p class="text-on-surface-variant leading-relaxed mb-5">We started looking seriously at the challenge around <span class="text-on-surface">April 20, 2026</span>. At that point the merged leaderboard had mostly stopped moving, and it did not change much after that either.</p>
         <p class="text-on-surface-variant leading-relaxed mb-5">The first thing we did was analyze the baseline implementation and skim the PRs that existed at the time. There was already a lot of good work in flight. It was exciting, but also honestly a bit overwhelming.</p>
         <p class="text-on-surface-variant leading-relaxed mb-8">What helped was reducing the task to a sequence of smaller parts:</p>
@@ -145,8 +147,6 @@ val_bpb          = bits_per_token × tokens_per_byte</code></pre>
         <div class="relative pl-6 log-rail space-y-12">
           <section class="log-section">
             <h2 class="font-headline text-2xl text-on-surface mb-4">Data</h2>
-            <p class="text-on-surface-variant leading-relaxed mb-4">On the data side we worked the section as a small set of hypotheses, each tied to a specific run or sweep. The hypotheses came first; the experiments either confirmed, refuted, or only partially supported them.</p>
-
             <p class="font-label text-xs uppercase tracking-[0.22em] text-primary-fixed-dim mb-3 mt-6">Hypotheses</p>
             <ol class="space-y-2 text-on-surface-variant leading-relaxed list-decimal pl-6 marker:text-primary-fixed-dim mb-6">
               <li><span class="text-on-surface">H1 — Vocab size has a low ceiling.</span> Smaller vocabularies are better, but not too small; around 8192 BPE is the right anchor for this challenge.</li>
@@ -195,7 +195,7 @@ val_bpb          = bits_per_token × tokens_per_byte</code></pre>
 
           <section class="log-section">
             <h2 class="font-headline text-2xl text-on-surface mb-4">Model Architecture</h2>
-            <p class="text-on-surface-variant leading-relaxed mb-4">On the architecture side we approached the section the same way: hypotheses first, then experiments that confirmed, refuted, or partially supported each one. The starting point was the 9-layer baseline. Depth recurrence was already there, and that community trick had already proved itself, so the question was what else to add or remove under a brutal training budget.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">The starting point was the 9-layer baseline. Depth recurrence was already there, and that community trick had already proved itself, so the question was what else to add or remove under a brutal training budget.</p>
 
             <p class="font-label text-xs uppercase tracking-[0.22em] text-primary-fixed-dim mb-3 mt-6">Hypotheses</p>
             <ol class="space-y-2 text-on-surface-variant leading-relaxed list-decimal pl-6 marker:text-primary-fixed-dim mb-6">
@@ -305,8 +305,6 @@ x = torch.cat([x[:, :1], x[:, 1:] + g * x[:, :-1] * not_bos], dim=1)</code></pre
 
           <section class="log-section">
             <h2 class="font-headline text-2xl text-on-surface mb-4">Optimizer</h2>
-            <p class="text-on-surface-variant leading-relaxed mb-4">On the optimizer side we approached the section the same way: hypotheses first, then experiments that confirmed, refuted, or reframed each one.</p>
-
             <p class="font-label text-xs uppercase tracking-[0.22em] text-primary-fixed-dim mb-3 mt-6">Hypotheses</p>
             <ol class="space-y-2 text-on-surface-variant leading-relaxed list-decimal pl-6 marker:text-primary-fixed-dim mb-6">
               <li><span class="text-on-surface">O1 — AdamW should not be that bad at small scale.</span> On a relatively small dataset, standard AdamW with tuned betas usually holds its own against fancier optimizers; we expected it to come within striking distance of Muon.</li>
@@ -352,7 +350,7 @@ x = torch.cat([x[:, :1], x[:, 1:] + g * x[:, :-1] * not_bos], dim=1)</code></pre
 
           <section class="log-section">
             <h2 class="font-headline text-2xl text-on-surface mb-4">Quantization</h2>
-            <p class="text-on-surface-variant leading-relaxed mb-4">Quantization still felt somewhat like a black box to us, even though we had done it before. The hypotheses we went in with cluster around two questions: <em>which compensation tricks pay off</em>, and <em>are BPB and the artifact-byte cap independent constraints we can tune separately</em>. The findings landed firmly on the "no, they're joint constraints" side.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">Quantization still felt somewhat like a black box to us, even though we had done it before. Two questions kept coming up: which compensation tricks pay off, and are BPB and the artifact-byte cap independent constraints we can tune separately.</p>
 
             <p class="font-label text-xs uppercase tracking-[0.22em] text-primary-fixed-dim mb-3 mt-6">Hypotheses</p>
             <ol class="space-y-2 text-on-surface-variant leading-relaxed list-decimal pl-6 marker:text-primary-fixed-dim mb-6">
@@ -386,7 +384,7 @@ x = torch.cat([x[:, :1], x[:, 1:] + g * x[:, :-1] * not_bos], dim=1)</code></pre
 
           <section class="log-section">
             <h2 class="font-headline text-2xl text-on-surface mb-4">Test-Time Compute</h2>
-            <p class="text-on-surface-variant leading-relaxed mb-4">Test-time compute felt the most like a backdoor lottery ticket. The space was noisy, and a lot of it felt less principled than the earlier parts of the stack. The guiding heuristic, at least from our perspective, was to align the trained distribution with the test-time distribution as much as possible — beyond that, many of the gains felt opportunistic rather than deeply structural. The hypotheses below are the ones we actually tested.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">Test-time compute felt the most like a backdoor lottery ticket. The space was noisy, and a lot of it felt less principled than the earlier parts of the stack. The guiding heuristic, at least from our perspective, was to align the trained distribution with the test-time distribution as much as possible — beyond that, many of the gains felt opportunistic rather than deeply structural.</p>
 
             <p class="font-label text-xs uppercase tracking-[0.22em] text-primary-fixed-dim mb-3 mt-6">Hypotheses</p>
             <ol class="space-y-2 text-on-surface-variant leading-relaxed list-decimal pl-6 marker:text-primary-fixed-dim mb-6">
@@ -408,6 +406,15 @@ x = torch.cat([x[:, :1], x[:, 1:] + g * x[:, :-1] * not_bos], dim=1)</code></pre
 
             <p class="text-on-surface-variant leading-relaxed mb-4">In practice, the chunk-0 gradient signal turned out to be too unstable a basis for a frozen mask. The blocks that look most active in the first chunk are not consistently the blocks that matter for the rest of TTT — the test-time distribution drifts across chunks, and any one-shot mask bakes in the early signal at exactly the moment when the model has the least information. Full-rank LoRA TTT, which gets to re-allocate capacity at every chunk, was meaningfully more stable end-to-end. The final submission keeps SMT off and uses standard <span class="text-on-surface">LoRA rank 80, batch size 16, three phases</span> Phased TTT instead.</p>
           </section>
+
+          <section class="log-section">
+            <h2 class="font-headline text-2xl text-on-surface mb-4">A Note on Working with Agents</h2>
+            <p class="text-on-surface-variant leading-relaxed mb-4">Looking back at the search tree above, much of the substance was carried by agentic LLMs. <span class="text-on-surface">Codex</span> and <span class="text-on-surface">Claude Code</span> were not adjacent helpers — they were inside almost every step. We wrote prompts; they wrote scripts. We sketched a sweep; they wired up the runner, kicked off training on the HPC, scraped the logs, parsed the TSVs, ran the regressions, and handed back a summary that often included a sensible next experiment to try.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">There was a threshold somewhere in the middle of the project where the loop tightened to the point of feeling almost autonomous. Once we had fed enough context — the codebase, the constraints, the prior PRs, the way the budget was being scored — the agent could take a one-line research goal, build the conda environment on a fresh HPC node, run the experiment to completion, write the results to disk, generate the diff against the previous run, and propose what it thought we should look at next. We mostly nudged.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">This is not entirely a happy observation. The work above includes plenty of moments that felt genuinely ours — the choice of hypotheses, the willingness to keep a tossed-up MHA result, the suspicion that the SmearGate BOS-mask was the right size. But the rote engineering — the part that, ten years ago, would have been the work — was largely automated away. The fraction of the effort that was distinctively human kept shrinking.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">We are not lamenting the agents themselves; they are extraordinary, and this project would not have been possible at this depth without them. What is harder to sit with is how fast the line between operator and author moved. There is a version of this writeup that could have been, almost entirely, a transcript of what we asked the agents and what they handed back. We did not write it that way — but the fact that we could have is what makes the lament a real one.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">A second thing worth flagging is the substrate. The agentic loop runs on hardware that has not gotten cheaper or more available. A <span class="text-on-surface">600-second</span> wall-clock cap on <span class="text-on-surface">8× H100s</span> is a small experiment by frontier standards, but every iteration of the search tree above still cost real GPU-hours. Most of the project's calendar time was spent waiting for jobs to slot into a shared queue, not waiting for the agent to think. Compute is now the binding constraint on how fast agentic research can move — not the agent's bandwidth, not the human's. We were lucky to have access; many researchers in this design space are not.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-4">A third thing to say out loud is that the slow parts left in the loop are the parts that most need a human. Picking which hypothesis is worth a sweep, recognizing that the chunk-0 SMT mask was unstable rather than just noisy, deciding to call A1 a "toss-up" instead of a "refutation" — those judgment calls were ours. The agents could implement and measure, but the framing of what to measure, and the read of why a number was the size it was, still benefited noticeably from the human. Research efficiency has gone up enormously; the parts that didn't speed up are the parts where intuition and an honest second look at the data still matter, and for now those still seem to be a place where human researchers have an edge over LLM agents. We expect that gap to close. It hasn't yet.</p>
           </section>
         </div>
       </div>
@@ -415,21 +422,41 @@ x = torch.cat([x[:, :1], x[:, 1:] + g * x[:, :-1] * not_bos], dim=1)</code></pre
 
     <aside class="space-y-6">
       <section class="glass-card rounded-2xl border border-outline-variant/20 p-6">
-        <h2 class="font-headline text-lg text-on-surface mb-4">Why This Page Exists</h2>
-        <p class="text-sm text-on-surface-variant leading-relaxed">We wanted to preserve the false starts, partial intuitions, and small local lessons instead of polishing the process into something tidier than it really was.</p>
-      </section>
-
-      <section class="glass-card rounded-2xl border border-outline-variant/20 p-6">
         <h2 class="font-headline text-lg text-on-surface mb-4">Takeaways</h2>
-        <ul class="space-y-3 text-sm text-on-surface-variant leading-relaxed list-disc pl-5 marker:text-secondary-fixed">
-          <li>8192 vocab was the BPE sweet spot; the &lt;cap&gt;-token trick can shrink it a touch further.</li>
-          <li>Tokenization should not make the task too easy.</li>
-          <li>Attention gates and wider MLPs mattered more than fancier architecture tweaks.</li>
-          <li>Under a fixed byte cap, MLP capacity is the real budget bottleneck — even MHA loses to GQA.</li>
-          <li>Muon beat AdamW more clearly than we expected.</li>
-          <li>Muon's real throughput cap was packed-grad pack/copy, not the all-reduce wire.</li>
-          <li>Quantization gains were real but BPB and byte budget are joint constraints, not independent.</li>
-          <li>TTT was the single largest lever — bigger than every architectural or quantization knob combined.</li>
+
+        <p class="font-label text-[10px] uppercase tracking-[0.22em] text-primary-fixed-dim mb-2">Data</p>
+        <ul class="space-y-2 text-sm text-on-surface-variant leading-relaxed list-disc pl-5 marker:text-secondary-fixed mb-4">
+          <li>8192 BPE is the vocab sweet spot; the <span class="text-on-surface">&lt;cap&gt;</span>-token trick shrinks it slightly further by folding capitalization into a sentinel.</li>
+          <li>The sequence-inflation-vs-vocab-budget trade is U-shaped — even at <span class="text-on-surface">p=1.0</span> the BPB cost is essentially zero; the win lives in a narrow band around <span class="text-on-surface">p=0.2</span>.</li>
+        </ul>
+
+        <p class="font-label text-[10px] uppercase tracking-[0.22em] text-primary-fixed-dim mb-2">Model Architecture</p>
+        <ul class="space-y-2 text-sm text-on-surface-variant leading-relaxed list-disc pl-5 marker:text-secondary-fixed mb-4">
+          <li>MLP capacity is the dominant budget bottleneck; MHA can match GQA at parity once paired with the right surrounding stack (PR #1987).</li>
+          <li>Attention gates (SparseAttnGate, SmearGate) carry meaningful BPB; the BOS-mask fix closes a silent leak in the smear residual.</li>
+          <li>Depth recurrence (layers 3–5 visited 3× each) is a free "more compute, same artifact" lever.</li>
+          <li>Embedding tying is the single largest parameter-budget concession to the 16 MB cap.</li>
+        </ul>
+
+        <p class="font-label text-[10px] uppercase tracking-[0.22em] text-primary-fixed-dim mb-2">Optimizer</p>
+        <ul class="space-y-2 text-sm text-on-surface-variant leading-relaxed list-disc pl-5 marker:text-secondary-fixed mb-4">
+          <li>Muon outperforms AdamW even at small scale — matrix-coherent updates are more token-efficient than per-element ones.</li>
+          <li>The real Muon throughput cap is pack/copy in <span class="text-on-surface">_all_reduce_packed_grads</span>, not all-reduce wire time. The 0427 trick gave a small win for the wrong reason.</li>
+          <li>Larger batch under a wall-clock cap doesn't pay off; sqrt(k) LR scaling slightly beats linear at 1.5×.</li>
+        </ul>
+
+        <p class="font-label text-[10px] uppercase tracking-[0.22em] text-primary-fixed-dim mb-2">Quantization</p>
+        <ul class="space-y-2 text-sm text-on-surface-variant leading-relaxed list-disc pl-5 marker:text-secondary-fixed mb-4">
+          <li>BPB and byte budget are joint constraints — most BPB-improving knobs blow the 16 MB cap.</li>
+          <li>Int6 sits near the actual quantization floor for this model size; <span class="text-on-surface">matrix_bits=4</span> is unrecoverable even with LQER rank=8 rescue.</li>
+          <li>LQER's overall contribution (<span class="text-on-surface">~+0.0004 bpb</span>) is much smaller than expected; <span class="text-on-surface">top_k=1</span> is a small free win over the default.</li>
+        </ul>
+
+        <p class="font-label text-[10px] uppercase tracking-[0.22em] text-primary-fixed-dim mb-2">Test-Time Compute</p>
+        <ul class="space-y-2 text-sm text-on-surface-variant leading-relaxed list-disc pl-5 marker:text-secondary-fixed mb-0">
+          <li>TTT is the single largest lever in the search tree (<span class="text-on-surface">~0.013 bpb</span>), bigger than every architectural or quantization knob combined.</li>
+          <li>Phased TTT prefers 3 phases; smaller TTT batch (16) beats larger (64) even at higher LoRA rank.</li>
+          <li>SMT didn't generalize — the chunk-0 frozen mask can't track distribution drift; full-rank LoRA TTT is more stable end-to-end.</li>
         </ul>
       </section>
     </aside>
