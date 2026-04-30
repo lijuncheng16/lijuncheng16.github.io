@@ -48,6 +48,10 @@
     width:1px;
     background:linear-gradient(to bottom, rgba(60,215,255,0.35), rgba(195,244,0,0.08));
   }
+  details.bpb-details > summary { cursor: pointer; list-style: none; }
+  details.bpb-details > summary::-webkit-details-marker { display: none; }
+  details.bpb-details > summary::before { content: '▸  '; color: #3cd7ff; }
+  details.bpb-details[open] > summary::before { content: '▾  '; }
 </style>
 </head>
 <body class="selection:bg-primary/30 selection:text-primary">
@@ -91,6 +95,18 @@
   <section class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
     <article class="glass-card rounded-2xl border border-outline-variant/20 p-8 md:p-10">
       <div class="max-w-3xl">
+        <p class="text-on-surface-variant leading-relaxed mb-5"><span class="text-on-surface font-medium">Parameter-Golf</span> is OpenAI's Model Craft Challenge: train the best language model you can in <span class="text-on-surface">10 minutes on 8× H100s</span>, with the final artifact constrained to a <span class="text-on-surface">16 MB compressed file</span>. The score is <a class="text-primary-fixed-dim hover:text-primary underline decoration-1 underline-offset-2 transition-colors" target="_blank" rel="noopener" href="https://github.com/openai/parameter-golf/blob/fdde8dc/train_gpt.py#L274-L278">bits-per-byte (BpB)</a> on the FineWeb validation set — lower is better. The wall-clock cap is end-to-end: training, post-training quantization, and any test-time compute all live inside that same 10-minute budget.</p>
+        <details class="bpb-details mb-6">
+          <summary class="text-on-surface font-medium">What is bits-per-byte?</summary>
+          <div class="mt-3 pl-4 border-l-2 border-primary-fixed-dim/30 text-on-surface-variant leading-relaxed">
+            <p class="mb-3">Bits-per-byte (BpB) is the model's average compression rate on the validation text — the number of bits it spends to encode each input byte. It is tokenizer-agnostic: if you switch to a vocabulary that produces fewer tokens per sentence, each token carries more information, and the per-byte count comes out the same. That is what makes it the right metric for a parameter-golf challenge, where the tokenizer itself is fair game.</p>
+            <pre class="rounded-lg bg-[#0d1421] border border-white/5 px-4 py-3 mb-3 overflow-x-auto"><code class="font-headline text-sm text-primary-fixed-dim">bits_per_token   = val_loss / ln(2)
+tokens_per_byte  = total_tokens / total_bytes
+val_bpb          = bits_per_token × tokens_per_byte</code></pre>
+            <p class="mb-3">Cross-entropy loss comes out in nats, so dividing by <span class="text-on-surface">ln(2)</span> converts it to bits. Multiplying by the token-to-byte ratio normalizes the cost per byte rather than per token. A perfect compressor would score 0; producing uniform random bytes would score 8. On this challenge, frontier submissions cluster a bit above 1.0 BpB.</p>
+            <p class="mb-0"><span class="text-on-surface font-medium">A footnote on what can go wrong here.</span> The metric is only as honest as the byte counter that feeds it. <a class="text-primary-fixed-dim hover:text-primary underline decoration-1 underline-offset-2 transition-colors" target="_blank" rel="noopener" href="https://github.com/openai/parameter-golf/issues/897">Issue #897</a> describes a subtle case: when a custom SentencePiece tokenizer does not contain the word-boundary token <span class="text-on-surface">▁</span> (U+2581) as its own vocab entry, every boundary falls back to three byte-tokens. The stripping logic counts each byte-fallback token as 1 byte, so a 1-byte ASCII space ends up counted as 3 bytes. The denominator inflates, <span class="text-on-surface">tokens_per_byte</span> drops, and reported BpB silently <span class="text-on-surface">underestimates by roughly 20%</span>. The standard tokenizer ships with <span class="text-on-surface">▁</span> as token 939, so the bug never fires on stock submissions — but any custom-tokenizer change to the parameter-golf stack has to be audited against this counting path before its BpB number can be trusted.</p>
+          </div>
+        </details>
         <p class="text-on-surface-variant leading-relaxed mb-5">This was a joint effort with Tim Shen. Thanks also to Xingyuan Ding for helping with additional experiments, and to Bill (Yiyuan) Li for several meaningful discussions about tokenizers.</p>
         <p class="text-on-surface-variant leading-relaxed mb-5">I started looking seriously at the challenge around <span class="text-on-surface">April 20, 2026</span>. At that point the merged leaderboard had mostly stopped moving, and it did not change much after that either.</p>
         <p class="text-on-surface-variant leading-relaxed mb-5">The first thing I did was analyze the baseline implementation and skim the PRs that existed at the time. There was already a lot of good work in flight. It was exciting, but also honestly a bit overwhelming.</p>
