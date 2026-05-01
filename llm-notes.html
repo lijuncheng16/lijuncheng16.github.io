@@ -66,10 +66,10 @@
     </div>
   </div>
 </nav>
-<main class="pt-32 pb-24 max-w-6xl mx-auto px-6 md:px-12">
+<main class="pt-32 pb-24 max-w-6xl mx-auto px-4 md:px-12">
   <section class="glass-card rounded-2xl overflow-hidden border border-outline-variant/20 mb-10">
     <div class="grid lg:grid-cols-[1.3fr_0.7fr] gap-0">
-      <div class="p-8 md:p-12">
+      <div class="p-6 md:p-12">
         <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-[0.2em] uppercase mb-6">
           <span class="material-symbols-outlined text-primary-fixed-dim text-base">lab_profile</span>
           Field Report
@@ -86,7 +86,7 @@
           <span class="rounded-full border border-outline-variant/40 px-3 py-2">Test-Time Compute</span>
         </div>
       </div>
-      <div class="p-8 md:p-12 bg-gradient-to-br from-[#0b1528] via-[#10213a] to-[#162d48] flex items-center justify-center">
+      <div class="p-6 md:p-12 bg-gradient-to-br from-[#0b1528] via-[#10213a] to-[#162d48] flex items-center justify-center">
         <div class="w-44 h-44 rounded-[2rem] border border-white/10 bg-white/5 flex items-center justify-center shadow-[0_0_50px_rgba(60,215,255,0.12)] relative overflow-hidden">
           <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(195,244,0,0.18),transparent_32%),radial-gradient(circle_at_70%_70%,rgba(60,215,255,0.18),transparent_36%)]"></div>
           <span class="material-symbols-outlined text-primary-fixed-dim text-8xl relative">neurology</span>
@@ -96,7 +96,7 @@
   </section>
 
   <section class="grid gap-8">
-    <article class="glass-card rounded-2xl border border-outline-variant/20 p-8 md:p-10">
+    <article class="glass-card rounded-2xl border border-outline-variant/20 p-6 md:p-10 break-words">
       <div>
         <p class="text-on-surface-variant leading-relaxed mb-5"><a class="text-on-surface font-medium underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors" target="_blank" rel="noopener" href="https://openai.com/index/parameter-golf/">Parameter-Golf</a> is OpenAI's <a class="text-on-surface font-medium underline decoration-1 underline-offset-2 hover:text-primary-fixed-dim transition-colors" target="_blank" rel="noopener" href="https://github.com/openai/parameter-golf">Model Craft Challenge</a>: train the best language model you can in <span class="text-on-surface">10 minutes on 8× H100s</span>, with the final artifact constrained to a <span class="text-on-surface">16 MB compressed file</span>. The score is <a class="text-primary-fixed-dim hover:text-primary underline decoration-1 underline-offset-2 transition-colors" target="_blank" rel="noopener" href="https://github.com/openai/parameter-golf/blob/fdde8dc/train_gpt.py#L274-L278">bits-per-byte (BpB)</a> on the FineWeb validation set — lower is better. The wall-clock cap is end-to-end: training, post-training quantization, and any test-time compute all live inside that same 10-minute budget.</p>
         <details class="bpb-details mb-6">
@@ -435,7 +435,7 @@ x = torch.cat([x[:, :1], x[:, 1:] + g * x[:, :-1] * not_bos], dim=1)</code></pre
       </div>
     </article>
 
-    <aside class="space-y-6">
+    <aside class="space-y-6 break-words">
       <section class="glass-card rounded-2xl border border-outline-variant/20 p-6">
         <h2 class="font-headline text-lg text-on-surface mb-4">Takeaways</h2>
 
